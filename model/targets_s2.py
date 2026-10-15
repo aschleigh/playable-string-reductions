@@ -2,19 +2,22 @@
 user specified (BLOCK4 decisions 2-3): keep the more important voice, move or re-voice the other, and drop
 an inner voice rather than keep a hard double stop.
 
-    python -m model.targets_s2 [--regimes trio duo] [--workers 32]     -> model/results/rl/targets_s2.pkl
+    python -m model.targets_s2 [--regimes trio duo] [--workers 32] [--tag b]  -> model/results/rl/targets_s2{tag}__{split}.pkl
+(S2b = the current rules, --tag b; the S2 targets of control-S2 were built with G4 and no viola rule.)
 
 Per movement and regime. Notes are visited in time order, then by voice tier of the source (top, bass,
 inner), then by pitch, highest first. Each takes the first acceptable option:
   1. its true part and octave (the training-target reduction: Vn1+Vn2 -> violin etc.);
   2. another part at the same pitch, nearest register first;
   3. an octave or two away (+-12, +-24), its own part first, then the others;
-     (a note moved into the cello must stay below 6th position, <= G4 (U20); higher -> the octave below)
+     (a note moved into the cello may go up to D5, high D in thumb position (U20); higher -> the octave below)
   4. top or bass notes only: its true part even with a double stop (the melody and bass are not dropped);
   5. otherwise DROP.
 Acceptable = feasible under the frozen checker (the decoder's Committer: checker-v5, unisons merged) AND,
 for options 1-3, creates no unneeded double stop: no other note of that output part sounds during the
 note unless they all come from one source part and sound together there (a double stop the source has).
+Viola, stricter (U21): a source double stop made only of inner-voice notes is accepted in the viola only if
+no other viola double stop began within VIOLA_INNER_DS_GAP quarters before it (otherwise the next option).
 Labels are plain realisation. Output: {key: {regime: [(part, octave, realisation)] in decode order}}.
 """
 from __future__ import annotations
@@ -31,14 +34,15 @@ from model.diagnose import oracle_labels
 from model.grpo import RL, load_split
 
 REGIMES = ("trio", "duo")
-CELLO_MOVED_MAX = 67   # PLACEHOLDER (U20): G4, about the top of 5th position on the A string [User: "6th position"]
+CELLO_MOVED_MAX = 74   # U20: D5 [User 2026-10-15: "you can go up to high D (in thumb position) for cello"]
+VIOLA_INNER_DS_GAP = 2.0   # U21: quarters; calibrated to viola 4.45 per 100 target notes (S2 6.11, real 5.1) [User: "slightly stricter"]
 
 
 def _overlaps(a0, a1, b0, b1):
     return a0 < b1 and b0 < a1
 
 
-def build(m, regime, ranges):
+def build(m, regime, ranges, gap=VIOLA_INNER_DS_GAP):
     ens = load_ensemble(regime)
     insts = ens.instruments
     labs = oracle_labels(m.src, regime, ranges)
@@ -47,6 +51,7 @@ def build(m, regime, ranges):
     placed = defaultdict(list)                       # output part -> [(on, end, source index)]
     order = sorted(range(len(m.src)), key=lambda i: (m.src[i][1], TIER_RANK[m.tiers[i]], -m.src[i][3]))
     stats = Counter()
+    ds_onsets = defaultdict(list)                    # output part -> onsets of double stops placed there
 
     def no_new_double(i, q):
         o, d = m.src[i][1], m.src[i][2]
@@ -54,14 +59,19 @@ def build(m, regime, ranges):
         if not hits:
             return True
         grp = hits + [i]                             # a double stop the source has: one source part, together
-        return len({m.src[j][0] for j in grp}) == 1 and max(m.src[j][1] for j in grp) < min(m.src[j][1] + m.src[j][2] for j in grp)
+        ok = len({m.src[j][0] for j in grp}) == 1 and max(m.src[j][1] for j in grp) < min(m.src[j][1] + m.src[j][2] for j in grp)
+        if ok and gap is not None and insts[q].key == "viola" and all(m.tiers[j] == "inner" for j in grp):
+            if any(0 <= o - t < gap for t in ds_onsets[q] if t != o):
+                stats["viola_inner_ds_refused"] += 1
+                return False
+        return ok
 
     def in_range(x, q):
         return insts[q].low <= x <= insts[q].high
 
     def comfortable(x, q, kind):
-        # user (2026-10-15): when the cello takes over another part's material, not into 6th position or above;
-        # take it down an octave instead. The cello's own source notes are not restricted.
+        # user (2026-10-15): when the cello takes over another part's material, up to high D in thumb position
+        # (D5); above that, take it down an octave. The cello's own source notes are not restricted.
         return not (insts[q].key == "cello" and kind != "kept" and x > CELLO_MOVED_MAX)
 
     for i in order:
@@ -95,16 +105,19 @@ def build(m, regime, ranges):
         q, s, kind = chosen
         stats[f"{kind}_{tier}"] += 1
         if not inotes[i].merged:
-            placed[q].append((m.src[i][1], m.src[i][1] + m.src[i][2], i))
+            o, e = m.src[i][1], m.src[i][1] + m.src[i][2]
+            if any(_overlaps(o, e, a, b) for (a, b, _) in placed[q]):
+                ds_onsets[q].append(o)
+            placed[q].append((o, e, i))
     return [(n.part, n.octave, n.real) for n in inotes], stats
 
 
 def _job(args):
-    m, regimes = args
+    m, regimes, gap = args
     ranges = A.load_ranges()
     out, st = {}, Counter()
     for r in regimes:
-        out[r], s = build(m, r, ranges)
+        out[r], s = build(m, r, ranges, gap)
         st.update({f"{r}:{k}": v for k, v in s.items()})
     return m.key, out, st
 
@@ -115,14 +128,17 @@ def main(argv=None):
     ap.add_argument("--split", default="train")
     ap.add_argument("--workers", type=int, default=32)
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--viola-gap", type=float, default=VIOLA_INNER_DS_GAP, help="U21; negative = rule off")
+    ap.add_argument("--tag", default="", help="output suffix (calibration runs)")
     a = ap.parse_args(argv)
     mvs = load_split(a.split)[: a.limit]
     with Pool(a.workers) as pool:
-        res = pool.map(_job, [(m, a.regimes) for m in mvs], chunksize=1)
+        gap = None if a.viola_gap is None or a.viola_gap < 0 else a.viola_gap
+        res = pool.map(_job, [(m, a.regimes, gap) for m in mvs], chunksize=1)
     tot = Counter()
     for _, _, st in res:
         tot.update(st)
-    pickle.dump({k: o for k, o, _ in res}, open(RL / f"targets_s2__{a.split}.pkl", "wb"))
+    pickle.dump({k: o for k, o, _ in res}, open(RL / f"targets_s2{a.tag}__{a.split}.pkl", "wb"))
     for r in a.regimes:
         n = sum(v for k, v in tot.items() if k.startswith(r + ":"))
         print(r, {k.split(":")[1]: f"{v} ({100 * v / n:.1f}%)" for k, v in sorted(tot.items()) if k.startswith(r + ":")})

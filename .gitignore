@@ -66,6 +66,7 @@ model/results/*/eval/*/harness/metrics.jsonl
 decoding/results/*/*/harness/metrics.jsonl
 !BLOCK3_HANDOFF.md
 !BLOCK4.md
+!BLOCK5.md
 model/results/diagnostics/**/*.pkl
 model/results/diagnostics/*.pkl
 model/results/diagnostics/harness/**/metrics.jsonl

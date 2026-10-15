@@ -279,3 +279,23 @@ are therefore in force, each open to reversal:
 - **R47. Confirmatory result (2026-10-15).** Criterion B: duo holds; trio fails one item (viola
   double stops 5.2 per 100 notes, CI to 6.1, against 5.1); everything else holds. Criterion A fails
   in both regimes, as anticipated. Reported as is; no criterion was changed after the result.
+- **R48. GitHub authorship (2026-10-15).** The user asked for all past and current GitHub changes to be
+  attributed to `ashleyzhang04@gmail.com` (the aschleigh account). Both commits were rewritten (author and
+  committer; contents identical) and force-pushed; the export script and export repo now use that address.
+- **R49. S2b target rules (2026-10-15), from the user's review of the confirmatory result.**
+  - **U20 changed:** cello may take over material up to D5 ("high D (in thumb position)"), was G4. On 200
+    train movements, cello target double stops are unchanged (4.64 -> 4.54 per 100); ~10.7k moved notes stay
+    at pitch instead of an octave down.
+  - **U14 confirmed:** cello triple stops in extended position ("allow extended position"); stretch 4 unchanged.
+  - **U21 new (viola, stricter):** inner-only viola double stops need a 2-quarter gap from the previous viola
+    double stop. Calibrated to 4.45 per 100 target notes (S2 6.11, real 5.1). The user approved the rule
+    ("the open rule looks good"); the gap was chosen as the smallest reaching ~4.5.
+  - The S2 targets (and control-S2) are kept unchanged; S2b is a new file (`targets_s2b__train.pkl`).
+  - **No retrain or evaluation yet:** control-S2b training is Step 1b of BLOCK5.md, pending approval.
+- **R50. Block 5 brief written (2026-10-15).** The user: "For block 5, you can write the brief." BLOCK5.md
+  is a proposal: S2b and control-S2b; a learned idiomatic part model P (4 × 256 causal transformer on the
+  train parts), validated on the dev split (real > S2 > v2b > hacks) before use; RL from control-S2b with a
+  penalty-only idiomatic term; dev-split selection rule and criterion C fixed in the brief; one confirmatory
+  test, on fresh movements if `raw_corpora/` has enough, else the 145 with a second-use caveat; generative
+  infilling deferred to an optional Step 6, budgeted at <= 2% of notes and limited to source pitch classes.
+  Six decisions are listed for the user. Nothing runs until approval.
