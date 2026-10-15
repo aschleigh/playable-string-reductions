@@ -1,0 +1,28 @@
+{
+ "metrics_version": "1.5.0-draft",
+ "inputs": [
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/control-S2__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/control-S2_masked__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/arranger-v2b__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/arranger-v2b_masked__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/control-S__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/model/results/confirm/eval/duo/records/control-S_masked__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band_masked__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/continuity__duo.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/naive__duo.jsonl"
+ ],
+ "n_records": 1350,
+ "n_seed_groups": 1350,
+ "soft": false,
+ "config_sha1": {
+  "assigner.yaml": "68f4756ff3d7",
+  "duo.yaml": "920011709ac3",
+  "piano.yaml": "e1da86c3c441",
+  "quartet.yaml": "598fdee23339",
+  "solo_flute.yaml": "3e07c81872fe",
+  "solo_violin.yaml": "f380903d7391",
+  "trio.yaml": "45c26927a0a9",
+  "instruments.yaml": "5da3190dd377",
+  "soft.yaml": "7a6d8106842c"
+ }
+}

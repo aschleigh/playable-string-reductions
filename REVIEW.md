@@ -276,3 +276,6 @@ are therefore in force, each open to reversal:
     BLOCK4.md before any decode, because 2g's detectors penalise the note dropping the user approved.
   - **Interpretation of "next block":** the remaining Block 4 step. A Block 5 brief is needed from
     the user.
+- **R47. Confirmatory result (2026-10-15).** Criterion B: duo holds; trio fails one item (viola
+  double stops 5.2 per 100 notes, CI to 6.1, against 5.1); everything else holds. Criterion A fails
+  in both regimes, as anticipated. Reported as is; no criterion was changed after the result.

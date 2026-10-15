@@ -85,3 +85,4 @@ model/results/rl/*/records*/
 model/results/rl/*/eval*/
 model/results/confirm/*/records/
 model/results/confirm/eval/*/records/
+!WEEK_SUMMARY.md

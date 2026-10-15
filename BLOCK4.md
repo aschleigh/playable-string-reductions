@@ -1133,3 +1133,32 @@ fidelity metrics and drops are reported, not criteria.
 - **B holds in both regimes:** the S2 supervision produces idiomatic, playable reductions that keep
   the melody, and internalise the constraint without RL.
 - **B fails:** say which item and why.
+
+## Confirmatory test result (R46; 145 evaluation movements, checker-v5, melody-first, 2026-10-15 12:47)
+
+Full tables are in `model/results/confirm/CONFIRM.md`.
+
+| control-S2 vs v2b | Trio | Duo |
+|---|---|---|
+| **Criterion B** | **Fails one item:** viola double stops 5.2 per 100 notes [4.4, 6.1] against the real-viola 5.1. Melody, interventions and rhythm items hold. | **Holds** (all four items) |
+| Criterion A (2g) | Fails 1 (weighted fidelity −0.030), 4 (harmony −0.036, Note_i F1 −0.121) and 5 (note ratio 0.787, harmony out of range); 2 and 3 hold | Fails 1, 4 and 5; 2 and 3 hold |
+
+**Key numbers (control-S2 against v2b):**
+
+| | Trio | Duo |
+|---|---|---|
+| Double stops per 100 notes | violin 0.7 (v2b 24.5), viola 5.2 (17.9), cello 2.1 (5.1) | violin 0.1 (27.5), cello 1.8 (30.1) |
+| Melody retention (count) | 0.994 (+0.027) | 0.971 (+0.018) |
+| Interventions | 0.013 (−0.101) | 0.010 (−0.209) |
+| Unmasked violations per 100 notes | 3.0 (34.9) | 3.1 (57.7) |
+| Inner retention | 0.547 (−0.32) | 0.028 (−0.51) |
+| Harmony | 0.944 (−0.036) | 0.857 (−0.074) |
+
+**Reading:**
+- The S2 supervision does what the user asked: double stops at or near real-part levels, melody kept,
+  and the constraint largely internalised. The unmasked model violates about 11–18× less often than v2b.
+- The trio fails criterion B narrowly, on viola double stops (point estimate 5.2 against 5.1). The
+  duo passes.
+- The cost is the inner voices. In the duo almost all inner material is dropped (inner retention
+  0.03), so harmony falls by 0.074.
+- Criterion A fails as expected: it rewards keeping notes.

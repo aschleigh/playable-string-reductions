@@ -272,3 +272,9 @@ from then on.
   with the control-S2 trio.
 - **12:15 detached watcher `model/run_week_summary.sh`** (survives session restarts): waits for the confirmatory evaluation, then builds the week-summary table and figure; the session-bound watcher was stopped.
 - **12:25 GitHub export prepared** (`tools_export_github.sh`): private repo, fresh history, relevant tracked files only (no data, checkpoints, logs, study/ PRIVATE files or legacy code). Untracked 240 large record and metrics copies from the local repo (tracked size 890 MB → 138 MB). Waiting for the user to create the empty repo on GitHub.
+- **12:30 pushed to GitHub:** private `aschleigh/playable-string-reductions`, 1 commit authored by the user (no co-author line, at the user's request), 1,322 files (96 MB). WEEK_SUMMARY.md will follow as a second commit.
+- **12:47 confirmatory test evaluated** (R47): criterion B holds in the duo; the trio fails on viola
+  double stops only (5.2 against 5.1); criterion A fails in both, as anticipated.
+- **13:06** summary table and figure built by the detached watcher.
+- **14:57** session resumed after a restart; the results were read and recorded.
+- **15:10 WEEK_SUMMARY.md written:** annotated results table, double-stop figure, confirmatory verdict, Bridge images and bar-by-bar analysis, RL lessons, the idiomatic-term proposal, presentation plan and caveats.
