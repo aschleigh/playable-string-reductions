@@ -1,0 +1,2 @@
+raw_corpora/StringQuartets/scores: 196 .mxl files
+sha256 over (relative path, file sha256), sorted: b90094156c1569b4627c07244d80a52f47ff5d9c9e75af43f1f40acc74e7b465

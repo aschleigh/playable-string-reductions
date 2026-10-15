@@ -1,0 +1,369 @@
+{
+ "movements": 687,
+ "notes": 2396332,
+ "floor": {
+  "simultaneity": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "range": {
+   "violations": 17,
+   "per_100_notes": 0.0007094175598372847,
+   "per_movement_rate": {
+    "movements_with_any": 5,
+    "mean": 0.00039524035300950324,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.09713453132588636
+   },
+   "share_of_violations_in_top_5pct_movements": 1.0,
+   "worst_movements": [
+    {
+     "key": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+     "violations": 10,
+     "per_100": 0.05722133211261158
+    },
+    {
+     "key": "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m04",
+     "violations": 2,
+     "per_100": 0.09713453132588636
+    },
+    {
+     "key": "Koechlin,_Charles__String_Quartet_No.1,_Op.51__sq27309583__m02",
+     "violations": 2,
+     "per_100": 0.07390983000739099
+    },
+    {
+     "key": "Borodin,_Alexander__String_Quartet_No.1__sq8811375__m01",
+     "violations": 2,
+     "per_100": 0.028192839018889203
+    },
+    {
+     "key": "Borodin,_Alexander__String_Quartet_No.1__sq8811375__m04",
+     "violations": 1,
+     "per_100": 0.015071590052750565
+    }
+   ]
+  },
+  "chord_size": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "hand_span": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "transition": {
+   "violations": 136,
+   "per_100_notes": 0.005675340478698277,
+   "per_movement_rate": {
+    "movements_with_any": 67,
+    "mean": 0.004173330590902202,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.07768732204743438,
+    "max": 0.14781966001478197
+   },
+   "share_of_violations_in_top_5pct_movements": 0.7573529411764706,
+   "worst_movements": [
+    {
+     "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m01",
+     "violations": 8,
+     "per_100": 0.09604994597190539
+    },
+    {
+     "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+     "violations": 7,
+     "per_100": 0.10353498003253957
+    },
+    {
+     "key": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+     "violations": 6,
+     "per_100": 0.03433279926756695
+    },
+    {
+     "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m01",
+     "violations": 6,
+     "per_100": 0.060435132957292505
+    },
+    {
+     "key": "Berg,_Alban__String_Quartet,_Op.3__sq8955300__m02",
+     "violations": 6,
+     "per_100": 0.14720314033366044
+    }
+   ]
+  }
+ },
+ "naive": {
+  "simultaneity": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "range": {
+   "violations": 12,
+   "per_100_notes": 0.0005007653363557303,
+   "per_movement_rate": {
+    "movements_with_any": 2,
+    "mean": 0.0002246810239279446,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.09713453132588636
+   },
+   "share_of_violations_in_top_5pct_movements": 1.0,
+   "worst_movements": [
+    {
+     "key": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+     "violations": 10,
+     "per_100": 0.05722133211261158
+    },
+    {
+     "key": "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m04",
+     "violations": 2,
+     "per_100": 0.09713453132588636
+    }
+   ]
+  },
+  "chord_size": {
+   "violations": 13474,
+   "per_100_notes": 0.5622760118380925,
+   "per_movement_rate": {
+    "movements_with_any": 491,
+    "mean": 0.5134299632083655,
+    "median": 0.21570319240724764,
+    "p90": 1.3300473436542903,
+    "p99": 2.9694362685274194,
+    "max": 12.578921806702283
+   },
+   "share_of_violations_in_top_5pct_movements": 0.33687101083568355,
+   "worst_movements": [
+    {
+     "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+     "violations": 326,
+     "per_100": 4.8217719272297
+    },
+    {
+     "key": "Grieg,_Edvard__String_Quartet_No.1,_Op.27__sq9631717__m04",
+     "violations": 292,
+     "per_100": 3.3679354094579006
+    },
+    {
+     "key": "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m04",
+     "violations": 259,
+     "per_100": 12.578921806702283
+    },
+    {
+     "key": "Schumann,_Robert__String_Quartet_No.1,_Op.41_No.1__sq9010547__m04",
+     "violations": 187,
+     "per_100": 2.7666814617546973
+    },
+    {
+     "key": "Reger,_Max__String_Quartet_No.3,_Op.74__sq26401096__m03",
+     "violations": 178,
+     "per_100": 2.1915784289583846
+    }
+   ]
+  },
+  "hand_span": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "transition": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  }
+ },
+ "continuity": {
+  "simultaneity": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "range": {
+   "violations": 10627,
+   "per_100_notes": 0.44346943578769554,
+   "per_movement_rate": {
+    "movements_with_any": 559,
+    "mean": 0.4585854253811308,
+    "median": 0.2384737678855326,
+    "p90": 1.0950983328341815,
+    "p99": 3.5231798877597416,
+    "max": 6.861848124428179
+   },
+   "share_of_violations_in_top_5pct_movements": 0.2936858944198739,
+   "worst_movements": [
+    {
+     "key": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+     "violations": 185,
+     "per_100": 1.0585946440833143
+    },
+    {
+     "key": "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m01",
+     "violations": 184,
+     "per_100": 4.981050351922036
+    },
+    {
+     "key": "Wolf,_Hugo__String_Quartet__sq8823783__m01",
+     "violations": 181,
+     "per_100": 2.412046908315565
+    },
+    {
+     "key": "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m03",
+     "violations": 141,
+     "per_100": 4.179016004742146
+    },
+    {
+     "key": "Stenhammar,_Wilhelm__String_Quartet_No.4__sq26531671__m03",
+     "violations": 139,
+     "per_100": 1.6674664107485604
+    }
+   ]
+  },
+  "chord_size": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "hand_span": {
+   "violations": 0,
+   "per_100_notes": 0.0,
+   "per_movement_rate": {
+    "movements_with_any": 0,
+    "mean": 0.0,
+    "median": 0.0,
+    "p90": 0.0,
+    "p99": 0.0,
+    "max": 0.0
+   },
+   "share_of_violations_in_top_5pct_movements": null,
+   "worst_movements": []
+  },
+  "transition": {
+   "violations": 532,
+   "per_100_notes": 0.022200596578437377,
+   "per_movement_rate": {
+    "movements_with_any": 187,
+    "mean": 0.02009941798998708,
+    "median": 0.0,
+    "p90": 0.06417943703116875,
+    "p99": 0.21095887230952062,
+    "max": 0.6588169329969161
+   },
+   "share_of_violations_in_top_5pct_movements": 0.5394736842105263,
+   "worst_movements": [
+    {
+     "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m02",
+     "violations": 47,
+     "per_100": 0.6588169329969161
+    },
+    {
+     "key": "Grieg,_Edvard__String_Quartet_No.1,_Op.27__sq9631717__m04",
+     "violations": 38,
+     "per_100": 0.43829296424452135
+    },
+    {
+     "key": "Beethoven,_Ludwig_van__String_Quartet_No.16_in_F_major,_Op.135__sq12397213__m04",
+     "violations": 14,
+     "per_100": 0.28072989773410867
+    },
+    {
+     "key": "Wolf,_Hugo__String_Quartet__sq8823783__m01",
+     "violations": 13,
+     "per_100": 0.1732409381663113
+    },
+    {
+     "key": "Maier,_Amanda__String_Quartet_in_A_major__sq7551068__m02",
+     "violations": 12,
+     "per_100": 0.5371530886302597
+    }
+   ]
+  }
+ },
+ "checker_ms_floor": {
+  "median": 7.603897713124752,
+  "p99": 28.676857557147734,
+  "max": 32.487266696989536,
+  "movements_over_10ms": 227,
+  "max_notes": 17476,
+  "notes_of_slowest": 9013
+ }
+}

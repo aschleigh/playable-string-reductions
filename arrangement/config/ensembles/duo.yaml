@@ -1,0 +1,5 @@
+# Violin + cello duo (DECISION.md A1).
+name: violin_cello_duo
+parts:
+  - {name: Violin, instrument: violin}
+  - {name: Violoncello, instrument: cello}

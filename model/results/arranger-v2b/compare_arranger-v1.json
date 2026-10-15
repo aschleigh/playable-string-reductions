@@ -1,0 +1,774 @@
+{
+ "trio": {
+  "n_movements": 150,
+  "systems": {
+   "arranger@A": {
+    "n_movements": 150,
+    "n_notes": 536171,
+    "D": 11.116416217960316,
+    "D_check": "double_onset",
+    "D_ci95": [
+     10.425894579580163,
+     12.262958502049793
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.004662691566683017,
+     "chord_size": 0.09511890796033355,
+     "hand_span": 0.0,
+     "transition": 0.0020515842893405276,
+     "multistop": 3.0932295853375136,
+     "bow": 1.1658593993334216,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 2.244806227863872,
+     "triple_stretch": 2.0471081054365117,
+     "triple_rate": 2.6375913654412493,
+     "double_onset": 11.116416217960316,
+     "restrike": 0.8364868670629333,
+     "double_rate": 10.76447625850708
+    },
+    "fidelity": {
+     "note_i_f1": 0.8552107437223148,
+     "note_f1": 0.9799037244135931,
+     "mel_f1": 0.6805301145943892,
+     "harmony": 0.9988891474616084
+    },
+    "texture": {
+     "polyphony_rate": 0.8945468647920454,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5602160111533291,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.23903337861130733,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 1.0259347565015864,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger_masked@A": {
+    "n_movements": 150,
+    "n_notes": 521401,
+    "D": 0.0,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     0.0,
+     0.0
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.0,
+     "chord_size": 0.0,
+     "hand_span": 0.0,
+     "transition": 0.0,
+     "multistop": 0.0,
+     "bow": 0.0,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 0.0,
+     "triple_stretch": 0.0,
+     "triple_rate": 0.0,
+     "double_onset": 0.0,
+     "restrike": 0.0,
+     "double_rate": 0.0
+    },
+    "fidelity": {
+     "note_i_f1": 0.737357383937532,
+     "note_f1": 0.9163552896102392,
+     "mel_f1": 0.7285461057123216,
+     "harmony": 0.9794366896606531
+    },
+    "texture": {
+     "polyphony_rate": 0.8890822985559296,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5536468455343718,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.22932027514117284,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 1.0001447680350293,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger@B": {
+    "n_movements": 150,
+    "n_notes": 517427,
+    "D": 12.176210363974048,
+    "D_check": "double_onset",
+    "D_ci95": [
+     11.376357670802827,
+     13.000196293466177
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.00521812738801802,
+     "chord_size": 0.09701851662166837,
+     "hand_span": 0.0,
+     "transition": 0.002125903750674008,
+     "multistop": 2.9849621299236415,
+     "bow": 1.1164859970585224,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 2.029465025984342,
+     "triple_stretch": 1.7903974860221827,
+     "triple_rate": 2.294236674931923,
+     "double_onset": 12.176210363974048,
+     "restrike": 0.8387656616295632,
+     "double_rate": 10.781810767509233
+    },
+    "fidelity": {
+     "note_i_f1": 0.8705318144471536,
+     "note_f1": 0.9914508310685,
+     "mel_f1": 0.6931970466525814,
+     "harmony": 0.998799772054702
+    },
+    "texture": {
+     "polyphony_rate": 0.8931920604115656,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5788724733684099,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.23321657621651695,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 0.9889603644193998,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger_masked@B": {
+    "n_movements": 150,
+    "n_notes": 501186,
+    "D": 0.0,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     0.0,
+     0.0
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.0,
+     "chord_size": 0.0,
+     "hand_span": 0.0,
+     "transition": 0.0,
+     "multistop": 0.0,
+     "bow": 0.0,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 0.0,
+     "triple_stretch": 0.0,
+     "triple_rate": 0.0,
+     "double_onset": 0.0,
+     "restrike": 0.0,
+     "double_rate": 0.0
+    },
+    "fidelity": {
+     "note_i_f1": 0.7405628232356571,
+     "note_f1": 0.9312612896115193,
+     "mel_f1": 0.7465980854854743,
+     "harmony": 0.9819008834603897
+    },
+    "texture": {
+     "polyphony_rate": 0.8873402626663616,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5818716393442489,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.2248248845756683,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 0.9606844056076326,
+     "note_ratio__total__source": 1.0
+    }
+   }
+  },
+  "paired": {
+   "arranger": {
+    "note_i_f1": {
+     "delta": -0.015321070724838792,
+     "ci95": [
+      -0.01857351307242358,
+      -0.012132198959667299
+     ]
+    },
+    "note_f1": {
+     "delta": -0.01154710665490688,
+     "ci95": [
+      -0.014425045323304625,
+      -0.008882533777936344
+     ]
+    },
+    "mel_f1": {
+     "delta": -0.012666932058192248,
+     "ci95": [
+      -0.01597629855918455,
+      -0.009697618032403871
+     ]
+    },
+    "harmony": {
+     "delta": 8.93754069063446e-05,
+     "ci95": [
+      -0.00018231381251196664,
+      0.00036661768467262086
+     ]
+    },
+    "polyphony_rate": {
+     "delta": 0.0013548043804797764,
+     "ci95": [
+      0.0004352093827587474,
+      0.002385366313634709
+     ]
+    },
+    "rhythmic_independence": {
+     "delta": -0.018656462215080875,
+     "ci95": [
+      -0.023592603718589407,
+      -0.014172593514303557
+     ]
+    },
+    "doubling_rate": {
+     "delta": 0.0058168023947903985,
+     "ci95": [
+      0.003385186352673054,
+      0.008626943247029315
+     ]
+    },
+    "note_ratio__total": {
+     "delta": 0.03697439208218678,
+     "ci95": [
+      0.030966735681889943,
+      0.0439081848936439
+     ]
+    },
+    "D": {
+     "delta": -1.0597941460137328,
+     "ci95": [
+      -1.3076648846385568,
+      -0.08275259516615828
+     ]
+    }
+   },
+   "arranger_masked": {
+    "note_i_f1": {
+     "delta": -0.0032054392981251123,
+     "ci95": [
+      -0.012571312463127276,
+      0.006670266381325078
+     ]
+    },
+    "note_f1": {
+     "delta": -0.014906000001280173,
+     "ci95": [
+      -0.02310807085288152,
+      -0.006377063624918806
+     ]
+    },
+    "mel_f1": {
+     "delta": -0.01805197977315276,
+     "ci95": [
+      -0.029085978058206636,
+      -0.00689354389831263
+     ]
+    },
+    "harmony": {
+     "delta": -0.0024641937997366137,
+     "ci95": [
+      -0.0032253395068500973,
+      -0.00174691326324746
+     ]
+    },
+    "polyphony_rate": {
+     "delta": 0.0017420358895682793,
+     "ci95": [
+      -0.00011613040828702802,
+      0.004121007397795801
+     ]
+    },
+    "rhythmic_independence": {
+     "delta": -0.02822479380987719,
+     "ci95": [
+      -0.033607802752885156,
+      -0.022946273461689943
+     ]
+    },
+    "doubling_rate": {
+     "delta": 0.004495390565504618,
+     "ci95": [
+      0.001747566525889557,
+      0.007582061707810813
+     ]
+    },
+    "note_ratio__total": {
+     "delta": 0.03946036242739685,
+     "ci95": [
+      0.03200549837286138,
+      0.04759644843010673
+     ]
+    },
+    "D": {
+     "delta": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "diagnostics": {
+   "arranger@A": {
+    "retention": {
+     "top": 0.9874086402778783,
+     "inner": 0.996260681416201,
+     "bass": 0.9996715643906655
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9906363487649272,
+     "Vn2": 0.9921865973425765,
+     "Va": 0.995917021310008,
+     "Vc": 0.9988616035127663
+    },
+    "double_stop_events_per_100_out": 31.418894345274175,
+    "unneeded_double_stops_per_100_out": 27.67270143293837,
+    "unneeded_double_stops_per_source_note": 0.28358970634332065
+   },
+   "arranger@B": {
+    "retention": {
+     "top": 0.9781070655229422,
+     "inner": 0.9982312847543768,
+     "bass": 0.9995592048401037
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9869654833960412,
+     "Vn2": 0.9868284228769497,
+     "Va": 0.9961447258907961,
+     "Vc": 0.9992346914371538
+    },
+    "double_stop_events_per_100_out": 31.91986502443823,
+    "unneeded_double_stops_per_100_out": 28.322449350343142,
+    "unneeded_double_stops_per_source_note": 0.2801015298282097
+   },
+   "arranger_masked@A": {
+    "retention": {
+     "top": 0.9416800725867952,
+     "inner": 0.8999512835254928,
+     "bass": 0.9302679343128781
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9378766563062326,
+     "Vn2": 0.9008809936452917,
+     "Va": 0.9207666577678669,
+     "Vc": 0.9231821530043144
+    },
+    "double_stop_events_per_100_out": 18.671233848803514,
+    "unneeded_double_stops_per_100_out": 15.31508378388227,
+    "unneeded_double_stops_per_source_note": 0.15262540233488023
+   },
+   "arranger_masked@B": {
+    "retention": {
+     "top": 0.9404331828530396,
+     "inner": 0.9067233123691568,
+     "bass": 0.9079688850475367
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9409913299525601,
+     "Vn2": 0.9106802426343155,
+     "Va": 0.9177279793966614,
+     "Vc": 0.8972860245090067
+    },
+    "double_stop_events_per_100_out": 19.104484163564027,
+    "unneeded_double_stops_per_100_out": 15.857984859912287,
+    "unneeded_double_stops_per_source_note": 0.15190865373588483
+   }
+  },
+  "intervention_rate": {
+   "A": 0.11354635738805342,
+   "B": 0.1185
+  },
+  "drop_rate_masked": {
+   "A": 0.06407350209099458
+  }
+ },
+ "duo": {
+  "n_movements": 150,
+  "systems": {
+   "arranger@A": {
+    "n_movements": 150,
+    "n_notes": 537097,
+    "D": 18.719337475353615,
+    "D_check": "double_onset",
+    "D_ci95": [
+     17.428820576406686,
+     20.014990289160288
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.002792791618646166,
+     "chord_size": 0.13721916152948163,
+     "hand_span": 0.0,
+     "transition": 0.019549541330523165,
+     "multistop": 7.778297030145393,
+     "bow": 1.8274166491341415,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 3.2145031530617376,
+     "triple_stretch": 3.331986587152786,
+     "triple_rate": 3.72260504154743,
+     "double_onset": 18.719337475353615,
+     "restrike": 1.1122758086528133,
+     "double_rate": 15.83736271101868
+    },
+    "fidelity": {
+     "note_i_f1": 0.6991831916931676,
+     "note_f1": 0.9775000540765032,
+     "mel_f1": 0.6764610777959279,
+     "harmony": 0.9987672932394299
+    },
+    "texture": {
+     "polyphony_rate": 0.8937039832677495,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.48333489874895946,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.1900020819929397,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 1.0262515782000114,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger_masked@A": {
+    "n_movements": 150,
+    "n_notes": 448552,
+    "D": 0.0,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     0.0,
+     0.0
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.0,
+     "chord_size": 0.0,
+     "hand_span": 0.0,
+     "transition": 0.0,
+     "multistop": 0.0,
+     "bow": 0.0,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 0.0,
+     "triple_stretch": 0.0,
+     "triple_rate": 0.0,
+     "double_onset": 0.0,
+     "restrike": 0.0,
+     "double_rate": 0.0
+    },
+    "fidelity": {
+     "note_i_f1": 0.6123667323077567,
+     "note_f1": 0.8466759698378254,
+     "mel_f1": 0.6700759678503433,
+     "harmony": 0.924406937469483
+    },
+    "texture": {
+     "polyphony_rate": 0.8697333764709104,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5581241738993323,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.13990351154789477,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 0.8627335489245301,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger@B": {
+    "n_movements": 150,
+    "n_notes": 516594,
+    "D": 20.599348811639313,
+    "D_check": "double_onset",
+    "D_ci95": [
+     19.316488144300564,
+     21.885165142469624
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.0032907854136904418,
+     "chord_size": 0.16492642190966214,
+     "hand_span": 0.0,
+     "transition": 0.018970410031862547,
+     "multistop": 7.886270456102858,
+     "bow": 1.9539522332818422,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 3.187416036578048,
+     "triple_stretch": 3.2065800222224805,
+     "triple_rate": 3.5629527249638984,
+     "double_onset": 20.599348811639313,
+     "restrike": 1.1293201237335315,
+     "double_rate": 16.215441913765936
+    },
+    "fidelity": {
+     "note_i_f1": 0.7074680170549257,
+     "note_f1": 0.9895904299504361,
+     "mel_f1": 0.68925574341839,
+     "harmony": 0.9985731025299361
+    },
+    "texture": {
+     "polyphony_rate": 0.892271233192622,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5031277263129378,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.1785291102527412,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 0.9873323977329854,
+     "note_ratio__total__source": 1.0
+    }
+   },
+   "arranger_masked@B": {
+    "n_movements": 150,
+    "n_notes": 437783,
+    "D": 0.0,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     0.0,
+     0.0
+    ],
+    "per_100": {
+     "simultaneity": 0.0,
+     "range": 0.0,
+     "chord_size": 0.0,
+     "hand_span": 0.0,
+     "transition": 0.0,
+     "multistop": 0.0,
+     "bow": 0.0,
+     "shift": 0.0,
+     "duplicate": 0.0,
+     "hand_leap": 0.0,
+     "triple_onset": 0.0,
+     "triple_stretch": 0.0,
+     "triple_rate": 0.0,
+     "double_onset": 0.0,
+     "restrike": 0.0,
+     "double_rate": 0.0
+    },
+    "fidelity": {
+     "note_i_f1": 0.6076382246392547,
+     "note_f1": 0.844295183005469,
+     "mel_f1": 0.6602864340680029,
+     "harmony": 0.9277322073837716
+    },
+    "texture": {
+     "polyphony_rate": 0.8711176723672577,
+     "polyphony_rate__source": 0.8969340517770519,
+     "rhythmic_independence": 0.5803272490001281,
+     "rhythmic_independence__source": 0.5636531872738447,
+     "doubling_rate": 0.13925521940496144,
+     "doubling_rate__source": 0.30328277558152006,
+     "note_ratio__total": 0.8425247573695345,
+     "note_ratio__total__source": 1.0
+    }
+   }
+  },
+  "paired": {
+   "arranger": {
+    "note_i_f1": {
+     "delta": -0.008284825361758119,
+     "ci95": [
+      -0.011946885944907368,
+      -0.004682667790662756
+     ]
+    },
+    "note_f1": {
+     "delta": -0.012090375873932913,
+     "ci95": [
+      -0.015948063415462028,
+      -0.008323824294172194
+     ]
+    },
+    "mel_f1": {
+     "delta": -0.01279466562246212,
+     "ci95": [
+      -0.01818513203034208,
+      -0.007317983259883186
+     ]
+    },
+    "harmony": {
+     "delta": 0.00019419070949378003,
+     "ci95": [
+      -0.00013240842913837258,
+      0.0005183105221527124
+     ]
+    },
+    "polyphony_rate": {
+     "delta": 0.0014327500751277378,
+     "ci95": [
+      0.00019273149087348113,
+      0.0028250018593448598
+     ]
+    },
+    "rhythmic_independence": {
+     "delta": -0.019792827563978446,
+     "ci95": [
+      -0.024619626666260823,
+      -0.01555914650814683
+     ]
+    },
+    "doubling_rate": {
+     "delta": 0.011472971740198505,
+     "ci95": [
+      0.00819891765677561,
+      0.014982512271315558
+     ]
+    },
+    "note_ratio__total": {
+     "delta": 0.03891918046702604,
+     "ci95": [
+      0.03270353473064227,
+      0.04593460004066269
+     ]
+    },
+    "D": {
+     "delta": -1.8800113362856976,
+     "ci95": [
+      -2.2528094625850597,
+      -1.530949255700895
+     ]
+    }
+   },
+   "arranger_masked": {
+    "note_i_f1": {
+     "delta": 0.00472850766850208,
+     "ci95": [
+      -0.0020549847900615064,
+      0.012045559468275475
+     ]
+    },
+    "note_f1": {
+     "delta": 0.0023807868323564296,
+     "ci95": [
+      -0.004396691166781786,
+      0.009733417335644723
+     ]
+    },
+    "mel_f1": {
+     "delta": 0.009789533782340376,
+     "ci95": [
+      -0.006677980423544291,
+      0.027429000666888477
+     ]
+    },
+    "harmony": {
+     "delta": -0.003325269914288609,
+     "ci95": [
+      -0.004533005250414004,
+      -0.0022207445479818654
+     ]
+    },
+    "polyphony_rate": {
+     "delta": -0.0013842958963473761,
+     "ci95": [
+      -0.0035792926221446947,
+      0.0013482125111540866
+     ]
+    },
+    "rhythmic_independence": {
+     "delta": -0.02220307510079582,
+     "ci95": [
+      -0.027207235597508223,
+      -0.017041941042527372
+     ]
+    },
+    "doubling_rate": {
+     "delta": 0.0006482921429333112,
+     "ci95": [
+      -0.0022678132736642562,
+      0.003489098800824426
+     ]
+    },
+    "note_ratio__total": {
+     "delta": 0.020208791554995685,
+     "ci95": [
+      0.013617365278964965,
+      0.026977172540538615
+     ]
+    },
+    "D": {
+     "delta": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   }
+  },
+  "diagnostics": {
+   "arranger@A": {
+    "retention": {
+     "top": 0.9842134853351294,
+     "inner": 0.9962475148014694,
+     "bass": 0.9999222126188418
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9883461475543923,
+     "Vn2": 0.9909373194685153,
+     "Va": 0.9956579092008354,
+     "Vc": 0.9989381343690509
+    },
+    "double_stop_events_per_100_out": 51.333185625687726,
+    "unneeded_double_stops_per_100_out": 48.25180553978146,
+    "unneeded_double_stops_per_source_note": 0.4953382671121339
+   },
+   "arranger@B": {
+    "retention": {
+     "top": 0.9752458989017351,
+     "inner": 0.997160400089533,
+     "bass": 0.9996888504753674
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.9843153934238508,
+     "Vn2": 0.9870883882149046,
+     "Va": 0.9940325696069348,
+     "Vc": 0.9982302239484182
+    },
+    "double_stop_events_per_100_out": 52.20308404665946,
+    "unneeded_double_stops_per_100_out": 49.48818608036485,
+    "unneeded_double_stops_per_source_note": 0.4886371455439262
+   },
+   "arranger_masked@A": {
+    "retention": {
+     "top": 0.8878968198745317,
+     "inner": 0.6865906806700929,
+     "bass": 0.8830509939498703
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.8790970063798462,
+     "Vn2": 0.7334272097053726,
+     "Va": 0.7172223181896701,
+     "Vc": 0.8691896338955163
+    },
+    "double_stop_events_per_100_out": 28.525343772851308,
+    "unneeded_double_stops_per_100_out": 25.95262087784694,
+    "unneeded_double_stops_per_source_note": 0.2224997897537443
+   },
+   "arranger_masked@B": {
+    "retention": {
+     "top": 0.8639999554682238,
+     "inner": 0.6881443412084319,
+     "bass": 0.8738202247191011
+    },
+    "retention_by_source_part": {
+     "Vn1": 0.8567642728611157,
+     "Vn2": 0.7305098209127672,
+     "Va": 0.7208577396001822,
+     "Vc": 0.853376445715707
+    },
+    "double_stop_events_per_100_out": 28.994501842236907,
+    "unneeded_double_stops_per_100_out": 26.557449695397036,
+    "unneeded_double_stops_per_source_note": 0.2222188243029381
+   }
+  },
+  "intervention_rate": {
+   "A": 0.2100876153487412,
+   "B": 0.2216
+  },
+  "drop_rate_masked": {
+   "A": 0.19440133334352708
+  }
+ }
+}

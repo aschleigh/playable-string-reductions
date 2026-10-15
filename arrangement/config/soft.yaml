@@ -1,0 +1,64 @@
+# Soft tier (PROVISIONAL, Step 4): per-instrument COST thresholds. Not
+# violations: every cost type returns a cost and an event count, and nothing
+# combines cost types into one number. The performer study will calibrate them.
+#
+# Every number names its source. "PLACEHOLDER (Sn)" = no source yet; listed as
+# Sn in UNSOURCED.md, section "Soft tier (provisional, Step 4)".
+#
+# Units: pitches are sounding MIDI numbers; times are quarter notes, except
+# fields ending in _seconds, which are converted with assumed_qpm (the corpus
+# has no reliable tempo, so one fixed tempo stands in for all of it).
+#
+# Cost types (a block present under an instrument = that cost type applies):
+#   breath      winds. Phrase = run of notes whose gaps are < min_breath_gap.
+#               Cost = seconds by which a phrase exceeds max_phrase_seconds.
+#   bow         strings. Cost = seconds by which one note exceeds max_bow_seconds.
+#   shift       strings. Consecutive top-line notes with interval > frame_semitones
+#               and inter-onset interval <= max_shift_ioi. Cost = semitones beyond the frame.
+#   crossing    strings. String = highest open string at or below the pitch.
+#               Cost = strings skipped (|dstring| - 1) + 1 per crossing with IOI < fast_ioi.
+#   register    Cost = semitones above comfortable_high, per note.
+#   key         transposing instruments only (transposition != 0). Written pitch =
+#               sounding + transposition. Cost = 1 per written note on a black key.
+#   repeated    same pitch repeated in a part with IOI < min_ioi.
+#               Cost = (min_ioi - IOI) / min_ioi per repetition (0..1).
+#
+# Source key:
+#   [Adler] S. Adler, The Study of Orchestration, 4th ed. (W. W. Norton, 2016):
+#           open-string tuning of violin, viola and violoncello.
+
+assumed_qpm: 100            # PLACEHOLDER (S1)
+
+instruments:
+  violin:
+    open_strings: [55, 62, 69, 76]   # G3 D4 A4 E5 [Adler]
+    bow: {max_bow_seconds: 8.0}                      # PLACEHOLDER (S3)
+    shift: {frame_semitones: 7, max_shift_ioi: 0.5}  # PLACEHOLDER (S4, S5)
+    crossing: {fast_ioi: 0.25}                       # PLACEHOLDER (S6)
+    register: {comfortable_high: 93}                 # A6 -- PLACEHOLDER (S7)
+    repeated: {min_ioi: 0.25}                        # PLACEHOLDER (S9)
+
+  viola:
+    open_strings: [48, 55, 62, 69]   # C3 G3 D4 A4 [Adler]
+    bow: {max_bow_seconds: 8.0}                      # PLACEHOLDER (S3)
+    shift: {frame_semitones: 7, max_shift_ioi: 0.5}  # PLACEHOLDER (S4, S5)
+    crossing: {fast_ioi: 0.25}                       # PLACEHOLDER (S6)
+    register: {comfortable_high: 81}                 # A5 -- PLACEHOLDER (S7)
+    repeated: {min_ioi: 0.25}                        # PLACEHOLDER (S9)
+
+  cello:
+    open_strings: [36, 43, 50, 57]   # C2 G2 D3 A3 [Adler]
+    bow: {max_bow_seconds: 8.0}                      # PLACEHOLDER (S3)
+    shift: {frame_semitones: 7, max_shift_ioi: 0.5}  # PLACEHOLDER (S4, S5)
+    crossing: {fast_ioi: 0.25}                       # PLACEHOLDER (S6)
+    register: {comfortable_high: 76}                 # E5 -- PLACEHOLDER (S7)
+    repeated: {min_ioi: 0.25}                        # PLACEHOLDER (S9)
+
+  flute:
+    transposition: 0                                 # concert pitch (C flute): key cost does not apply
+    breath: {min_breath_gap: 0.5, max_phrase_seconds: 10.0}   # PLACEHOLDER (S2a, S2b)
+    register: {comfortable_high: 93}                 # A6 -- PLACEHOLDER (S7)
+    repeated: {min_ioi: 0.25}                        # single tonguing -- PLACEHOLDER (S9)
+
+  piano:
+    repeated: {min_ioi: 0.25}                        # PLACEHOLDER (S9)

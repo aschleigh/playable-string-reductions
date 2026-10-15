@@ -1,0 +1,12 @@
+# String quartet. Part order = part index used by the checker and assigner.
+name: string_quartet
+parts:
+  - {name: Violin 1, instrument: violin}
+  - {name: Violin 2, instrument: violin}
+  - {name: Viola, instrument: viola}
+  - {name: Violoncello, instrument: cello}
+# Declared parts that are not players and are dropped before anything else
+# (regex, case-insensitive, on the declared part name). PLAN.md decision 7:
+# Berg Op.3's "Klang" staves (declared as Violin, 9-15 notes per movement)
+# appear to be sounding-pitch ossia staves, not a fifth player (unverified).
+exclude_part_names: ['^\s*klang\s*$']

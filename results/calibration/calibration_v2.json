@@ -1,0 +1,43 @@
+{
+ "dev": {
+  "movements": 61,
+  "n_triple_or_more_moments": 577,
+  "bow3_max": 2.0,
+  "bow3_quantiles": {
+   "50": 1.0,
+   "90": 1.5,
+   "99": 2.0,
+   "99.9": 2.0
+  },
+  "n_big_shifts": 0,
+  "shift_gap_min": null,
+  "shift_gap_quantiles": null,
+  "multistop_sets": 8537,
+  "multistop_fail": 7
+ },
+ "heldout": {
+  "movements": 626,
+  "n_triple_or_more_moments": 6940,
+  "bow3_max": 6.0,
+  "bow3_quantiles": {
+   "50": 1.0,
+   "90": 1.0,
+   "99": 3.0,
+   "99.9": 4.0
+  },
+  "n_big_shifts": 13,
+  "shift_gap_min": 0.25,
+  "shift_gap_quantiles": {
+   "0.1": 0.259,
+   "1": 0.33999999999999997,
+   "10": 1.0,
+   "50": 2.0
+  },
+  "multistop_sets": 90179,
+  "multistop_fail": 167
+ },
+ "calibrated": {
+  "bow_sustain_max_dur": 2.0,
+  "shift_min_time": null
+ }
+}

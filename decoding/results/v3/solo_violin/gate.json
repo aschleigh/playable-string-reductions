@@ -1,0 +1,158 @@
+{
+ "n_movements": 150,
+ "systems": {
+  "ou_band_masked": {
+   "D": 0.0,
+   "D_check": "simultaneity",
+   "D_ci95": [
+    0.0,
+    0.0
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 0.0,
+    "chord_size": 0.0,
+    "hand_span": 0.0,
+    "transition": 0.0,
+    "multistop": 0.0,
+    "bow": 0.0,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 0.0,
+    "triple_stretch": 0.0,
+    "triple_rate": 0.0
+   },
+   "n_notes": 263554,
+   "fidelity": {
+    "note_i_f1": 0.4411841646625308,
+    "note_f1": 0.5468462279565348,
+    "mel_f1": 0.5224847512194828,
+    "harmony": 0.6573232664909334
+   }
+  },
+  "ou_band": {
+   "D": 24.08397745539858,
+   "D_check": "triple_rate",
+   "D_ci95": [
+    22.761951279776977,
+    25.38541423386831
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 16.086528929210427,
+    "chord_size": 11.302713014491266,
+    "hand_span": 0.0,
+    "transition": 0.3993096012038533,
+    "multistop": 17.7544660665832,
+    "bow": 15.235379383617643,
+    "shift": 0.0003949649863539597,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 21.990268062736238,
+    "triple_stretch": 16.244909888738363,
+    "triple_rate": 24.08397745539858
+   },
+   "n_notes": 506374,
+   "fidelity": {
+    "note_i_f1": 0.5223058853429163,
+    "note_f1": 0.9027991062012501,
+    "mel_f1": 0.4754762556395142,
+    "harmony": 0.8610094371078348
+   }
+  },
+  "naive": {
+   "D": 29.78463138097386,
+   "D_check": "triple_rate",
+   "D_ci95": [
+    28.13793957599173,
+    31.301789885590182
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 16.496685754478246,
+    "chord_size": 5.704363183204765,
+    "hand_span": 0.0,
+    "transition": 0.07148372693980841,
+    "multistop": 25.658835312196576,
+    "bow": 15.152638781642061,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 23.85396677344628,
+    "triple_stretch": 25.966177111445806,
+    "triple_rate": 29.78463138097386
+   },
+   "n_notes": 523196,
+   "fidelity": {
+    "note_i_f1": 0.5611938324252976,
+    "note_f1": 1.0,
+    "mel_f1": 0.4799650883583648,
+    "harmony": 1.0
+   }
+  },
+  "control": {
+   "D": 29.78463138097386,
+   "D_check": "triple_rate",
+   "D_ci95": [
+    28.13793957599173,
+    31.301789885590182
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 16.496685754478246,
+    "chord_size": 5.704363183204765,
+    "hand_span": 0.0,
+    "transition": 0.07148372693980841,
+    "multistop": 25.658835312196576,
+    "bow": 15.152638781642061,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 23.85396677344628,
+    "triple_stretch": 25.966177111445806,
+    "triple_rate": 29.78463138097386
+   },
+   "n_notes": 523196,
+   "fidelity": {
+    "note_i_f1": 0.5611938324252976,
+    "note_f1": 1.0,
+    "mel_f1": 0.4799650883583648,
+    "harmony": 1.0
+   }
+  }
+ },
+ "delta_unconstrained_minus_masked": {
+  "note_i_f1": {
+   "delta": 0.08112172068038553,
+   "ci95": [
+    0.07356154794740054,
+    0.0889389854851442
+   ]
+  },
+  "note_f1": {
+   "delta": 0.35595287824471533,
+   "ci95": [
+    0.3452122622079107,
+    0.36693752609139174
+   ]
+  },
+  "mel_f1": {
+   "delta": -0.04700849557996861,
+   "ci95": [
+    -0.05350494296746804,
+    -0.04013136306786862
+   ]
+  },
+  "harmony": {
+   "delta": 0.20368617061690142,
+   "ci95": [
+    0.19790718682607833,
+    0.20984991817193427
+   ]
+  }
+ },
+ "note_ratio_masked_vs_unconstrained": 0.5204730100676574,
+ "verdict": "outcome 2 or 3: training has a target; proceed",
+ "metrics_version": "1.2.0-draft"
+}

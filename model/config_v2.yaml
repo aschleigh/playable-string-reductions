@@ -1,0 +1,21 @@
+# arranger-v2 (BLOCK4.md Step 3). As arranger-v1, plus:
+#  - source part (Vn1 Vn2 Va Vc) as an input feature (net.src_feature);
+#  - class weights on the realisation CE: sqrt(f_plain / f_class) capped at 10 (label_stats.json),
+#    NOT on double (weighting double up would contradict decision 3), plain = 1.
+#    tremolo sqrt(490) -> 10, repeat sqrt(240) -> 10, arpeggiate sqrt(49.0) = 7.0.
+run_name: arranger-v2
+seed: 0
+net: {d: 256, layers: 6, heads: 8, ff: 1024, dropout: 0.1, src_feature: true}
+real_class_weights: [1.0, 10.0, 10.0, 7.0, 1.0]   # plain, tremolo, repeat, arpeggiate, double
+steps: 30000
+phase1_steps: 9000      # supervised recovery: only context notes revealed
+ramp_steps: 6000        # then reveal_max ramps linearly to its final value
+reveal_max: 0.9
+batch: 32
+lr: 3.0e-4
+weight_decay: 0.01
+warmup: 1000
+workers: 10
+log_every: 50
+val_every: 1000
+val_batches: 20

@@ -1,0 +1,10 @@
+# Rule-based assigner hyperparameters. These are NOT playability thresholds
+# and never consult the checker. The continuity weights were tuned for
+# label accuracy (agreement with the score's real parts) on a fixed 10% dev
+# split of the corpus (61 movements); see results/assigner/tuning.json and
+# results/assigner/README.md.
+continuity:
+  crossing: forbid  # no part crossing within an onset slice; dev acc 0.743 vs 0.642 for "allow"
+  w_band: 1.0       # per semitone outside the part's naive pitch band (scale anchor, fixed)
+  w_cont: 16.0      # per semitone from the part's most recent pitch(es); tuned, interior optimum
+  w_busy: 1024.0    # per note the part already sounds / was given this slice; tuned, plateau from 1024 up

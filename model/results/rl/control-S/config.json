@@ -1,0 +1,11 @@
+{
+ "run_name": "control-S",
+ "base": "arranger-v2b",
+ "steps": 3000,
+ "batch": 32,
+ "lr": 0.0001,
+ "seed": 0,
+ "ctx_run": null,
+ "n_windows": 44452,
+ "base_step": 30000
+}

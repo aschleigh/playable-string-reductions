@@ -1,0 +1,94 @@
+{
+ "dev_movements": 61,
+ "dev_range_high": {
+  "violin": 100,
+  "viola": 82,
+  "cello": 76
+ },
+ "range_high_envelope": {
+  "cello": {
+   "high": 86,
+   "at": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+   "measure": 81,
+   "skipped_harmonic_passages": 4,
+   "highest_skipped": [
+    [
+     "Borodin,_Alexander__String_Quartet_No.1__sq8811375__m01",
+     88
+    ],
+    [
+     "Borodin,_Alexander__String_Quartet_No.1__sq8811375__m01",
+     88
+    ],
+    [
+     "Borodin,_Alexander__String_Quartet_No.1__sq8811375__m04",
+     88
+    ]
+   ]
+  },
+  "viola": {
+   "high": 92,
+   "at": "Zemlinsky,_Alexander_von__String_Quartet_No.2,_Op.15__sq10439083__m01",
+   "measure": 598,
+   "skipped_harmonic_passages": 2,
+   "highest_skipped": [
+    [
+     "Koechlin,_Charles__String_Quartet_No.1,_Op.51__sq27309583__m02",
+     96
+    ],
+    [
+     "Koechlin,_Charles__String_Quartet_No.1,_Op.51__sq27309583__m02",
+     96
+    ]
+   ]
+  },
+  "violin": {
+   "high": 103,
+   "at": "Jan\u00e1\u010dek,_Leo\u0161__String_Quartet_No.2_\u201cIntimate_Letters\u201d__sq7267316__m04",
+   "measure": 214,
+   "skipped_harmonic_passages": 2,
+   "highest_skipped": [
+    [
+     "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m04",
+     107
+    ],
+    [
+     "Schulhoff,_Erwin__String_Quartet_No.1__sq8630159__m04",
+     104
+    ]
+   ]
+  }
+ },
+ "transition": {
+  "cello": {
+   "n": 40873,
+   "a": 29.0,
+   "b": 1.0,
+   "mean_allowed": 30.097096494018057,
+   "leap_p50": 2.0,
+   "leap_p99": 16.0,
+   "leap_p99.9": 24.0,
+   "leap_p100": 31.0
+  },
+  "viola": {
+   "n": 50466,
+   "a": 30.0,
+   "b": 0.0,
+   "mean_allowed": 30.0,
+   "leap_p50": 2.0,
+   "leap_p99": 13.0,
+   "leap_p99.9": 21.0,
+   "leap_p100": 30.0
+  },
+  "violin": {
+   "n": 114991,
+   "a": 36.0,
+   "b": 0.0,
+   "mean_allowed": 36.0,
+   "leap_p50": 2.0,
+   "leap_p99": 15.0,
+   "leap_p99.9": 24.0,
+   "leap_p100": 36.0
+  }
+ }
+}

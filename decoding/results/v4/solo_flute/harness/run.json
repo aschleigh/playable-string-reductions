@@ -1,0 +1,24 @@
+{
+ "metrics_version": "1.3.0-draft",
+ "inputs": [
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band_masked__solo_flute.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band__solo_flute.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band_repair__solo_flute.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/naive__solo_flute.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/control__solo_flute.jsonl"
+ ],
+ "n_records": 750,
+ "n_seed_groups": 750,
+ "soft": true,
+ "config_sha1": {
+  "assigner.yaml": "68f4756ff3d7",
+  "duo.yaml": "920011709ac3",
+  "piano.yaml": "e1da86c3c441",
+  "quartet.yaml": "598fdee23339",
+  "solo_flute.yaml": "3e07c81872fe",
+  "solo_violin.yaml": "f380903d7391",
+  "trio.yaml": "45c26927a0a9",
+  "instruments.yaml": "9ef6286754b5",
+  "soft.yaml": "7a6d8106842c"
+ }
+}

@@ -1,0 +1,4392 @@
+{
+ "checker_tag": "checker-v1.1",
+ "n_movements": 150,
+ "outputs_present": {
+  "ou_band/trio": 150,
+  "ou_band/duo": 150,
+  "ou_band/solo_violin": 150,
+  "ou_band/solo_flute": 150,
+  "ou_piano/piano": 150,
+  "amt/trio": 150
+ },
+ "summary": {
+  "quartet": {
+   "continuity": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.38398611610180505,
+    "D_check": "range",
+    "D_ci95": [
+     0.3133035759934456,
+     0.4642898741050942
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 2009,
+      "per_100": 0.38398611610180505,
+      "ci95": [
+       0.3133035759934456,
+       0.4642898741050942
+      ],
+      "per_score": {
+       "median": 0.2241602981952064,
+       "p90": 1.0256156938148977,
+       "max": 4.45906432748538,
+       "scores_with_any": 123
+      },
+      "top5pct_share": 0.2548531607765057,
+      "worst": [
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.1,_H.70__sq8938822__m01",
+        "violations": 111,
+        "per_100": 2.406243225666594
+       },
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_G_minor,_Op.14__sq7236909__m01",
+        "violations": 73,
+        "per_100": 1.1949582583074152
+       },
+       {
+        "key": "Dvořák,_Antonín__Echo_of_Songs,_B.152__sq24409123__m01",
+        "violations": 61,
+        "per_100": 4.45906432748538
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 85,
+      "per_100": 0.016246301577229182,
+      "ci95": [
+       0.010677375684496252,
+       0.022428585639472958
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.06079449098582265,
+       "max": 0.19982238010657194,
+       "scores_with_any": 37
+      },
+      "top5pct_share": 0.47058823529411764,
+      "worst": [
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.2,_H.115__sq9094235__m03",
+        "violations": 9,
+        "per_100": 0.19982238010657194
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 5,
+        "per_100": 0.06425909266161162
+       },
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.1,_H.70__sq8938822__m01",
+        "violations": 5,
+        "per_100": 0.10838933448948623
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "range:0": 254,
+     "range:1": 874,
+     "range:2": 877,
+     "range:3": 4,
+     "transition:0": 13,
+     "transition:1": 4,
+     "transition:2": 15,
+     "transition:3": 53
+    },
+    "range_by_direction_part": {
+     "above:2": 1,
+     "above:3": 4,
+     "below:0": 254,
+     "below:1": 874,
+     "below:2": 876
+    },
+    "retention_per_part": [
+     0.9594,
+     0.993,
+     1.0287,
+     1.0338
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 10.3578773538024,
+    "D_check": "range",
+    "D_ci95": [
+     9.887432114204042,
+     10.8183596281841
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 54192,
+      "per_100": 10.3578773538024,
+      "ci95": [
+       9.887432114204042,
+       10.8183596281841
+      ],
+      "per_score": {
+       "median": 9.918896464791153,
+       "p90": 13.953890890183251,
+       "max": 18.58407079646018,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14120165338057278,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1185,
+        "per_100": 12.452711223203027
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1015,
+        "per_100": 13.04459581030716
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 998,
+        "per_100": 12.157388232427824
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 467,
+      "per_100": 0.08925909219489446,
+      "ci95": [
+       0.07040058450380626,
+       0.10948936867650577
+      ],
+      "per_score": {
+       "median": 0.026838658788711875,
+       "p90": 0.20547307745733479,
+       "max": 0.4322074595805987,
+       "scores_with_any": 86
+      },
+      "top5pct_share": 0.3169164882226981,
+      "worst": [
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 27,
+        "per_100": 0.4322074595805987
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 24,
+        "per_100": 0.30844364477573577
+       },
+       {
+        "key": "Moeran,_Ernest_John__String_Quartet_in_A_minor__sq9071492__m03",
+        "violations": 20,
+        "per_100": 0.35803795202291444
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 7001,
+      "per_100": 1.3381218510844883,
+      "ci95": [
+       1.2073116839377216,
+       1.473201196159052
+      ],
+      "per_score": {
+       "median": 1.0413520826973328,
+       "p90": 2.524081096706549,
+       "max": 5.484189723320158,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1656906156263391,
+      "worst": [
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 157,
+        "per_100": 2.8390596745027126
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 154,
+        "per_100": 3.341288782816229
+       },
+       {
+        "key": "Moeran,_Ernest_John__String_Quartet_in_A_minor__sq9071492__m03",
+        "violations": 150,
+        "per_100": 2.6852846401718584
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 123,
+     "chord_size:1": 108,
+     "chord_size:2": 128,
+     "chord_size:3": 108,
+     "range:0": 21577,
+     "range:1": 21415,
+     "range:2": 9290,
+     "range:3": 1910,
+     "transition:0": 821,
+     "transition:1": 786,
+     "transition:2": 2728,
+     "transition:3": 2666
+    },
+    "range_by_direction_part": {
+     "above:2": 226,
+     "above:3": 1910,
+     "below:0": 21577,
+     "below:1": 21415,
+     "below:2": 9064
+    },
+    "retention_per_part": [
+     0.856,
+     0.9431,
+     1.0248,
+     1.2557
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "floor": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.005351722872499025,
+    "D_check": "transition",
+    "D_ci95": [
+     0.0023783873427252163,
+     0.00913883661090242
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 28,
+      "per_100": 0.005351722872499025,
+      "ci95": [
+       0.0023783873427252163,
+       0.00913883661090242
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.10439970171513796,
+       "scores_with_any": 14
+      },
+      "top5pct_share": 0.7857142857142857,
+      "worst": [
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 7,
+        "per_100": 0.10439970171513796
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.1,_Op.7_(Sz.40)__sq7295726__m02",
+        "violations": 3,
+        "per_100": 0.09199632014719411
+       },
+       {
+        "key": "Zemlinsky,_Alexander_von__String_Quartet_No.3,_Op.19__sq26269501__m04",
+        "violations": 3,
+        "per_100": 0.07088846880907372
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "transition:0": 12,
+     "transition:2": 3,
+     "transition:3": 13
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.6441180742972041,
+    "D_check": "chord_size",
+    "D_ci95": [
+     0.4861648524667171,
+     0.8180913889654972
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 3370,
+      "per_100": 0.6441180742972041,
+      "ci95": [
+       0.4861648524667171,
+       0.8180913889654972
+      ],
+      "per_score": {
+       "median": 0.21270194405205245,
+       "p90": 1.479266390353286,
+       "max": 5.224525043177893,
+       "scores_with_any": 102
+      },
+      "top5pct_share": 0.36706231454005933,
+      "worst": [
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 326,
+        "per_100": 4.862043251304996
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 170,
+        "per_100": 2.440424921045076
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 154,
+        "per_100": 1.9791800539776379
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:1": 3,
+     "chord_size:2": 28,
+     "chord_size:3": 3339
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     0.0262,
+     0.6772,
+     1.2007,
+     2.6068
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": true,
+    "sparse_original_rule": false
+   }
+  },
+  "trio": {
+   "amt": {
+    "n_scores": 150,
+    "n_out_notes": 51242,
+    "n_source_notes": 73135,
+    "D": 0.08781858631591273,
+    "D_check": "range",
+    "D_ci95": [
+     0.03669210969706709,
+     0.1633991100270156
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 45,
+      "per_100": 0.08781858631591273,
+      "ci95": [
+       0.036007868367990976,
+       0.1633991100270156
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.14433421925789544,
+       "max": 6.481481481481482,
+       "scores_with_any": 18
+      },
+      "top5pct_share": 0.7777777777777778,
+      "worst": [
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.12,_Op.96_(“American”)__sq8885439__m04",
+        "violations": 14,
+        "per_100": 6.481481481481482
+       },
+       {
+        "key": "Mendelssohn,_Felix__String_Quartet_No.2,_Op.13__sq8885571__m02",
+        "violations": 6,
+        "per_100": 2.0202020202020203
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.4_in_C_major,_K.157__sq9199617__m02",
+        "violations": 4,
+        "per_100": 2.5
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 11,
+      "per_100": 0.02146676554388978,
+      "ci95": [
+       0.0018835362552988273,
+       0.05016473447418242
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 3.9682539682539684,
+       "scores_with_any": 4
+      },
+      "top5pct_share": 1.0,
+      "worst": [
+       {
+        "key": "Beethoven,_Ludwig_van__String_Quartet_No.6,_Op.18_No.6__sq9719026__m04",
+        "violations": 5,
+        "per_100": 3.9682539682539684
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 4,
+        "per_100": 0.5657708628005658
+       },
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 1,
+        "per_100": 0.4784688995215311
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 4,
+      "per_100": 0.007806096561414465,
+      "ci95": [
+       0.0,
+       0.0179689318015994
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.2828854314002829,
+       "scores_with_any": 3
+      },
+      "top5pct_share": 1.0,
+      "worst": [
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 2,
+        "per_100": 0.2828854314002829
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_G_major,_Hob.III21,_Op.9_No.3__sq10381459__m03",
+        "violations": 1,
+        "per_100": 0.19083969465648856
+       },
+       {
+        "key": "Koechlin,_Charles__String_Quartet_No.1,_Op.51__sq27309583__m03",
+        "violations": 1,
+        "per_100": 0.13192612137203166
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 1,
+     "chord_size:1": 9,
+     "chord_size:2": 1,
+     "range:0": 2,
+     "range:1": 37,
+     "range:2": 6,
+     "transition:0": 1,
+     "transition:2": 3
+    },
+    "range_by_direction_part": {
+     "below:0": 2,
+     "below:1": 37,
+     "below:2": 6
+    },
+    "retention_per_part": [
+     1.0107,
+     0.9212,
+     0.932
+    ],
+    "retention_total_vs_source": 0.7006,
+    "sparse": false,
+    "sparse_original_rule": true,
+    "n_off_ensemble": 2247,
+    "bars_truncated": null
+   },
+   "amt_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 51111,
+    "n_source_notes": 73135,
+    "D": 0.08804366966015144,
+    "D_check": "range",
+    "D_ci95": [
+     0.03665007177135738,
+     0.16399760594294324
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 45,
+      "per_100": 0.08804366966015144,
+      "ci95": [
+       0.03608925957599422,
+       0.16399760594294324
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.14487668421867725,
+       "max": 6.481481481481482,
+       "scores_with_any": 18
+      },
+      "top5pct_share": 0.7777777777777778,
+      "worst": [
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.12,_Op.96_(“American”)__sq8885439__m04",
+        "violations": 14,
+        "per_100": 6.481481481481482
+       },
+       {
+        "key": "Mendelssohn,_Felix__String_Quartet_No.2,_Op.13__sq8885571__m02",
+        "violations": 6,
+        "per_100": 2.0202020202020203
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.4_in_C_major,_K.157__sq9199617__m02",
+        "violations": 4,
+        "per_100": 2.5
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 10,
+      "per_100": 0.019565259924478096,
+      "ci95": [
+       0.0018877995898788338,
+       0.04575363385398072
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 3.9682539682539684,
+       "scores_with_any": 4
+      },
+      "top5pct_share": 1.0,
+      "worst": [
+       {
+        "key": "Beethoven,_Ludwig_van__String_Quartet_No.6,_Op.18_No.6__sq9719026__m04",
+        "violations": 5,
+        "per_100": 3.9682539682539684
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 3,
+        "per_100": 0.42613636363636365
+       },
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 1,
+        "per_100": 0.4784688995215311
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 4,
+      "per_100": 0.007826103969791238,
+      "ci95": [
+       0.0,
+       0.018024061378144794
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.2840909090909091,
+       "scores_with_any": 3
+      },
+      "top5pct_share": 1.0,
+      "worst": [
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 2,
+        "per_100": 0.2840909090909091
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_G_major,_Hob.III21,_Op.9_No.3__sq10381459__m03",
+        "violations": 1,
+        "per_100": 0.19083969465648856
+       },
+       {
+        "key": "Koechlin,_Charles__String_Quartet_No.1,_Op.51__sq27309583__m03",
+        "violations": 1,
+        "per_100": 0.13192612137203166
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 1,
+     "chord_size:1": 9,
+     "range:0": 2,
+     "range:1": 37,
+     "range:2": 6,
+     "transition:0": 1,
+     "transition:2": 3
+    },
+    "range_by_direction_part": {
+     "below:0": 2,
+     "below:1": 37,
+     "below:2": 6
+    },
+    "retention_per_part": [
+     1.0107,
+     0.9178,
+     0.927
+    ],
+    "retention_total_vs_source": 0.6989,
+    "sparse": false,
+    "sparse_original_rule": true,
+    "n_off_ensemble": 2247,
+    "bars_truncated": null
+   },
+   "continuity": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.17201966375889724,
+    "D_check": "range",
+    "D_ci95": [
+     0.1359480459698442,
+     0.21044992871386603
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 900,
+      "per_100": 0.17201966375889724,
+      "ci95": [
+       0.1359480459698442,
+       0.21044992871386603
+      ],
+      "per_score": {
+       "median": 0.07844528777402593,
+       "p90": 0.5535177174473304,
+       "max": 1.6983016983016983,
+       "scores_with_any": 99
+      },
+      "top5pct_share": 0.27444444444444444,
+      "worst": [
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.12,_Op.96_(“American”)__sq8885439__m01",
+        "violations": 37,
+        "per_100": 0.681650700073692
+       },
+       {
+        "key": "Smyth,_Ethel__String_Quartet_in_E_minor__sq7555331__m04",
+        "violations": 34,
+        "per_100": 0.6080114449213162
+       },
+       {
+        "key": "Gouvy,_Théodore__String_Quartet,_Op.16_No.1__sq10406164__m02",
+        "violations": 31,
+        "per_100": 0.9345794392523364
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 56,
+      "per_100": 0.01070344574499805,
+      "ci95": [
+       0.0022093315912438656,
+       0.02450387074248855
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.48023051064510963,
+       "scores_with_any": 10
+      },
+      "top5pct_share": 0.9642857142857143,
+      "worst": [
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 30,
+        "per_100": 0.48023051064510963
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.1,_Op.7_(Sz.40)__sq7295726__m04",
+        "violations": 9,
+        "per_100": 0.12938470385278897
+       },
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 4,
+        "per_100": 0.042034468263976464
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 215,
+      "per_100": 0.04109358634240323,
+      "ci95": [
+       0.029900217148919283,
+       0.053836454048787875
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.1311430941686803,
+       "max": 0.3330373001776199,
+       "scores_with_any": 63
+      },
+      "top5pct_share": 0.39069767441860465,
+      "worst": [
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.2,_H.115__sq9094235__m03",
+        "violations": 15,
+        "per_100": 0.3330373001776199
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_E-flat_major,_Hob.III31,_Op.20_No.1__sq8075304__m01",
+        "violations": 14,
+        "per_100": 0.31194295900178254
+       },
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.12,_Op.96_(“American”)__sq8885439__m04",
+        "violations": 13,
+        "per_100": 0.29532030895047706
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 10,
+     "chord_size:1": 12,
+     "chord_size:2": 34,
+     "range:0": 392,
+     "range:1": 486,
+     "range:2": 22,
+     "transition:0": 19,
+     "transition:1": 32,
+     "transition:2": 164
+    },
+    "range_by_direction_part": {
+     "above:1": 4,
+     "above:2": 22,
+     "below:0": 392,
+     "below:1": 482
+    },
+    "retention_per_part": [
+     1.2388,
+     1.4111,
+     1.4747
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 8.297272914930542,
+    "D_check": "range",
+    "D_ci95": [
+     7.880105063714733,
+     8.708180783709222
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 43411,
+      "per_100": 8.297272914930542,
+      "ci95": [
+       7.880105063714733,
+       8.708180783709222
+      ],
+      "per_score": {
+       "median": 7.918608325888352,
+       "p90": 11.148735934873944,
+       "max": 15.39405090463048,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14263665891133584,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 961,
+        "per_100": 10.098781000420345
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 816,
+        "per_100": 9.940309416494092
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 802,
+        "per_100": 10.307158462922503
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 1179,
+      "per_100": 0.2253457595241554,
+      "ci95": [
+       0.18140128868661023,
+       0.27222833714845035
+      ],
+      "per_score": {
+       "median": 0.10720632498642862,
+       "p90": 0.5385157764851048,
+       "max": 1.183431952662722,
+       "scores_with_any": 109
+      },
+      "top5pct_share": 0.30364715860899066,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 67,
+        "per_100": 0.8610718416655957
+       },
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 50,
+        "per_100": 0.8003841844085161
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 50,
+        "per_100": 0.7457121551081283
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 7023,
+      "per_100": 1.3423267761985949,
+      "ci95": [
+       1.2157288760152238,
+       1.4745652814670498
+      ],
+      "per_score": {
+       "median": 1.0973408637686837,
+       "p90": 2.309598187069839,
+       "max": 5.3853754940711465,
+       "scores_with_any": 149
+      },
+      "top5pct_share": 0.1668802506051545,
+      "worst": [
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 172,
+        "per_100": 3.1103074141048825
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 163,
+        "per_100": 3.5365589064873073
+       },
+       {
+        "key": "Beethoven,_Ludwig_van__String_Quartet_No.14_in_C♯_minor,_Op.131__sq20090908__m07",
+        "violations": 147,
+        "per_100": 2.8666146645865833
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 407,
+     "chord_size:1": 383,
+     "chord_size:2": 389,
+     "range:0": 28772,
+     "range:1": 12066,
+     "range:2": 2573,
+     "transition:0": 901,
+     "transition:1": 3047,
+     "transition:2": 3075
+    },
+    "range_by_direction_part": {
+     "above:1": 274,
+     "above:2": 2573,
+     "below:0": 28772,
+     "below:1": 11792
+    },
+    "retention_per_part": [
+     1.1372,
+     1.3709,
+     1.6723
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.6467939357334537,
+    "D_check": "chord_size",
+    "D_ci95": [
+     0.4888019612109531,
+     0.8209099500121398
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 3384,
+      "per_100": 0.6467939357334537,
+      "ci95": [
+       0.4888019612109531,
+       0.8209099500121398
+      ],
+      "per_score": {
+       "median": 0.21270194405205245,
+       "p90": 1.479266390353286,
+       "max": 5.224525043177893,
+       "scores_with_any": 102
+      },
+      "top5pct_share": 0.3655437352245863,
+      "worst": [
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 326,
+        "per_100": 4.862043251304996
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 170,
+        "per_100": 2.440424921045076
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 154,
+        "per_100": 1.9791800539776379
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 17,
+     "chord_size:1": 28,
+     "chord_size:2": 3339
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     0.6398,
+     1.2007,
+     2.6068
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": true,
+    "sparse_original_rule": false
+   },
+   "ou_band": {
+    "n_scores": 150,
+    "n_out_notes": 773065,
+    "n_source_notes": 523196,
+    "D": 5.117034143312658,
+    "D_check": "chord_size",
+    "D_ci95": [
+     4.6478954528979814,
+     5.585066891443232
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 32343,
+      "per_100": 4.183736167075214,
+      "ci95": [
+       3.711752474329528,
+       4.666889325800421
+      ],
+      "per_score": {
+       "median": 3.3193137759943605,
+       "p90": 6.773048494760189,
+       "max": 12.974802557352389,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.22592214698698326,
+      "worst": [
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 1418,
+        "per_100": 12.318651724437494
+       },
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 1035,
+        "per_100": 12.974802557352389
+       },
+       {
+        "key": "Cherubini,_Luigi__String_Quartet_No.1__sq11164006__m02",
+        "violations": 958,
+        "per_100": 11.565857780997224
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 39558,
+      "per_100": 5.117034143312658,
+      "ci95": [
+       4.647734521514123,
+       5.585066891443232
+      ],
+      "per_score": {
+       "median": 4.907236029968388,
+       "p90": 8.50105297720648,
+       "max": 16.31091421667338,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.17200060670408007,
+      "worst": [
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 1233,
+        "per_100": 8.487643697941763
+       },
+       {
+        "key": "Cherubini,_Luigi__String_Quartet_No.1__sq11164006__m02",
+        "violations": 1016,
+        "per_100": 12.266087166485573
+       },
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.2,_H.115__sq9094235__m01",
+        "violations": 808,
+        "per_100": 8.958864619137376
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 1803,
+      "per_100": 0.23322747763771481,
+      "ci95": [
+       0.19243641621651777,
+       0.281424775090861
+      ],
+      "per_score": {
+       "median": 0.13242902818432328,
+       "p90": 0.47306530090360166,
+       "max": 1.6923655509590072,
+       "scores_with_any": 134
+      },
+      "top5pct_share": 0.2817526344980588,
+      "worst": [
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 135,
+        "per_100": 1.6923655509590072
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 84,
+        "per_100": 0.5782336339230398
+       },
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 73,
+        "per_100": 0.6341760055598993
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 19309,
+     "chord_size:1": 9796,
+     "chord_size:2": 10453,
+     "range:0": 20770,
+     "range:1": 8531,
+     "range:2": 3042,
+     "transition:0": 554,
+     "transition:1": 366,
+     "transition:2": 883
+    },
+    "range_by_direction_part": {
+     "above:0": 21,
+     "above:1": 84,
+     "above:2": 436,
+     "below:0": 20749,
+     "below:1": 8447,
+     "below:2": 2606
+    },
+    "retention_per_part": [
+     2.1728,
+     1.7013,
+     2.146
+    ],
+    "retention_total_vs_source": 1.4776,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 1888,
+    "bars_truncated": 80
+   },
+   "ou_band_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 704284,
+    "n_source_notes": 523196,
+    "D": 4.208813490012552,
+    "D_check": "chord_size",
+    "D_ci95": [
+     3.84150777571615,
+     4.66476854659896
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 27988,
+      "per_100": 3.9739650481907867,
+      "ci95": [
+       3.6264244276201536,
+       4.323225034403546
+      ],
+      "per_score": {
+       "median": 3.381566076851203,
+       "p90": 6.662816448943905,
+       "max": 10.084925690021231,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.16942975560954696,
+      "worst": [
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_D_Minor__sq7643891__m01",
+        "violations": 787,
+        "per_100": 7.70284819418616
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 625,
+        "per_100": 5.980288967562912
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 600,
+        "per_100": 5.9814574818064
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 29642,
+      "per_100": 4.208813490012552,
+      "ci95": [
+       3.7705998272060435,
+       4.66476854659896
+      ],
+      "per_score": {
+       "median": 3.91263121980822,
+       "p90": 8.059001182366856,
+       "max": 16.296928327645052,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1720194318871871,
+      "worst": [
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 860,
+        "per_100": 8.228877619366568
+       },
+       {
+        "key": "Cherubini,_Luigi__String_Quartet_No.1__sq11164006__m02",
+        "violations": 726,
+        "per_100": 12.346938775510203
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.2,_Op.54_No.2__sq9811948__m01",
+        "violations": 678,
+        "per_100": 8.051300320627004
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 1566,
+      "per_100": 0.22235348240198557,
+      "ci95": [
+       0.18947815580221433,
+       0.25790076954799707
+      ],
+      "per_score": {
+       "median": 0.13556626613917933,
+       "p90": 0.48029556650246297,
+       "max": 1.633393829401089,
+       "scores_with_any": 135
+      },
+      "top5pct_share": 0.23499361430395913,
+      "worst": [
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 64,
+        "per_100": 1.2593467138921683
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 62,
+        "per_100": 0.593244665582241
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m01",
+        "violations": 46,
+        "per_100": 0.9451407437846723
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 14302,
+     "chord_size:1": 7190,
+     "chord_size:2": 8150,
+     "range:0": 17921,
+     "range:1": 7176,
+     "range:2": 2891,
+     "transition:0": 429,
+     "transition:1": 319,
+     "transition:2": 818
+    },
+    "range_by_direction_part": {
+     "above:0": 18,
+     "above:1": 81,
+     "above:2": 412,
+     "below:0": 17903,
+     "below:1": 7095,
+     "below:2": 2479
+    },
+    "retention_per_part": [
+     1.9576,
+     1.5513,
+     1.9854
+    ],
+    "retention_total_vs_source": 1.3461,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 1888,
+    "bars_truncated": 80
+   }
+  },
+  "duo": {
+   "continuity": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 0.3933516311286784,
+    "D_check": "range",
+    "D_ci95": [
+     0.3195701193071843,
+     0.4724690164632813
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 2058,
+      "per_100": 0.3933516311286784,
+      "ci95": [
+       0.3195701193071843,
+       0.4724690164632813
+      ],
+      "per_score": {
+       "median": 0.22378562939261123,
+       "p90": 0.9935174820397198,
+       "max": 3.5502958579881656,
+       "scores_with_any": 119
+      },
+      "top5pct_share": 0.2910592808551992,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 132,
+        "per_100": 1.6964400462665468
+       },
+       {
+        "key": "Smyth,_Ethel__String_Quartet_in_E_minor__sq7555331__m04",
+        "violations": 79,
+        "per_100": 1.4127324749642347
+       },
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.1,_H.70__sq8938822__m01",
+        "violations": 77,
+        "per_100": 1.669195751138088
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 488,
+      "per_100": 0.09327288434926873,
+      "ci95": [
+       0.058275980934164855,
+       0.1352847513967344
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.16045905862508736,
+       "max": 1.086464463558171,
+       "scores_with_any": 51
+      },
+      "top5pct_share": 0.5491803278688525,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.1,_Op.7_(Sz.40)__sq7295726__m04",
+        "violations": 61,
+        "per_100": 0.8769407705577918
+       },
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 60,
+        "per_100": 0.9604610212902193
+       },
+       {
+        "key": "Moeran,_Ernest_John__String_Quartet_in_A_minor__sq9071492__m03",
+        "violations": 39,
+        "per_100": 0.6981740064446831
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 359,
+      "per_100": 0.06861673254382679,
+      "ci95": [
+       0.05350806903600616,
+       0.08427502960820517
+      ],
+      "per_score": {
+       "median": 0.01774022611063239,
+       "p90": 0.17360546013697353,
+       "max": 0.5015673981191222,
+       "scores_with_any": 79
+      },
+      "top5pct_share": 0.30919220055710306,
+      "worst": [
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.2,_H.115__sq9094235__m03",
+        "violations": 19,
+        "per_100": 0.4218472468916519
+       },
+       {
+        "key": "Moeran,_Ernest_John__String_Quartet_in_A_minor__sq9071492__m03",
+        "violations": 17,
+        "per_100": 0.30433225921947726
+       },
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 15,
+        "per_100": 0.27124773960216997
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 223,
+     "chord_size:1": 265,
+     "range:0": 2006,
+     "range:1": 52,
+     "transition:0": 37,
+     "transition:1": 322
+    },
+    "range_by_direction_part": {
+     "above:1": 52,
+     "below:0": 2006
+    },
+    "retention_per_part": [
+     1.8347,
+     2.3228
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 9.02338702895282,
+    "D_check": "range",
+    "D_ci95": [
+     8.626120723517865,
+     9.410307044459591
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 47210,
+      "per_100": 9.02338702895282,
+      "ci95": [
+       8.626120723517865,
+       9.410307044459591
+      ],
+      "per_score": {
+       "median": 8.645977473719617,
+       "p90": 12.108077780386584,
+       "max": 14.992191566892243,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14028807456047448,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1121,
+        "per_100": 11.780159730979403
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 872,
+        "per_100": 10.62248751370447
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 849,
+        "per_100": 10.911193933941652
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 4097,
+      "per_100": 0.7830717360224466,
+      "ci95": [
+       0.6496219718941963,
+       0.9191653300470739
+      ],
+      "per_score": {
+       "median": 0.40637416397115683,
+       "p90": 1.8272790919408202,
+       "max": 3.276198741592536,
+       "scores_with_any": 123
+      },
+      "top5pct_share": 0.2716621918476934,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 167,
+        "per_100": 2.146253694897828
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 159,
+        "per_100": 2.3713646532438477
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 151,
+        "per_100": 3.276198741592536
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 3872,
+      "per_100": 0.7400668200827224,
+      "ci95": [
+       0.6636990101347929,
+       0.8194279214201629
+      ],
+      "per_score": {
+       "median": 0.5856725881700311,
+       "p90": 1.2775031764231923,
+       "max": 2.4853801169590644,
+       "scores_with_any": 148
+      },
+      "top5pct_share": 0.1753615702479339,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 107,
+        "per_100": 2.3215448036450423
+       },
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 100,
+        "per_100": 1.8083182640144666
+       },
+       {
+        "key": "Moeran,_Ernest_John__String_Quartet_in_A_minor__sq9071492__m03",
+        "violations": 88,
+        "per_100": 1.5753669889008235
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 2047,
+     "chord_size:1": 2050,
+     "range:0": 43349,
+     "range:1": 3861,
+     "transition:0": 886,
+     "transition:1": 2986
+    },
+    "range_by_direction_part": {
+     "above:1": 3861,
+     "below:0": 43349
+    },
+    "retention_per_part": [
+     1.7135,
+     2.4999
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 1.4304390706350967,
+    "D_check": "chord_size",
+    "D_ci95": [
+     1.1741623223844566,
+     1.7024410371470504
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 7484,
+      "per_100": 1.4304390706350967,
+      "ci95": [
+       1.1741623223844566,
+       1.7024410371470504
+      ],
+      "per_score": {
+       "median": 0.7344413849272994,
+       "p90": 3.0391775412448263,
+       "max": 8.031088082901555,
+       "scores_with_any": 121
+      },
+      "top5pct_share": 0.2732495991448423,
+      "worst": [
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 435,
+        "per_100": 6.487695749440716
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 300,
+        "per_100": 3.855545559696697
+       },
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.1,_H.70__sq8938822__m01",
+        "violations": 252,
+        "per_100": 5.462822458270106
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 181,
+      "per_100": 0.03459506571151156,
+      "ci95": [
+       0.02525029555325965,
+       0.04566944223700726
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.10585553433082034,
+       "max": 0.28351559335763465,
+       "scores_with_any": 58
+      },
+      "top5pct_share": 0.3756906077348066,
+      "worst": [
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m03",
+        "violations": 18,
+        "per_100": 0.2563372258615779
+       },
+       {
+        "key": "Zemlinsky,_Alexander_von__String_Quartet_No.1,_Op.4__sq8944152__m01",
+        "violations": 9,
+        "per_100": 0.16926838442730863
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_E-flat_major,_Hob.III64,_Op.64_No.6__sq7300376__m01",
+        "violations": 8,
+        "per_100": 0.21727322107550245
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 142,
+     "chord_size:1": 7342,
+     "transition:1": 181
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     1.1468,
+     3.3285
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "ou_band": {
+    "n_scores": 150,
+    "n_out_notes": 703295,
+    "n_source_notes": 523196,
+    "D": 8.181630752386978,
+    "D_check": "chord_size",
+    "D_ci95": [
+     7.7059764729616775,
+     8.732785207180271
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 55026,
+      "per_100": 7.824028323818597,
+      "ci95": [
+       7.329905640963992,
+       8.322995914520453
+      ],
+      "per_score": {
+       "median": 6.982768291782401,
+       "p90": 11.668791412404818,
+       "max": 17.17490361023484,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1568349507505543,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1327,
+        "per_100": 10.73798349247451
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1265,
+        "per_100": 11.126748174861465
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 1129,
+        "per_100": 11.567622950819672
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 57541,
+      "per_100": 8.181630752386978,
+      "ci95": [
+       7.622855557034451,
+       8.732062934247844
+      ],
+      "per_score": {
+       "median": 8.415824094102263,
+       "p90": 12.224374850301752,
+       "max": 18.091872791519435,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14368884795189518,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1205,
+        "per_100": 10.598997273287008
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 1105,
+        "per_100": 10.205024011821203
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 1049,
+        "per_100": 10.74795081967213
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 2964,
+      "per_100": 0.421444770686554,
+      "ci95": [
+       0.3548805837220539,
+       0.5041699138175427
+      ],
+      "per_score": {
+       "median": 0.3154662026262729,
+       "p90": 0.7796578709188872,
+       "max": 3.8731160182264284,
+       "scores_with_any": 145
+      },
+      "top5pct_share": 0.24932523616734142,
+      "worst": [
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 221,
+        "per_100": 3.8731160182264284
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 99,
+        "per_100": 1.6966580976863752
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 86,
+        "per_100": 0.9772727272727273
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 39499,
+     "chord_size:1": 18042,
+     "range:0": 52879,
+     "range:1": 2147,
+     "transition:0": 1324,
+     "transition:1": 1640
+    },
+    "range_by_direction_part": {
+     "above:0": 13,
+     "above:1": 971,
+     "below:0": 52866,
+     "below:1": 1176
+    },
+    "retention_per_part": [
+     2.8858,
+     2.509
+    ],
+    "retention_total_vs_source": 1.3442,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 1638,
+    "bars_truncated": 31
+   },
+   "ou_band_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 645851,
+    "n_source_notes": 523196,
+    "D": 7.948582567805887,
+    "D_check": "range",
+    "D_ci95": [
+     7.467237307187977,
+     8.429510715260916
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 51336,
+      "per_100": 7.948582567805887,
+      "ci95": [
+       7.462638229223344,
+       8.429510715260916
+      ],
+      "per_score": {
+       "median": 7.397556045571481,
+       "p90": 12.173862003931065,
+       "max": 15.311004784688995,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.15624513012311048,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1278,
+        "per_100": 11.063019390581717
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1204,
+        "per_100": 12.153023114969214
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 1085,
+        "per_100": 10.59880824460291
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 46127,
+      "per_100": 7.142049791670215,
+      "ci95": [
+       6.55403859608372,
+       7.72442063139605
+      ],
+      "per_score": {
+       "median": 7.379483473418571,
+       "p90": 11.828148547199472,
+       "max": 18.012422360248447,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.150128991696837,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 975,
+        "per_100": 9.841526193600485
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.3,_Op.74__sq26401096__m04",
+        "violations": 954,
+        "per_100": 11.569245694882367
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 938,
+        "per_100": 9.225927018786269
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 2710,
+      "per_100": 0.4196014250965006,
+      "ci95": [
+       0.36713479715067066,
+       0.4765417165191508
+      ],
+      "per_score": {
+       "median": 0.3254020041639809,
+       "p90": 0.8300494120081525,
+       "max": 1.90885230255309,
+       "scores_with_any": 145
+      },
+      "top5pct_share": 0.2077490774907749,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 88,
+        "per_100": 1.6366003347591593
+       },
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 80,
+        "per_100": 1.90885230255309
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 78,
+        "per_100": 0.9621314913038115
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 32268,
+     "chord_size:1": 13859,
+     "range:0": 49322,
+     "range:1": 2014,
+     "transition:0": 1129,
+     "transition:1": 1581
+    },
+    "range_by_direction_part": {
+     "above:0": 12,
+     "above:1": 924,
+     "below:0": 49310,
+     "below:1": 1090
+    },
+    "retention_per_part": [
+     2.6494,
+     2.305
+    ],
+    "retention_total_vs_source": 1.2344,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 1638,
+    "bars_truncated": 31
+   }
+  },
+  "solo_violin": {
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 16.496685754478246,
+    "D_check": "range",
+    "D_ci95": [
+     15.797757105726344,
+     17.18705167360984
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 86310,
+      "per_100": 16.496685754478246,
+      "ci95": [
+       15.797757105726344,
+       17.18705167360984
+      ],
+      "per_score": {
+       "median": 15.500581745798112,
+       "p90": 22.0949263452549,
+       "max": 28.787090057261842,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14014598540145987,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1969,
+        "per_100": 20.691467002942414
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1616,
+        "per_100": 20.768538748232874
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 1600,
+        "per_100": 19.490802777439395
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 29845,
+      "per_100": 5.704363183204765,
+      "ci95": [
+       4.880508684650955,
+       6.538376834036075
+      ],
+      "per_score": {
+       "median": 4.30133659019181,
+       "p90": 12.129214565903075,
+       "max": 23.387096774193548,
+       "scores_with_any": 135
+      },
+      "top5pct_share": 0.23648852404087786,
+      "worst": [
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 1116,
+        "per_100": 18.034906270200388
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 990,
+        "per_100": 14.765100671140939
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 944,
+        "per_100": 12.132116694512273
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 374,
+      "per_100": 0.07148372693980841,
+      "ci95": [
+       0.052525254014689354,
+       0.09551354491886749
+      ],
+      "per_score": {
+       "median": 0.023763885883165244,
+       "p90": 0.17857662781330977,
+       "max": 1.0414406595790844,
+       "scores_with_any": 80
+      },
+      "top5pct_share": 0.3689839572192513,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 48,
+        "per_100": 1.0414406595790844
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 20,
+        "per_100": 0.23199164830066119
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.2,_Op.54_No.2__sq9811948__m01",
+        "violations": 14,
+        "per_100": 0.24175444655499914
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 29845,
+     "range:0": 86310,
+     "transition:0": 374
+    },
+    "range_by_direction_part": {
+     "below:0": 86310
+    },
+    "retention_per_part": [
+     3.4235
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 16.496685754478246,
+    "D_check": "range",
+    "D_ci95": [
+     15.797757105726344,
+     17.18705167360984
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 86310,
+      "per_100": 16.496685754478246,
+      "ci95": [
+       15.797757105726344,
+       17.18705167360984
+      ],
+      "per_score": {
+       "median": 15.500581745798112,
+       "p90": 22.0949263452549,
+       "max": 28.787090057261842,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14014598540145987,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1969,
+        "per_100": 20.691467002942414
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1616,
+        "per_100": 20.768538748232874
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 1600,
+        "per_100": 19.490802777439395
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 29845,
+      "per_100": 5.704363183204765,
+      "ci95": [
+       4.880508684650955,
+       6.538376834036075
+      ],
+      "per_score": {
+       "median": 4.30133659019181,
+       "p90": 12.129214565903075,
+       "max": 23.387096774193548,
+       "scores_with_any": 135
+      },
+      "top5pct_share": 0.23648852404087786,
+      "worst": [
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 1116,
+        "per_100": 18.034906270200388
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 990,
+        "per_100": 14.765100671140939
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 944,
+        "per_100": 12.132116694512273
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 374,
+      "per_100": 0.07148372693980841,
+      "ci95": [
+       0.052525254014689354,
+       0.09551354491886749
+      ],
+      "per_score": {
+       "median": 0.023763885883165244,
+       "p90": 0.17857662781330977,
+       "max": 1.0414406595790844,
+       "scores_with_any": 80
+      },
+      "top5pct_share": 0.3689839572192513,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 48,
+        "per_100": 1.0414406595790844
+       },
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 20,
+        "per_100": 0.23199164830066119
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.2,_Op.54_No.2__sq9811948__m01",
+        "violations": 14,
+        "per_100": 0.24175444655499914
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 29845,
+     "range:0": 86310,
+     "transition:0": 374
+    },
+    "range_by_direction_part": {
+     "below:0": 86310
+    },
+    "retention_per_part": [
+     3.4235
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "ou_band": {
+    "n_scores": 150,
+    "n_out_notes": 506374,
+    "n_source_notes": 523196,
+    "D": 16.086528929210427,
+    "D_check": "range",
+    "D_ci95": [
+     15.342693177962682,
+     16.841262417839015
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 81458,
+      "per_100": 16.086528929210427,
+      "ci95": [
+       15.342693177962682,
+       16.841262417839015
+      ],
+      "per_score": {
+       "median": 15.252707386958678,
+       "p90": 22.345550320056898,
+       "max": 33.70429252782194,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14531414962311867,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1773,
+        "per_100": 20.817189151109545
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1635,
+        "per_100": 20.764541529083058
+       },
+       {
+        "key": "Bridge,_Frank__String_Quartet_No.1,_H.70__sq8938822__m01",
+        "violations": 1607,
+        "per_100": 30.037383177570092
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 57234,
+      "per_100": 11.302713014491266,
+      "ci95": [
+       10.517172462076338,
+       12.123238590129354
+      ],
+      "per_score": {
+       "median": 11.344727039340317,
+       "p90": 17.492995619457567,
+       "max": 25.376464026770776,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1463989936051997,
+      "worst": [
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 1383,
+        "per_100": 16.936076414401175
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1129,
+        "per_100": 14.338328676657353
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 1117,
+        "per_100": 16.885865457294027
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 2022,
+      "per_100": 0.3993096012038533,
+      "ci95": [
+       0.3362349033111826,
+       0.4668115366421793
+      ],
+      "per_score": {
+       "median": 0.2528139977975047,
+       "p90": 0.8447113223299723,
+       "max": 3.308641975308642,
+       "scores_with_any": 140
+      },
+      "top5pct_share": 0.23491592482690404,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 78,
+        "per_100": 1.859356376638856
+       },
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 73,
+        "per_100": 1.3424052960647297
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_D_minor,_Hob.III76,_Op.76_No.2__sq12772795__m03",
+        "violations": 67,
+        "per_100": 3.308641975308642
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 57234,
+     "range:0": 81458,
+     "transition:0": 2022
+    },
+    "range_by_direction_part": {
+     "above:0": 24,
+     "below:0": 81434
+    },
+    "retention_per_part": [
+     3.3134
+    ],
+    "retention_total_vs_source": 0.9678,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 350,
+    "bars_truncated": 6
+   },
+   "ou_band_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 478678,
+    "n_source_notes": 523196,
+    "D": 16.26249796314015,
+    "D_check": "range",
+    "D_ci95": [
+     15.528241579118001,
+     16.97364438893847
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 77845,
+      "per_100": 16.26249796314015,
+      "ci95": [
+       15.528241579118001,
+       16.97364438893847
+      ],
+      "per_score": {
+       "median": 15.4427375723974,
+       "p90": 22.50232226849665,
+       "max": 28.830313014827016,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.14120367396749953,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 1735,
+        "per_100": 21.272682687591956
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 1585,
+        "per_100": 22.987672226250908
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 1475,
+        "per_100": 19.803974221267456
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 50245,
+      "per_100": 10.496617768102984,
+      "ci95": [
+       9.646257445560787,
+       11.385872921999232
+      ],
+      "per_score": {
+       "median": 10.55957926202931,
+       "p90": 17.19286317842054,
+       "max": 25.56390977443609,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.15482137526122003,
+      "worst": [
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 1324,
+        "per_100": 16.721394291487748
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 1091,
+        "per_100": 16.828628721271016
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.3,_Op.74__sq26401096__m04",
+        "violations": 968,
+        "per_100": 15.246495511104111
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 1979,
+      "per_100": 0.4134303226803822,
+      "ci95": [
+       0.3481420085885351,
+       0.4829818815588264
+      ],
+      "per_score": {
+       "median": 0.2648093328461949,
+       "p90": 0.8885575675642905,
+       "max": 3.4166241713411525,
+       "scores_with_any": 140
+      },
+      "top5pct_share": 0.23244062657908035,
+      "worst": [
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 77,
+        "per_100": 1.8858682341415627
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_D_minor,_Hob.III76,_Op.76_No.2__sq12772795__m03",
+        "violations": 67,
+        "per_100": 3.4166241713411525
+       },
+       {
+        "key": "Dvořák,_Antonín__String_Quartet_No.11,_Op.61__sq27306844__m04",
+        "violations": 63,
+        "per_100": 1.2343260188087775
+       }
+      ]
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 50245,
+     "range:0": 77845,
+     "transition:0": 1979
+    },
+    "range_by_direction_part": {
+     "above:0": 24,
+     "below:0": 77821
+    },
+    "retention_per_part": [
+     3.1322
+    ],
+    "retention_total_vs_source": 0.9149,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 350,
+    "bars_truncated": 6
+   }
+  },
+  "solo_flute": {
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 185.12545967476817,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     180.40243342481511,
+     189.68300596827928
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 968569,
+      "per_100": 185.12545967476817,
+      "ci95": [
+       180.40243342481511,
+       189.68300596827928
+      ],
+      "per_score": {
+       "median": 179.95280629474536,
+       "p90": 222.35723010257593,
+       "max": 257.57641448081506,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1316034273242278,
+      "worst": [
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 18251,
+        "per_100": 222.329150931904
+       },
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 17987,
+        "per_100": 189.01849516603616
+       },
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_D_Minor__sq7643891__m01",
+        "violations": 16820,
+        "per_100": 195.44503834534046
+       }
+      ]
+     },
+     "range": {
+      "violations": 156797,
+      "per_100": 29.969074687115345,
+      "ci95": [
+       29.13854210179335,
+       30.804201211911423
+      ],
+      "per_score": {
+       "median": 29.722066726377072,
+       "p90": 37.502205134743704,
+       "max": 48.17460317460318,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1347793644011046,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 3282,
+        "per_100": 34.48928121059269
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 2751,
+        "per_100": 33.51199902545986
+       },
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_D_Minor__sq7643891__m01",
+        "violations": 2682,
+        "per_100": 31.16430397397165
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "range:0": 156797,
+     "simultaneity:0": 968569
+    },
+    "range_by_direction_part": {
+     "above:0": 64,
+     "below:0": 156733
+    },
+    "retention_per_part": [
+     3.4235
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 185.12545967476817,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     180.40243342481511,
+     189.68300596827928
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 968569,
+      "per_100": 185.12545967476817,
+      "ci95": [
+       180.40243342481511,
+       189.68300596827928
+      ],
+      "per_score": {
+       "median": 179.95280629474536,
+       "p90": 222.35723010257593,
+       "max": 257.57641448081506,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1316034273242278,
+      "worst": [
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 18251,
+        "per_100": 222.329150931904
+       },
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 17987,
+        "per_100": 189.01849516603616
+       },
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_D_Minor__sq7643891__m01",
+        "violations": 16820,
+        "per_100": 195.44503834534046
+       }
+      ]
+     },
+     "range": {
+      "violations": 156797,
+      "per_100": 29.969074687115345,
+      "ci95": [
+       29.13854210179335,
+       30.804201211911423
+      ],
+      "per_score": {
+       "median": 29.722066726377072,
+       "p90": 37.502205134743704,
+       "max": 48.17460317460318,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1347793644011046,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 3282,
+        "per_100": 34.48928121059269
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 2751,
+        "per_100": 33.51199902545986
+       },
+       {
+        "key": "Mayer,_Emilie__String_Quartet_in_D_Minor__sq7643891__m01",
+        "violations": 2682,
+        "per_100": 31.16430397397165
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "range:0": 156797,
+     "simultaneity:0": 968569
+    },
+    "range_by_direction_part": {
+     "above:0": 64,
+     "below:0": 156733
+    },
+    "retention_per_part": [
+     3.4235
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "ou_band": {
+    "n_scores": 150,
+    "n_out_notes": 439161,
+    "n_source_notes": 523196,
+    "D": 249.95548329655867,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     219.86157681412112,
+     295.014733995402
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 1097707,
+      "per_100": 249.95548329655867,
+      "ci95": [
+       219.86157681412112,
+       295.014733995402
+      ],
+      "per_score": {
+       "median": 213.0932854427224,
+       "p90": 307.1977071508394,
+       "max": 1938.730761121653,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.21901654995367617,
+      "worst": [
+       {
+        "key": "Janáček,_Leoš__String_Quartet_No.2_“Intimate_Letters”__sq7267316__m03",
+        "violations": 91954,
+        "per_100": 1938.730761121653
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m01",
+        "violations": 31219,
+        "per_100": 578.0225884095538
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 23496,
+        "per_100": 338.5590778097983
+       }
+      ]
+     },
+     "range": {
+      "violations": 125948,
+      "per_100": 28.679231534676347,
+      "ci95": [
+       27.734550816401214,
+       29.642765979756923
+      ],
+      "per_score": {
+       "median": 28.606212524809152,
+       "p90": 36.02770333969253,
+       "max": 47.315741583257505,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.13808079524883285,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 2403,
+        "per_100": 32.69832630289835
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 2377,
+        "per_100": 39.08253863860572
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 2285,
+        "per_100": 33.010690551863625
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "range:0": 125948,
+     "simultaneity:0": 1097707
+    },
+    "range_by_direction_part": {
+     "above:0": 136,
+     "below:0": 125812
+    },
+    "retention_per_part": [
+     2.8736
+    ],
+    "retention_total_vs_source": 0.8394,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 40931,
+    "bars_truncated": 17
+   },
+   "ou_band_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 419640,
+    "n_source_notes": 523196,
+    "D": 207.25741111428843,
+    "D_check": "simultaneity",
+    "D_ci95": [
+     198.11131692796863,
+     216.53157113313864
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 869735,
+      "per_100": 207.25741111428843,
+      "ci95": [
+       198.11131692796863,
+       216.53157113313864
+      ],
+      "per_score": {
+       "median": 203.1731963123496,
+       "p90": 274.7151510401097,
+       "max": 383.7067209775967,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.13694976055925082,
+      "worst": [
+       {
+        "key": "Mozart,_Wolfgang_Amadeus__String_Quartet_No.19_in_C_major,_K.465_(Op._10,_No._6)__sq7471661__m04",
+        "violations": 16731,
+        "per_100": 239.42472810532342
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 16182,
+        "per_100": 281.7200557103064
+       },
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 15659,
+        "per_100": 218.5790061418202
+       }
+      ]
+     },
+     "range": {
+      "violations": 121800,
+      "per_100": 29.02487846725765,
+      "ci95": [
+       28.126901419526178,
+       29.92317246535756
+      ],
+      "per_score": {
+       "median": 29.004765395894427,
+       "p90": 35.92574226740222,
+       "max": 47.03703703703704,
+       "scores_with_any": 150
+      },
+      "top5pct_share": 0.1344088669950739,
+      "worst": [
+       {
+        "key": "Schubert,_Franz__String_Quartet_in_D_minor,_D.810,_No.14_(“Death_and_the_Maiden”)__sq7397765__m04",
+        "violations": 2354,
+        "per_100": 32.85873813512004
+       },
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 2267,
+        "per_100": 33.382417906052126
+       },
+       {
+        "key": "Kalliwoda,_Johann_Wenzel__String_Quartet_No.3,_Op.90__sq7384409__m04",
+        "violations": 2185,
+        "per_100": 38.823738450604125
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "hand_span": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "range:0": 121800,
+     "simultaneity:0": 869735
+    },
+    "range_by_direction_part": {
+     "above:0": 124,
+     "below:0": 121676
+    },
+    "retention_per_part": [
+     2.7459
+    ],
+    "retention_total_vs_source": 0.8021,
+    "sparse": false,
+    "sparse_original_rule": false,
+    "n_off_ensemble": 40931,
+    "bars_truncated": 17
+   }
+  },
+  "piano": {
+   "control": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 5.638995710976384,
+    "D_check": "hand_span",
+    "D_ci95": [
+     5.061279006186658,
+     6.209689406840468
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 95,
+      "per_100": 0.018157631174550264,
+      "ci95": [
+       0.007823443264699564,
+       0.032418741936776074
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.034659252468373175,
+       "max": 0.4526935264825713,
+       "scores_with_any": 22
+      },
+      "top5pct_share": 0.7578947368421053,
+      "worst": [
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 27,
+        "per_100": 0.4322074595805987
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.1,_Op.7_(Sz.40)__sq7295726__m04",
+        "violations": 14,
+        "per_100": 0.20126509488211616
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m03",
+        "violations": 10,
+        "per_100": 0.4526935264825713
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 29503,
+      "per_100": 5.638995710976384,
+      "ci95": [
+       5.061279006186658,
+       6.209689406840468
+      ],
+      "per_score": {
+       "median": 4.488619627927419,
+       "p90": 10.231669097795713,
+       "max": 28.091397849462364,
+       "scores_with_any": 149
+      },
+      "top5pct_share": 0.17174524624614446,
+      "worst": [
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 786,
+        "per_100": 9.574856864417104
+       },
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 682,
+        "per_100": 11.021331609566904
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 651,
+        "per_100": 14.124538945541332
+       }
+      ]
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 95,
+     "hand_span:0": 29503
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     1.0
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "naive": {
+    "n_scores": 150,
+    "n_out_notes": 523196,
+    "n_source_notes": 523196,
+    "D": 5.638995710976384,
+    "D_check": "hand_span",
+    "D_ci95": [
+     5.061279006186658,
+     6.209689406840468
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "chord_size": {
+      "violations": 95,
+      "per_100": 0.018157631174550264,
+      "ci95": [
+       0.007823443264699564,
+       0.032418741936776074
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.034659252468373175,
+       "max": 0.4526935264825713,
+       "scores_with_any": 22
+      },
+      "top5pct_share": 0.7578947368421053,
+      "worst": [
+       {
+        "key": "Busoni,_Ferruccio__String_Quartet_No.1,_Op.19,_BV_208__sq11154985__m04",
+        "violations": 27,
+        "per_100": 0.4322074595805987
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.1,_Op.7_(Sz.40)__sq7295726__m04",
+        "violations": 14,
+        "per_100": 0.20126509488211616
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m03",
+        "violations": 10,
+        "per_100": 0.4526935264825713
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 29503,
+      "per_100": 5.638995710976384,
+      "ci95": [
+       5.061279006186658,
+       6.209689406840468
+      ],
+      "per_score": {
+       "median": 4.488619627927419,
+       "p90": 10.231669097795713,
+       "max": 28.091397849462364,
+       "scores_with_any": 149
+      },
+      "top5pct_share": 0.17174524624614446,
+      "worst": [
+       {
+        "key": "Franck,_César__String_Quartet__sq26652775__m04",
+        "violations": 786,
+        "per_100": 9.574856864417104
+       },
+       {
+        "key": "Cras,_Jean__String_Quartet__sq25403263__m04",
+        "violations": 682,
+        "per_100": 11.021331609566904
+       },
+       {
+        "key": "Smetana,_Bedřich__String_Quartet_No.1__sq7483523__m02",
+        "violations": 651,
+        "per_100": 14.124538945541332
+       }
+      ]
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 95,
+     "hand_span:0": 29503
+    },
+    "range_by_direction_part": {},
+    "retention_per_part": [
+     1.0
+    ],
+    "retention_total_vs_source": 1.0,
+    "sparse": false,
+    "sparse_original_rule": false
+   },
+   "ou_piano": {
+    "n_scores": 150,
+    "n_out_notes": 389192,
+    "n_source_notes": 523196,
+    "D": 1.4216633435425188,
+    "D_check": "hand_span",
+    "D_ci95": [
+     1.2991356074505411,
+     1.5537385911353674
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 1670,
+      "per_100": 0.42909412320911017,
+      "ci95": [
+       0.032352947110117325,
+       1.1407213059487622
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.07344475165399425,
+       "max": 26.538629419467483,
+       "scores_with_any": 35
+      },
+      "top5pct_share": 0.9664670658682635,
+      "worst": [
+       {
+        "key": "Grieg,_Edvard__String_Quartet_No.1,_Op.27__sq9631717__m03",
+        "violations": 1216,
+        "per_100": 26.538629419467483
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 199,
+        "per_100": 3.933583712196086
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.4,_Op.109__sq31320671__m03",
+        "violations": 128,
+        "per_100": 13.305613305613306
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 2085,
+      "per_100": 0.5357252975395178,
+      "ci95": [
+       0.4403506900962373,
+       0.6411774179199208
+      ],
+      "per_score": {
+       "median": 0.27045609979994656,
+       "p90": 1.2455605156137288,
+       "max": 2.4295432458697763,
+       "scores_with_any": 124
+      },
+      "top5pct_share": 0.2729016786570743,
+      "worst": [
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 93,
+        "per_100": 1.6292922214435879
+       },
+       {
+        "key": "Zemlinsky,_Alexander_von__String_Quartet_No.3,_Op.19__sq26269501__m04",
+        "violations": 92,
+        "per_100": 2.2035928143712575
+       },
+       {
+        "key": "Strauss,_Richard__String_Quartet_in_A_major,_Op.2__sq9608209__m04",
+        "violations": 92,
+        "per_100": 2.1028571428571428
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 5533,
+      "per_100": 1.4216633435425188,
+      "ci95": [
+       1.296325184627717,
+       1.5518685049079501
+      ],
+      "per_score": {
+       "median": 1.2804914878379194,
+       "p90": 2.4951967388880076,
+       "max": 4.417670682730924,
+       "scores_with_any": 148
+      },
+      "top5pct_share": 0.15832279052954998,
+      "worst": [
+       {
+        "key": "Cherubini,_Luigi__String_Quartet_No.1__sq11164006__m01",
+        "violations": 142,
+        "per_100": 2.2439949431099873
+       },
+       {
+        "key": "Beethoven,_Ludwig_van__String_Quartet_No.14_in_C♯_minor,_Op.131__sq20090908__m07",
+        "violations": 126,
+        "per_100": 2.4319629415170816
+       },
+       {
+        "key": "Brahms,_Johannes__String_Quartet_No.1,_Op.51_No.1__sq7108150__m03",
+        "violations": 122,
+        "per_100": 2.3874755381604698
+       }
+      ]
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 2085,
+     "hand_span:0": 5533,
+     "range:0": 1670
+    },
+    "range_by_direction_part": {
+     "above:0": 60,
+     "below:0": 1610
+    },
+    "retention_per_part": [
+     0.7439
+    ],
+    "retention_total_vs_source": 0.7439,
+    "sparse": true,
+    "sparse_original_rule": true,
+    "n_off_ensemble": 660,
+    "bars_truncated": 7
+   },
+   "ou_piano_dedup": {
+    "n_scores": 150,
+    "n_out_notes": 378419,
+    "n_source_notes": 523196,
+    "D": 1.4354458946300266,
+    "D_check": "hand_span",
+    "D_ci95": [
+     1.3081627477431739,
+     1.569365542867889
+    ],
+    "checks": {
+     "simultaneity": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     },
+     "range": {
+      "violations": 357,
+      "per_100": 0.09433987194089091,
+      "ci95": [
+       0.029304343976935387,
+       0.192038668676243
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.07433932822533858,
+       "max": 6.931818181818182,
+       "scores_with_any": 35
+      },
+      "top5pct_share": 0.8515406162464986,
+      "worst": [
+       {
+        "key": "Grieg,_Edvard__String_Quartet_No.1,_Op.27__sq9631717__m03",
+        "violations": 143,
+        "per_100": 4.193548387096774
+       },
+       {
+        "key": "Reger,_Max__String_Quartet_No.4,_Op.109__sq31320671__m03",
+        "violations": 61,
+        "per_100": 6.931818181818182
+       },
+       {
+        "key": "Haydn,_Joseph__String_Quartet_in_C_major,_Hob.III72,_Op.74_No.1__sq10372717__m04",
+        "violations": 36,
+        "per_100": 0.7461139896373057
+       }
+      ]
+     },
+     "chord_size": {
+      "violations": 1509,
+      "per_100": 0.3987643326577154,
+      "ci95": [
+       0.3187614713559921,
+       0.48629536097885934
+      ],
+      "per_score": {
+       "median": 0.17184616520262788,
+       "p90": 1.002796824251173,
+       "max": 2.2867194371152153,
+       "scores_with_any": 116
+      },
+      "top5pct_share": 0.30483764082173626,
+      "worst": [
+       {
+        "key": "Strauss,_Richard__String_Quartet_in_A_major,_Op.2__sq9608209__m04",
+        "violations": 84,
+        "per_100": 1.9750764166470727
+       },
+       {
+        "key": "Bartók,_Béla__String_Quartet_No.2,_Op.17_(Sz.67)__sq8741475__m02",
+        "violations": 73,
+        "per_100": 1.3309024612579763
+       },
+       {
+        "key": "Zemlinsky,_Alexander_von__String_Quartet_No.3,_Op.19__sq26269501__m04",
+        "violations": 64,
+        "per_100": 1.6524657887942165
+       }
+      ]
+     },
+     "hand_span": {
+      "violations": 5432,
+      "per_100": 1.4354458946300266,
+      "ci95": [
+       1.3081627477431739,
+       1.569365542867889
+      ],
+      "per_score": {
+       "median": 1.2284521793392111,
+       "p90": 2.5468228519075975,
+       "max": 5.114754098360656,
+       "scores_with_any": 148
+      },
+      "top5pct_share": 0.15997790868924888,
+      "worst": [
+       {
+        "key": "Cherubini,_Luigi__String_Quartet_No.1__sq11164006__m01",
+        "violations": 142,
+        "per_100": 2.2550420835318405
+       },
+       {
+        "key": "Beethoven,_Ludwig_van__String_Quartet_No.14_in_C♯_minor,_Op.131__sq20090908__m07",
+        "violations": 125,
+        "per_100": 2.4347487339306584
+       },
+       {
+        "key": "Nielsen,_Carl__String_Quartet_No.1,_Op.13__sq12536479__m04",
+        "violations": 120,
+        "per_100": 3.4236804564907275
+       }
+      ]
+     },
+     "transition": {
+      "violations": 0,
+      "per_100": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "per_score": {
+       "median": 0.0,
+       "p90": 0.0,
+       "max": 0.0,
+       "scores_with_any": 0
+      },
+      "top5pct_share": null,
+      "worst": []
+     }
+    },
+    "violations_by_check_part": {
+     "chord_size:0": 1509,
+     "hand_span:0": 5432,
+     "range:0": 357
+    },
+    "range_by_direction_part": {
+     "above:0": 56,
+     "below:0": 301
+    },
+    "retention_per_part": [
+     0.7233
+    ],
+    "retention_total_vs_source": 0.7233,
+    "sparse": true,
+    "sparse_original_rule": true,
+    "n_off_ensemble": 660,
+    "bars_truncated": 7
+   }
+  }
+ },
+ "baseline": {
+  "system": "ou_band",
+  "D": 5.117034143312658,
+  "D_check": "chord_size",
+  "D_ci95": [
+   4.6478954528979814,
+   5.585066891443232
+  ],
+  "band": "Undecided",
+  "verdict": "Undecided",
+  "control_D_ci95": [
+   7.880105063714733,
+   8.708180783709222
+  ],
+  "control_valid": true,
+  "sparse": false,
+  "notes": []
+ },
+ "sweep": {
+  "trio": {
+   "system": "ou_band",
+   "D": 5.117034143312658,
+   "D_check": "chord_size",
+   "D_ci95": [
+    4.6478954528979814,
+    5.585066891443232
+   ],
+   "band": "Undecided",
+   "verdict": "Undecided",
+   "control_D_ci95": [
+    7.880105063714733,
+    8.708180783709222
+   ],
+   "control_valid": true,
+   "sparse": false,
+   "notes": []
+  },
+  "duo": {
+   "system": "ou_band",
+   "D": 8.181630752386978,
+   "D_check": "chord_size",
+   "D_ci95": [
+    7.7059764729616775,
+    8.732785207180271
+   ],
+   "band": "Proceed",
+   "verdict": "Proceed",
+   "control_D_ci95": [
+    8.626120723517865,
+    9.410307044459591
+   ],
+   "control_valid": true,
+   "sparse": false,
+   "notes": []
+  },
+  "solo_violin": {
+   "system": "ou_band",
+   "D": 16.086528929210427,
+   "D_check": "range",
+   "D_ci95": [
+    15.342693177962682,
+    16.841262417839015
+   ],
+   "band": "Proceed",
+   "verdict": "Proceed",
+   "control_D_ci95": [
+    15.797757105726344,
+    17.18705167360984
+   ],
+   "control_valid": true,
+   "sparse": false,
+   "notes": []
+  },
+  "solo_flute": {
+   "system": "ou_band",
+   "D": 249.95548329655867,
+   "D_check": "simultaneity",
+   "D_ci95": [
+    219.86157681412112,
+    295.014733995402
+   ],
+   "band": "Proceed",
+   "verdict": "Proceed",
+   "control_D_ci95": [
+    180.40243342481511,
+    189.68300596827928
+   ],
+   "control_valid": true,
+   "sparse": false,
+   "notes": []
+  },
+  "piano": {
+   "system": "ou_piano",
+   "D": 1.4216633435425188,
+   "D_check": "hand_span",
+   "D_ci95": [
+    1.2991356074505411,
+    1.5537385911353674
+   ],
+   "band": "Tighten",
+   "verdict": "Tighten",
+   "control_D_ci95": [
+    5.061279006186658,
+    6.209689406840468
+   ],
+   "control_valid": true,
+   "sparse": true,
+   "notes": []
+  }
+ }
+}

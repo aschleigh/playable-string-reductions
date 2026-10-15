@@ -1,0 +1,36 @@
+{
+ "n_windows": 20000,
+ "n_predicted_notes": 1633152,
+ "ensembles": {
+  "trio": 6007,
+  "duo": 4148,
+  "quartet": 9845
+ },
+ "realisation": {
+  "plain": 0.9721556842229014,
+  "tremolo": 0.0019820567834469786,
+  "repeat": 0.004054735872717298,
+  "arpeggiate": 0.019851183478329024,
+  "double": 0.00195633964260522
+ },
+ "realisation_non_plain": 0.02784431577709856,
+ "realisation_non_plain_by_ensemble": {
+  "quartet": 0.028388759243714756,
+  "trio": 0.027025536374165826,
+  "duo": 0.02773991236024731
+ },
+ "windows_with_any_non_plain": 0.42205,
+ "octave": {
+  "-12": 0.031006299474880476,
+  "0": 0.9374957138098597,
+  "12": 0.031497986715259815
+ },
+ "drop": 0.028172515479269536,
+ "corpus_notes_in_detected_figuration": {
+  "double": 15074,
+  "arpeggiate": 64791,
+  "repeat": 73101,
+  "tremolo": 18911
+ },
+ "corpus_total_notes": 1648188
+}

@@ -1,0 +1,5 @@
+name: golden_test
+parts:
+  - {name: Flute, instrument: flute}
+  - {name: Violin, instrument: violin}
+  - {name: Piano, instrument: piano}

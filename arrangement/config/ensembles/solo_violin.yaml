@@ -1,0 +1,4 @@
+# Solo violin (DECISION.md A1).
+name: solo_violin
+parts:
+  - {name: Violin, instrument: violin}

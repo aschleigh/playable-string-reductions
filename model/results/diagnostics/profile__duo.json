@@ -1,0 +1,13 @@
+{
+ "regime": "duo",
+ "movements": 5,
+ "input_notes": 14272,
+ "wall_s": 32.08623015135527,
+ "net_s": 8.813405472785234,
+ "net_calls": 1357,
+ "checker_s": 7.321519488468766,
+ "checker_add_calls": 20103,
+ "checker_add_calls_per_note": 1.4085622197309418,
+ "us_per_checker_add": 273.6506223124882,
+ "other_s": 15.951305190101266
+}

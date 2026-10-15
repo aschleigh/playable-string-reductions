@@ -1,0 +1,4 @@
+# Solo piano, two-hand span check (DECISION.md A1).
+name: solo_piano
+parts:
+  - {name: Piano, instrument: piano}

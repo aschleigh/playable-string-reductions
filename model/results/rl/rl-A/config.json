@@ -1,0 +1,45 @@
+{
+ "cmd": "train",
+ "setting": "A",
+ "run_name": "rl-A",
+ "base": "arranger-v2b",
+ "steps": 800,
+ "windows": 16,
+ "group": 8,
+ "epochs": 2,
+ "micro": 16,
+ "lr": 1e-05,
+ "clip": 0.2,
+ "beta": 0.02,
+ "workers": 24,
+ "val_every": 100,
+ "n_val": 20,
+ "seed": 0,
+ "ctx_run": null,
+ "setting_values": {
+  "w": {
+   "top": 1.0,
+   "bass": 0.8,
+   "inner": 0.25
+  },
+  "wH": 0.25,
+  "lam": 1.0,
+  "kappa": 5.0
+ },
+ "rho": {
+  "trio": {
+   "top": 0.88,
+   "inner": 0.83,
+   "bass": 0.89
+  },
+  "duo": {
+   "top": 0.85,
+   "inner": 0.62,
+   "bass": 0.84
+  }
+ },
+ "cand_mass": 0.999,
+ "cand_max": 16,
+ "base_checkpoint": "/scratch/ashleyz/reduction_ladder/model/results/arranger-v2b/checkpoint.pt",
+ "base_step": 30000
+}

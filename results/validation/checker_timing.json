@@ -1,0 +1,23 @@
+{
+ "largest_25": {
+  "notes_median": 8645,
+  "notes_max": 17476,
+  "floor_ms_median": 4.48,
+  "floor_ms_max": 9.24,
+  "naive_ms_median": 4.81,
+  "naive_ms_max": 11.3,
+  "over_10ms_floor": 0,
+  "over_10ms_naive": 1
+ },
+ "random_75": {
+  "notes_median": 2776,
+  "notes_max": 7705,
+  "floor_ms_median": 1.27,
+  "floor_ms_max": 3.2,
+  "naive_ms_median": 1.32,
+  "naive_ms_max": 3.51,
+  "over_10ms_floor": 0,
+  "over_10ms_naive": 0
+ },
+ "floor_us_per_note_median": 0.484
+}

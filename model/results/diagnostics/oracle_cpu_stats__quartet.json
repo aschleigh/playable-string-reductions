@@ -1,0 +1,17 @@
+{
+ "drop": {
+  "kept": 519585,
+  "blocked": 3517,
+  "dropped": 3517,
+  "target_drop": 94
+ },
+ "repair": {
+  "kept": 517208,
+  "blocked": 5894,
+  "rerouted_moved+octave": 472,
+  "rerouted_moved": 3462,
+  "dropped": 1794,
+  "rerouted_octave": 166,
+  "target_drop": 94
+ }
+}

@@ -1,0 +1,4 @@
+# Solo flute, monophonic (DECISION.md A1).
+name: solo_flute
+parts:
+  - {name: Flute, instrument: flute}

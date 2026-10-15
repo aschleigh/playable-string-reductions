@@ -1,0 +1,153 @@
+# Per-instrument hard-tier thresholds. Every number names its source.
+# "PLACEHOLDER (Un)" = no source yet; listed as Un in UNSOURCED.md. Do not
+# treat placeholder values as findings.
+# "CORPUS-CALIBRATED (Un)" = no source; value fitted to the OpenScore corpus
+# by arrangement/calibrate.py (results/calibration/calibration.json). An
+# envelope of professional practice, not an orchestration reference.
+#
+# Units: pitches are sounding MIDI numbers; times are quarter notes.
+#
+# Fields
+#   monophonic   true -> simultaneity check applies (no two notes may overlap)
+#                and max_chord must be null (simultaneity subsumes it).
+#   range        inclusive [low, high] sounding pitch.
+#   max_chord    max notes sounding at one instant (polyphonic instruments).
+#   hand_span    keyboard only: {semitones, fingers} per hand, two-hand split.
+#   names        regexes (case-insensitive) matched against a declared part's
+#                name, then its instrument name, to identify the instrument.
+#   transition   leap (semitones, to nearest pitch of the previous release)
+#                must be <= max_leap_at_zero_gap
+#                         + semitones_per_quarter_gap * gap,
+#                gap = next onset - previous release (time_basis: release) or
+#                - that previous note's onset (time_basis: onset), in quarter
+#                notes. Functional form itself is unsourced: UNSOURCED.md U0.
+#
+# Source key:
+#   [Adler] S. Adler, The Study of Orchestration, 4th ed. (W. W. Norton, 2016),
+#           bowed-string chapters: standard tuning of the open strings and
+#           the four-string construction of violin, viola and violoncello.
+#   [Bow]   definitional: a bow rests on at most two strings at once.
+#   [User]  the project lead's string-playing judgement, agreed 2026-10-08
+#           (cello thumb/4th-finger stretch; octave-plus-fourth shift limit).
+#
+# checker-v2 (2026-10-08) adds per-instrument blocks, rules in
+# arrangement/checker/rules_v2.py:
+#   strings      open (open strings, low to high), max_stretch (stopped notes
+#                of one chord: max - min semitone offset above their strings),
+#                bow_max_sustained / bow_sustain_max_dur (quarters), shift
+#                {max_semitones, min_time (quarters)}.
+#   hand_leap    keyboards: hand movement between consecutive onsets, same
+#                linear form as transition (time basis: onset).
+
+violin:
+  names: ['\bviolin(o|e)?\b', '\bvn\b', '\bvln\b', '\bvl\b', '\bvi\b', '\bviolon\b', '\bgeige\b']
+  monophonic: false
+  range:
+    low: 55       # G3, lowest open string (G-D-A-E tuning) [Adler]
+    high: 103     # G7 -- CORPUS-CALIBRATED (U1): full-corpus envelope outside harmonic passages
+  max_chord: 4    # four strings, one note per string [Adler]
+  hand_span: null
+  transition:
+    time_basis: onset
+    max_leap_at_zero_gap: 36       # CORPUS-CALIBRATED (U4): dev-split envelope of true parts
+    semitones_per_quarter_gap: 0  # CORPUS-CALIBRATED (U5): envelope slope, tightest passing fit
+  strings:
+    open: [55, 62, 69, 76]   # open strings [Adler]
+    max_stretch: 9           # PLACEHOLDER (U9): fingered tenth, 1st to stretched 4th finger
+    bow_max_sustained: 2       # [Bow]
+    bow_sustain_max_dur: 0.5   # [User] checker-v3 (was 2, U10): triple stops are rolled/broken; at most two strings held
+    shift:
+      max_semitones: 17        # octave plus a fourth [User]
+      min_time: 0.25           # CORPUS-CALIBRATED (U11): full-corpus envelope (no dev shift > 17), calibrate_v2.py
+    triple:                    # checker-v3: notes sounding together on 3+ strings [User]
+      max_stretch: 4           # PLACEHOLDER (U15): stopped-note stretch for 3+ notes; checker-v5: 5 -> 4, normal position [User]
+      min_gap: 1.0             # PLACEHOLDER (U16): quarters between consecutive 3+-note moments [User-approved]
+      recover: 1.0             # PLACEHOLDER (U19): checker-v5, quarters from a 3+-note onset to the next onset [User]
+    double:                    # checker-v4: two or more notes sounding together [User]
+      min_gap: 0.5             # PLACEHOLDER (U18): quarters between consecutive multi-note moments [User-approved]
+
+viola:
+  names: ['\bviola\b', '\bva\b', '\bvla\b', '\balto\b', '\bbratsche\b']
+  monophonic: false
+  range:
+    low: 48       # C3, lowest open string (C-G-D-A tuning) [Adler]
+    high: 92      # G#6 -- CORPUS-CALIBRATED (U2): full-corpus envelope outside harmonic passages
+  max_chord: 4    # four strings, one note per string [Adler]
+  hand_span: null
+  transition:
+    time_basis: onset
+    max_leap_at_zero_gap: 30       # CORPUS-CALIBRATED (U4): dev-split envelope of true parts
+    semitones_per_quarter_gap: 0  # CORPUS-CALIBRATED (U5): envelope slope, tightest passing fit
+  strings:
+    open: [48, 55, 62, 69]   # open strings [Adler]
+    max_stretch: 9           # PLACEHOLDER (U9): fingered tenth, 1st to stretched 4th finger
+    bow_max_sustained: 2       # [Bow]
+    bow_sustain_max_dur: 0.5   # [User] checker-v3 (was 2, U10): triple stops are rolled/broken; at most two strings held
+    shift:
+      max_semitones: 17        # octave plus a fourth [User]
+      min_time: 0.25           # CORPUS-CALIBRATED (U11): full-corpus envelope (no dev shift > 17), calibrate_v2.py
+    triple:                    # checker-v3: notes sounding together on 3+ strings [User]
+      max_stretch: 4           # PLACEHOLDER (U15): stopped-note stretch for 3+ notes; checker-v5: 5 -> 4, normal position [User]
+      min_gap: 1.0             # PLACEHOLDER (U16): quarters between consecutive 3+-note moments [User-approved]
+      recover: 1.0             # PLACEHOLDER (U19): checker-v5, quarters from a 3+-note onset to the next onset [User]
+    double:                    # checker-v4: two or more notes sounding together [User]
+      min_gap: 0.5             # PLACEHOLDER (U18): quarters between consecutive multi-note moments [User-approved]
+
+cello:
+  names: ['cello', '\bvc\b', '\bvcl?\b', 'violoncelle']
+  monophonic: false
+  range:
+    low: 36       # C2, lowest open string (C-G-D-A tuning) [Adler]
+    high: 86      # D6 -- CORPUS-CALIBRATED (U3): full-corpus envelope outside harmonic passages
+  max_chord: 4    # four strings, one note per string [Adler]
+  hand_span: null
+  transition:
+    time_basis: onset
+    max_leap_at_zero_gap: 29       # CORPUS-CALIBRATED (U4): dev-split envelope of true parts
+    semitones_per_quarter_gap: 1  # CORPUS-CALIBRATED (U5): envelope slope, tightest passing fit
+  strings:
+    open: [36, 43, 50, 57]   # open strings [Adler]
+    max_stretch: 7           # thumb to 4th finger [User]
+    bow_max_sustained: 2       # [Bow]
+    bow_sustain_max_dur: 0.5   # [User] checker-v3 (was 2, U10): triple stops are rolled/broken; at most two strings held
+    shift:
+      max_semitones: 17        # octave plus a fourth [User]
+      min_time: 0.25           # CORPUS-CALIBRATED (U11): full-corpus envelope (no dev shift > 17), calibrate_v2.py
+    triple:                    # checker-v3: notes sounding together on 3+ strings [User]
+      max_stretch: 4           # PLACEHOLDER (U14): stopped-note stretch for 3+ notes [User-approved]
+      min_gap: 1.0             # PLACEHOLDER (U16): quarters between consecutive 3+-note moments [User-approved]
+      recover: 1.0             # PLACEHOLDER (U19): checker-v5, quarters from a 3+-note onset to the next onset [User]
+    double:                    # checker-v4: two or more notes sounding together [User]
+      min_gap: 0.5             # PLACEHOLDER (U18): quarters between consecutive multi-note moments [User-approved]
+
+# ---- Added in checker-v1.1 (2026-10-06) for the headroom sweep (DECISION.md
+# amendment A1). Checker code and the string entries above are unchanged.
+# [Keyboard] = the standard 88-key piano keyboard (definitional).
+# [Hands] = ten fingers, five per hand (definitional).
+# Transition is null for flute and piano: no defensible number exists for either,
+# so that check is OFF for them rather than invented.
+
+flute:
+  names: ['\bflute\b', '\bfl\b', '\bflauto\b', '\bfl[oö]te\b']
+  monophonic: true
+  range:
+    low: 60       # C4 (C foot; B3 with a B foot) -- PLACEHOLDER (U6)
+    high: 96      # C7 -- PLACEHOLDER (U7)
+  max_chord: null
+  hand_span: null
+  transition: null
+
+piano:
+  names: ['\bpiano(forte)?\b', '\bpf\b', '\bpno\b', '\bklavier\b']
+  monophonic: false
+  range:
+    low: 21       # A0 [Keyboard]
+    high: 108     # C8 [Keyboard]
+  max_chord: 10   # ten fingers [Hands]
+  hand_span:
+    semitones: 14 # a major ninth per hand -- PLACEHOLDER (U8)
+    fingers: 5    # five per hand [Hands]
+  transition: null
+  hand_leap:
+    max_leap_at_zero_gap: 24       # PLACEHOLDER (U12): no piano corpus to calibrate on
+    semitones_per_quarter_gap: 12  # PLACEHOLDER (U13)

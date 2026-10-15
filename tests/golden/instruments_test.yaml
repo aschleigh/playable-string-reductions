@@ -1,0 +1,21 @@
+# TEST FIXTURE thresholds for the golden passages -- chosen to make each
+# passage's expected outcome unambiguous, NOT claims about real instruments.
+# Real thresholds live in arrangement/config/instruments.yaml.
+flute:
+  monophonic: true
+  range: {low: 60, high: 96}
+  max_chord: null
+  hand_span: null
+  transition: {max_leap_at_zero_gap: 24, semitones_per_quarter_gap: 12}
+violin:
+  monophonic: false
+  range: {low: 55, high: 103}
+  max_chord: 4
+  hand_span: null
+  transition: {max_leap_at_zero_gap: 24, semitones_per_quarter_gap: 12}
+piano:
+  monophonic: false
+  range: {low: 21, high: 108}
+  max_chord: 10
+  hand_span: {semitones: 12, fingers: 5}
+  transition: null

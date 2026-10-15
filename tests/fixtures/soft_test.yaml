@@ -1,0 +1,21 @@
+# Test-fixture soft thresholds: round numbers for known-answer tests. Not claims
+# about any instrument. "clarinet_bb" exists only here (a transposing instrument
+# to exercise the key cost; none of the real instruments transposes).
+assumed_qpm: 60   # 1 quarter = 1 second
+
+instruments:
+  violin:
+    open_strings: [55, 62, 69, 76]
+    bow: {max_bow_seconds: 4.0}
+    shift: {frame_semitones: 7, max_shift_ioi: 1.0}
+    crossing: {fast_ioi: 0.5}
+    register: {comfortable_high: 90}
+    repeated: {min_ioi: 0.5}
+  flute:
+    transposition: 0
+    breath: {min_breath_gap: 1.0, max_phrase_seconds: 8.0}
+    register: {comfortable_high: 90}
+    repeated: {min_ioi: 0.5}
+  clarinet_bb:
+    transposition: 2
+    repeated: {min_ioi: 0.5}

@@ -1,0 +1,41 @@
+{
+ "metrics_version": "1.0.0-draft",
+ "inputs": [
+  "headroom/data/records/amt__trio.jsonl",
+  "headroom/data/records/continuity__duo.jsonl",
+  "headroom/data/records/continuity__quartet.jsonl",
+  "headroom/data/records/continuity__trio.jsonl",
+  "headroom/data/records/control__duo.jsonl",
+  "headroom/data/records/control__piano.jsonl",
+  "headroom/data/records/control__quartet.jsonl",
+  "headroom/data/records/control__solo_flute.jsonl",
+  "headroom/data/records/control__solo_violin.jsonl",
+  "headroom/data/records/control__trio.jsonl",
+  "headroom/data/records/floor__quartet.jsonl",
+  "headroom/data/records/naive__duo.jsonl",
+  "headroom/data/records/naive__piano.jsonl",
+  "headroom/data/records/naive__quartet.jsonl",
+  "headroom/data/records/naive__solo_flute.jsonl",
+  "headroom/data/records/naive__solo_violin.jsonl",
+  "headroom/data/records/naive__trio.jsonl",
+  "headroom/data/records/ou_band__duo.jsonl",
+  "headroom/data/records/ou_band__solo_flute.jsonl",
+  "headroom/data/records/ou_band__solo_violin.jsonl",
+  "headroom/data/records/ou_band__trio.jsonl",
+  "headroom/data/records/ou_piano__piano.jsonl"
+ ],
+ "n_records": 3300,
+ "n_seed_groups": 3300,
+ "soft": true,
+ "config_sha1": {
+  "assigner.yaml": "68f4756ff3d7",
+  "duo.yaml": "920011709ac3",
+  "piano.yaml": "e1da86c3c441",
+  "quartet.yaml": "598fdee23339",
+  "solo_flute.yaml": "3e07c81872fe",
+  "solo_violin.yaml": "f380903d7391",
+  "trio.yaml": "45c26927a0a9",
+  "instruments.yaml": "072daa5342a3",
+  "soft.yaml": "7a6d8106842c"
+ }
+}

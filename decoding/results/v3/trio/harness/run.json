@@ -1,0 +1,25 @@
+{
+ "metrics_version": "1.2.0-draft",
+ "inputs": [
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band_masked__trio.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/ou_band__trio.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/continuity__trio.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/naive__trio.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/control__trio.jsonl",
+  "/scratch/ashleyz/reduction_ladder/headroom/data/records/amt__trio.jsonl"
+ ],
+ "n_records": 900,
+ "n_seed_groups": 900,
+ "soft": true,
+ "config_sha1": {
+  "assigner.yaml": "68f4756ff3d7",
+  "duo.yaml": "920011709ac3",
+  "piano.yaml": "e1da86c3c441",
+  "quartet.yaml": "598fdee23339",
+  "solo_flute.yaml": "3e07c81872fe",
+  "solo_violin.yaml": "f380903d7391",
+  "trio.yaml": "45c26927a0a9",
+  "instruments.yaml": "7663025dc0b6",
+  "soft.yaml": "7a6d8106842c"
+ }
+}

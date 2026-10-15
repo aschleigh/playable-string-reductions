@@ -1,0 +1,90 @@
+{
+ "cpu_stats": {
+  "drop": {
+   "kept": 519585,
+   "blocked": 3517,
+   "dropped": 3517,
+   "target_drop": 94
+  },
+  "repair": {
+   "kept": 517208,
+   "blocked": 5894,
+   "rerouted_moved+octave": 472,
+   "rerouted_moved": 3462,
+   "dropped": 1794,
+   "rerouted_octave": 166,
+   "target_drop": 94
+  }
+ },
+ "pooled": {
+  "oracle": {
+   "D": 0.2993680008870163,
+   "n_out_notes": 523102,
+   "note_i_f1": 0.9999135511149323,
+   "note_f1": 0.9999135511149323,
+   "mel_f1": 0.9997245894227011,
+   "harmony": 0.9999535558764009,
+   "mel_top_f1": 1.0
+  },
+  "oracle_mask_drop": {
+   "D": 0.0,
+   "n_out_notes": 519585,
+   "note_i_f1": 0.9963256970658372,
+   "note_f1": 0.9963256970658372,
+   "mel_f1": 0.9952710296857903,
+   "harmony": 0.9983573883111913,
+   "mel_top_f1": 0.9969241892720224
+  },
+  "oracle_mask_repair": {
+   "D": 0.0,
+   "n_out_notes": 521308,
+   "note_i_f1": 0.992854925341239,
+   "note_f1": 0.9969549369224046,
+   "mel_f1": 0.9894440735071578,
+   "harmony": 0.9995515905227542,
+   "mel_top_f1": 0.9986261819364428
+  }
+ },
+ "double_stops": {
+  "oracle": {
+   "per_100_out_notes": {
+    "source": 4.489946511387837
+   },
+   "share": {
+    "source": 1.0
+   },
+   "by_part": {
+    "Violin 1:source": 4212,
+    "Violin 2:source": 9432,
+    "Viola:source": 6449,
+    "Violoncello:source": 3394
+   }
+  },
+  "oracle_mask_drop": {
+   "per_100_out_notes": {
+    "source": 4.108278722441949
+   },
+   "share": {
+    "source": 1.0
+   },
+   "by_part": {
+    "Violin 1:source": 3657,
+    "Violin 2:source": 8677,
+    "Viola:source": 5908,
+    "Violoncello:source": 3104
+   }
+  }
+ },
+ "retention_by_tier": {
+  "oracle": {
+   "top": 1.0,
+   "inner": 1.0,
+   "bass": 1.0
+  },
+  "oracle_mask_drop": {
+   "top": 0.9977622782456707,
+   "inner": 0.9914373115528267,
+   "bass": 0.9943820224719101
+  }
+ }
+}

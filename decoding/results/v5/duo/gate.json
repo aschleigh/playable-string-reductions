@@ -1,0 +1,242 @@
+{
+ "n_movements": 150,
+ "systems": {
+  "ou_band_masked": {
+   "D": 0.00030619806115387676,
+   "D_check": "double_onset",
+   "D_ci95": [
+    0.0,
+    0.0011805067067853752
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 0.0,
+    "chord_size": 0.0,
+    "hand_span": 0.0,
+    "transition": 0.0,
+    "multistop": 0.0,
+    "bow": 0.0,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 0.0,
+    "triple_stretch": 0.0,
+    "triple_rate": 0.0,
+    "double_onset": 0.00030619806115387676,
+    "restrike": 0.0,
+    "double_rate": 0.0,
+    "triple_recover": 0.00030619806115387676
+   },
+   "n_notes": 326586,
+   "fidelity": {
+    "note_i_f1": 0.3791584412987114,
+    "note_f1": 0.5637543110212456,
+    "mel_f1": 0.4921928536791572,
+    "harmony": 0.6728019583505517
+   }
+  },
+  "ou_band": {
+   "D": 20.68847354239686,
+   "D_check": "triple_recover",
+   "D_ci95": [
+    19.552728630794217,
+    21.742413911551242
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 7.824028323818597,
+    "chord_size": 8.181630752386978,
+    "hand_span": 0.0,
+    "transition": 0.421444770686554,
+    "multistop": 13.229583602897788,
+    "bow": 12.157487256414448,
+    "shift": 0.0007109392218059279,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 17.45355789533553,
+    "triple_stretch": 14.209400038390719,
+    "triple_rate": 18.359863215293725,
+    "double_onset": 4.77694281915839,
+    "restrike": 3.644274450977186,
+    "double_rate": 14.039059000846018,
+    "triple_recover": 20.68847354239686
+   },
+   "n_notes": 703295,
+   "fidelity": {
+    "note_i_f1": 0.506093747157871,
+    "note_f1": 0.7487769854937729,
+    "mel_f1": 0.5107288883869251,
+    "harmony": 0.8317429929005489
+   }
+  },
+  "ou_band_repair": {
+   "D": 0.0,
+   "D_check": "simultaneity",
+   "D_ci95": [
+    0.0,
+    0.0
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 0.0,
+    "chord_size": 0.0,
+    "hand_span": 0.0,
+    "transition": 0.0,
+    "multistop": 0.0,
+    "bow": 0.0,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 0.0,
+    "triple_stretch": 0.0,
+    "triple_rate": 0.0,
+    "double_onset": 0.0,
+    "restrike": 0.0,
+    "double_rate": 0.0,
+    "triple_recover": 0.0
+   },
+   "n_notes": 405478,
+   "fidelity": {
+    "note_i_f1": 0.35789944966303877,
+    "note_f1": 0.5845217152059705,
+    "mel_f1": 0.47546987729432155,
+    "harmony": 0.7371317387506011
+   }
+  },
+  "continuity": {
+   "D": 20.610631579752138,
+   "D_check": "double_onset",
+   "D_ci95": [
+    19.321869806485388,
+    21.908961708449617
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 0.3799723239474308,
+    "chord_size": 0.09327288434926873,
+    "hand_span": 0.0,
+    "transition": 0.06938126438275521,
+    "multistop": 8.077087745319155,
+    "bow": 1.7651128831260179,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 3.0225766252035564,
+    "triple_stretch": 3.0210475615256995,
+    "triple_rate": 3.1494889104656765,
+    "double_onset": 20.610631579752138,
+    "restrike": 1.1823484889028204,
+    "double_rate": 15.801726312892301,
+    "triple_recover": 3.9497626128640126
+   },
+   "n_notes": 523196,
+   "fidelity": {
+    "note_i_f1": 0.6824250981145021,
+    "note_f1": 1.0,
+    "mel_f1": 0.7031669748355218,
+    "harmony": 1.0
+   }
+  },
+  "naive": {
+   "D": 17.19355652566151,
+   "D_check": "triple_recover",
+   "D_ci95": [
+    16.122827950698664,
+    18.259792731174137
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 0.0,
+    "chord_size": 1.4304390706350967,
+    "hand_span": 0.0,
+    "transition": 0.03459506571151156,
+    "multistop": 8.88462450018731,
+    "bow": 7.527007087210147,
+    "shift": 0.0,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 12.768446241943746,
+    "triple_stretch": 14.021705058907179,
+    "triple_rate": 15.189145176950895,
+    "double_onset": 7.692910496257617,
+    "restrike": 1.818438978891276,
+    "double_rate": 13.036414651488162,
+    "triple_recover": 17.19355652566151
+   },
+   "n_notes": 523196,
+   "fidelity": {
+    "note_i_f1": 0.5113825288682291,
+    "note_f1": 1.0,
+    "mel_f1": 0.7073956273793552,
+    "harmony": 1.0
+   }
+  },
+  "control": {
+   "D": 21.31954372739853,
+   "D_check": "multistop",
+   "D_ci95": [
+    20.649102004903394,
+    22.000385588087028
+   ],
+   "per_100": {
+    "simultaneity": 0.0,
+    "range": 9.02338702895282,
+    "chord_size": 0.7855564644989641,
+    "hand_span": 0.0,
+    "transition": 0.7410224848813829,
+    "multistop": 21.31954372739853,
+    "bow": 5.934487266722223,
+    "shift": 0.0011467977583926483,
+    "duplicate": 0.0,
+    "hand_leap": 0.0,
+    "triple_onset": 12.678613750869655,
+    "triple_stretch": 15.951574553322272,
+    "triple_rate": 10.02148334467389,
+    "double_onset": 10.291936482694823,
+    "restrike": 0.9283327854188488,
+    "double_rate": 11.976008990894426,
+    "triple_recover": 15.266554025642398
+   },
+   "n_notes": 523196,
+   "fidelity": {
+    "note_i_f1": 0.3881784787168665,
+    "note_f1": 1.0,
+    "mel_f1": 0.4754729085673522,
+    "harmony": 1.0
+   }
+  }
+ },
+ "delta_unconstrained_minus_masked": {
+  "note_i_f1": {
+   "delta": 0.12693530585915963,
+   "ci95": [
+    0.1180558474657666,
+    0.1361679932672069
+   ]
+  },
+  "note_f1": {
+   "delta": 0.1850226744725273,
+   "ci95": [
+    0.17417289297611965,
+    0.19618801069578606
+   ]
+  },
+  "mel_f1": {
+   "delta": 0.01853603470776788,
+   "ci95": [
+    0.006654171693663581,
+    0.030749282500184192
+   ]
+  },
+  "harmony": {
+   "delta": 0.1589410345499972,
+   "ci95": [
+    0.15222671220024414,
+    0.16605040728820167
+   ]
+  }
+ },
+ "note_ratio_masked_vs_unconstrained": 0.4643655933854215,
+ "verdict": "outcome 2 or 3: training has a target; proceed",
+ "metrics_version": "1.5.0-draft"
+}

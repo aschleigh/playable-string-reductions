@@ -1,0 +1,13 @@
+{
+ "regime": "trio",
+ "movements": 5,
+ "input_notes": 14272,
+ "wall_s": 37.286006363108754,
+ "net_s": 10.319858714938164,
+ "net_calls": 1357,
+ "checker_s": 6.504466200247407,
+ "checker_add_calls": 17580,
+ "checker_add_calls_per_note": 1.2317825112107623,
+ "us_per_checker_add": 303.77497467444414,
+ "other_s": 20.461681447923183
+}

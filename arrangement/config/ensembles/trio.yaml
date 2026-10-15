@@ -1,0 +1,6 @@
+# String trio Vn/Va/Vc: baseline regime of the headroom measurement (DECISION.md A1).
+name: string_trio
+parts:
+  - {name: Violin, instrument: violin}
+  - {name: Viola, instrument: viola}
+  - {name: Violoncello, instrument: cello}
