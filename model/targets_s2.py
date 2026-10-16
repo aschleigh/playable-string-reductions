@@ -35,7 +35,7 @@ from model.grpo import RL, load_split
 
 REGIMES = ("trio", "duo")
 CELLO_MOVED_MAX = 74   # U20: D5 [User 2026-10-15: "you can go up to high D (in thumb position) for cello"]
-VIOLA_INNER_DS_GAP = 2.0   # U21: quarters; calibrated to viola 4.45 per 100 target notes (S2 6.11, real 5.1) [User: "slightly stricter"]
+VIOLA_INNER_DS_GAP = 2.0   # U21 (S2b): quarters; viola 4.45 per 100 target notes (S2 6.11, real 5.1). S2c: --viola-gap 1 (5.28; R58)
 
 
 def _overlaps(a0, a1, b0, b1):

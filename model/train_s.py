@@ -59,7 +59,7 @@ def main(argv=None):
     ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--ctx-run", default=None)
-    ap.add_argument("--targets", default="oracle", choices=["oracle", "s2", "s2b"], help="oracle-under-mask (control S), S2 (R44) or S2b (R49)")
+    ap.add_argument("--targets", default="oracle", choices=["oracle", "s2", "s2b", "s2c"], help="oracle-under-mask (control S), S2 (R44), S2b (R49) or S2c (R58)")
     a = ap.parse_args(argv)
     rng = random.Random(a.seed)
     torch.manual_seed(a.seed)
@@ -70,7 +70,7 @@ def main(argv=None):
     net.load_state_dict(ck["model"])
     real_w = torch.tensor(cfg["real_class_weights"], device=device) if cfg.get("real_class_weights") else None
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr, weight_decay=0.01)
-    if a.targets in ("s2", "s2b"):   # R44/R49: S2 or S2b targets (model/targets_s2.py), {key: {regime: labels}}
+    if a.targets in ("s2", "s2b", "s2c"):   # R44/R49/R58: S2, S2b or S2c targets (model/targets_s2.py), {key: {regime: labels}}
         lab = pickle.load(open(RL / f"targets_{a.targets}__train.pkl", "rb"))
     else:
         lab = load_oracle(a.ctx_run or a.base)

@@ -214,6 +214,7 @@ def main(argv=None):
     ap.add_argument("--melody-first", action="store_true", help="decode v3 (R42): commit by voice tier first")
     ap.add_argument("--out-dir", default=None, help="records directory (default: <checkpoint dir>/records)")
     ap.add_argument("--limit", type=int, default=None)
+    ap.add_argument("--only-review", action="store_true", help="decode the 5 review movements only")
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--nshards", type=int, default=1)
     a = ap.parse_args(argv)
@@ -224,7 +225,12 @@ def main(argv=None):
     ens = load_ensemble(a.regime)
     insts = [i.key for i in ens.instruments]
     parts = [(n, i.key) for n, i in zip(ens.part_names, ens.instruments)]
-    base = load(REC / f"continuity__{a.regime}.jsonl")[a.shard::a.nshards][: a.limit]
+    base = load(REC / f"continuity__{a.regime}.jsonl")
+    if a.only_review:   # the 5 review movements only (listening; excluded from every confirmatory test)
+        import json as _json
+        rk = {_json.loads((ROOT / "headroom" / "data" / "sources" / f"{i:03d}.json").read_text())["key"] for i in (22, 67, 39, 42, 148)}
+        base = [r for r in base if r.input_id in rk]
+    base = base[a.shard::a.nshards][: a.limit]
     system = "arranger_masked" if a.masked else "arranger"
     recs, diag = [], []
     for r in base:

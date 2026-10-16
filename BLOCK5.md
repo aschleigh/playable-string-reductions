@@ -274,3 +274,19 @@ The gate failed (R55), so as the brief specifies, **control-S2b alone is confirm
   The frozen criterion uses the train-split rate (2.5); the result stands as a failure.
 - **Correction to R47:** control-S2's cello also exceeded the bound in R46 (2.1 [1.5, 2.8]); R47 reported only the viola.
 - Idiomatic z is reported only descriptively (P failed its gate).
+
+## R58: control-S2c, the middle viola setting (dev split, 2026-10-16)
+
+Viola gap 1 quarter (targets 5.28 per 100). Dev split, masked, melody-first:
+
+| | control-S2 | **control-S2c** | control-S2b | real parts (train) |
+|---|---|---|---|---|
+| trio viola DS per 100 notes | 4.44 | **3.40** | 2.31 | 5.1 |
+| trio violin / cello | 0.60 / 2.17 | 0.72 / 2.10 | 0.58 / 2.00 | 4.1 / 2.5 |
+| duo violin / cello | 0.19 / 1.90 | 0.24 / 1.77 | 0.25 / 1.77 | — |
+| melody retention, duration (trio / duo) | 0.988 / 0.948 | 0.988 / 0.947 | 0.988 / 0.948 | |
+| interventions (trio / duo) | 0.015 / 0.012 | 0.015 / 0.013 | 0.014 / 0.012 | |
+| inner retention (trio) | 0.548 | 0.563 | 0.553 | |
+
+control-S2c lands midway, with everything else unchanged. No confirmatory test (third use of the evaluation
+set needs the user). Listening excerpts: `decoding/results/examples/S2-vs-S2b-{trio,duo}/`, file `6_control-S2c_masked_*`.

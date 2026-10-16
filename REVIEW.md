@@ -348,3 +348,27 @@ are therefore in force, each open to reversal:
   3,229; eval-set real cello rate 3.21 per 100), concentrated in two movements. Reported as a failure; the
   criterion is unchanged. **Correction to R47:** control-S2's trio cello also exceeded the bound in R46
   (2.1 [1.5, 2.8]); R47, BLOCK4.md and WEEK_SUMMARY.md said viola only; dated corrections added there.
+- **R57. P parked (2026-10-15).** The user: "lets ignore P for now. can we move on?" No P v2 and no idiomatic
+  RL term until the user reopens it. control-S2b stays the current system.
+- **R58. Viola rule: a middle setting (2026-10-16).** The user, after the S2b result (viola 2.5 against S2's 5.2):
+  "I think we could find a happy medium for the viola constraint. Not too harsh, not too strict. Now proceed."
+  Chosen: `VIOLA_INNER_DS_GAP` = 1 quarter (S2c targets), from the existing calibration (targets 5.28 per 100,
+  between S2's 6.11 and S2b's 4.45); expected model output about 3.4 dev / 3.8 eval, midway. control-S2c is
+  trained the same way as S2b and checked on the dev split only, plus listening excerpts from the review
+  movements. No new confirmatory test: the evaluation set has been used twice (R46, R56); a third use waits
+  for the user.
+- **R59. control-S2c adopted (2026-10-16).** The user, after listening: "The 2c version looks good, can you
+  continue?" control-S2c (S2 targets + cello up to D5 (U20) + viola inner double-stop gap of 1 quarter (U21))
+  replaces control-S2b as the current system. Dev: trio viola 3.40 per 100 notes (real 5.1), melody 0.988 /
+  0.947, interventions 1.5% / 1.3%. It has had no confirmatory test (the evaluation set has been used twice).
+- **R60. The double-stop bar is set by the composers' own writing (2026-10-16).** The user: "I think the composers
+  own writing should set the cello double stop bar." Criterion **B′** item 1 (versioned; applies to future
+  tests): each output part's double-stop rate, minus the rate of the real source parts that feed it **in the same
+  movements** (trio violin <- Vn1+Vn2, viola <- Va, cello <- Vc; duo violin <- Vn1+Vn2, cello <- Va+Vc), has a
+  paired-bootstrap CI upper bound <= 0. Applied to all parts, not only the cello, for consistency. Items 2-4 unchanged.
+  **Post hoc on the R56 records (control-S2b; labelled post hoc, not a confirmatory result):** every part holds.
+  Output against source, per 100 notes: trio violin 0.68 / 4.69, viola 2.51 / 4.99, cello **1.92 / 3.21**
+  (difference -1.28 [-1.90, -0.70]); duo violin 0.18 / 4.69, cello 1.83 / 4.18. R56's frozen result (trio fails on
+  the cello against the train-split 2.5) stands as reported.
+- **R61. Excerpts: MusicXML only (2026-10-16).** The user: "you can stop rendering anything other than the
+  musicxml files." No more PDF/PNG renders.

@@ -1,0 +1,98 @@
+{
+ "real": {
+  "Vn1": {
+   "ds_per_100_notes": 2.2720413973286737,
+   "next_ds_within_8th": 0.32537618428385656
+  },
+  "Vn2": {
+   "ds_per_100_notes": 6.14390769854581,
+   "next_ds_within_8th": 0.34610769461526925
+  },
+  "Va": {
+   "ds_per_100_notes": 5.102030805454723,
+   "next_ds_within_8th": 0.3418902028651091
+  },
+  "Vc": {
+   "ds_per_100_notes": 2.5143956820471187,
+   "next_ds_within_8th": 0.23570916048792154
+  }
+ },
+ "rl/control-S2 | trio": {
+  "violin": {
+   "ds_per_100_notes": 0.5998632436128551,
+   "next_ds_within_8th": 0.12435233160621761
+  },
+  "viola": {
+   "ds_per_100_notes": 4.441930338662413,
+   "next_ds_within_8th": 0.2755741127348643
+  },
+  "cello": {
+   "ds_per_100_notes": 2.1683296588403755,
+   "next_ds_within_8th": 0.29245283018867924
+  },
+  "drop_rate": 0.18018484252256828
+ },
+ "rl/control-S2 | duo": {
+  "violin": {
+   "ds_per_100_notes": 0.19151846785225718,
+   "next_ds_within_8th": 0.12698412698412698
+  },
+  "cello": {
+   "ds_per_100_notes": 1.9033558118191611,
+   "next_ds_within_8th": 0.1949685534591195
+  },
+  "drop_rate": 0.4096952002460661
+ },
+ "rl/control-S2b | trio": {
+  "violin": {
+   "ds_per_100_notes": 0.5819607600994119,
+   "next_ds_within_8th": 0.09283819628647215
+  },
+  "viola": {
+   "ds_per_100_notes": 2.3081174833704994,
+   "next_ds_within_8th": 0.12799339388934763
+  },
+  "cello": {
+   "ds_per_100_notes": 2.0030079299972656,
+   "next_ds_within_8th": 0.3003412969283277
+  },
+  "drop_rate": 0.1858824448426202
+ },
+ "rl/control-S2b | duo": {
+  "violin": {
+   "ds_per_100_notes": 0.25146562040810144,
+   "next_ds_within_8th": 0.16265060240963855
+  },
+  "cello": {
+   "ds_per_100_notes": 1.774863124962397,
+   "next_ds_within_8th": 0.18757062146892656
+  },
+  "drop_rate": 0.409919784399213
+ },
+ "rl/control-S2c | trio": {
+  "violin": {
+   "ds_per_100_notes": 0.7199457342829834,
+   "next_ds_within_8th": 0.08993576017130621
+  },
+  "viola": {
+   "ds_per_100_notes": 3.402308373030069,
+   "next_ds_within_8th": 0.1853901494189264
+  },
+  "cello": {
+   "ds_per_100_notes": 2.099271402550091,
+   "next_ds_within_8th": 0.2917570498915401
+  },
+  "drop_rate": 0.18187898819956744
+ },
+ "rl/control-S2c | duo": {
+  "violin": {
+   "ds_per_100_notes": 0.23768791727854904,
+   "next_ds_within_8th": 0.16560509554140126
+  },
+  "cello": {
+   "ds_per_100_notes": 1.7657563657523527,
+   "next_ds_within_8th": 0.18977272727272726
+  },
+  "drop_rate": 0.40993931345600837
+ }
+}
