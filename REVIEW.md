@@ -299,3 +299,52 @@ are therefore in force, each open to reversal:
   test, on fresh movements if `raw_corpora/` has enough, else the 145 with a second-use caveat; generative
   infilling deferred to an optional Step 6, budgeted at <= 2% of notes and limited to source pitch classes.
   Six decisions are listed for the user. Nothing runs until approval.
+- **R51. Block 5 approved, all recommended options (2026-10-15).** The user: "Can you just take the
+  recommended route on all 6 decisions? Proceed as far as possible." Decisions as recommended in BLOCK5.md:
+  1. control-S2b replaces control-S2 as the base if its dev viola rate falls and dev melody retention falls
+     by no more than 0.005; 2. the duo cello is scored against real cello and real viola parts, the better
+     taken; 3. gate thresholds AUC >= 0.70 (adjacent) and >= 0.90 (hacks below v2b); 4. lambda_I in {0.5, 1.0},
+     penalty-only idiomatic term; 5. a fresh confirmation set if raw_corpora has >= 60 unused movements, else
+     the 145 with the second-use caveat; 6. infilling deferred, with the <= 2% budget when it starts.
+  Per the delegation rule, later choices take the recommended option and are logged here.
+- **R52. Block 5 implementation choices (2026-10-15; delegated, recommended route, R51).**
+  - **Step 0, fresh data:** all 687 OpenScore movements are already in the split. The ABC corpus (unused, decision 7)
+    has 21 Beethoven movements not in OpenScore (Op. 59/1, 59/2, 74, 95, 132). Fewer than 60, so per decision 5
+    the confirmation uses the 145 evaluation movements with the second-use caveat. The 21 are a possible
+    secondary, descriptive check later (they need the MuseScore 3 parser path; not a criterion).
+  - **P events:** sub-beat position (onset within the quarter: on beat, half, quarter, triplet, other) replaces the
+    metre position of the brief, because model outputs carry no time signature. P is 3.28M parameters
+    (4 x 256, eight heads), slightly above the 2-3M estimate.
+  - **RL reward settings MI05 / MI10** = reward M2 (lambda_DS 2) plus lambda_I x the penalty-only window term
+    (clip(mean min(z, 0) / 3, -1, 0); z from events starting in the window, the context notes as P context).
+  - **RL contexts** come from the RL base itself (control-S2b greedy decodes), not from v2b as in Block 4, because
+    P reads the context notes and v2b contexts are double-stop heavy.
+- **R53. Retention floors for RL from the S2 bases: top and bass only (2026-10-15; delegated, recommended).**
+  The Block 4 floors (inner 0.83 trio / 0.62 duo, 0.9 x the oracle retention) predate the S2 targets, which keep
+  about 0.53 of inner notes in the trio by the user's choice ("dropping inner notes is fine"). In a smoke run from
+  control-S2 the inner floor alone cost about -1.1 per window, which would push RL to restore inner voices
+  (and the double stops that come with them). MI05/MI10 keep the top and bass floors; inner notes still earn
+  their 0.25 weight in F_M. Also: RL rollouts keep the Block 4 decode order; melody-first (decode v3) is used
+  for dev selection and confirmation, as in Block 4 (corrects BLOCK5.md Step 4's "melody-first for rollouts").
+  "Detectors stay in range" in the Step 4 rule is read as criterion B's anti-hack items (repeat share <= v2b's,
+  mean duration ratio >= base - 0.05), because the Block 4 detector ranges fail S2 by design (criterion A).
+- **R54. Disclosure: an evaluation-set look during a smoke test (2026-10-15).** To test `model/confirm5_eval.py`
+  before the chain, Claude ran it on the existing R46 records (control-S2 tested against control S). It printed
+  P's mean idiomatic z on the 145 evaluation movements for Block 4 systems (duo: control-S2 -0.52, control S
+  -1.99, v2b -2.32; it also reproduced the R47 duo numbers exactly). No Block 5 candidate (control-S2b, the RL
+  runs) was decoded on the evaluation set, and every Block 5 choice was already fixed and uses the dev split
+  only, so the look cannot steer selection. It does mean P's eval-set behaviour on Block 4 outputs was seen
+  before Step 5. Smoke outputs deleted. Future smoke tests use dev data only.
+- **R55. The P gate fails; no RL with P (2026-10-15).** Pre-registered rule (BLOCK5 Step 3) applied as written:
+  the re-strike hack scores above real parts in every slot (a likelihood model rewards predictable repetition),
+  real vs control-S2b is close in the violin (AUC 0.56), and S2b vs v2b ties in the trio cello (0.49). Step 4 is
+  skipped; Step 5 confirms the Step 1c base against criterion B only (as the brief specifies when no RL setting
+  is eligible). A P v2 (two-sided typicality, a part-level distribution term or a discriminator, with a fresh
+  gate) is proposed for the user, not run: designing it after seeing these hacks makes this gate non-independent.
+- **R56. Block 5 confirmatory result (2026-10-15).** Gate failed (R55), so control-S2b (the Step 1c base: dev viola
+  4.44 -> 2.31, melody unchanged) was confirmed against criterion B, once, on the 145 movements (second use).
+  Duo holds. Trio fails item 1 on the cello's CI upper bound (1.9 [1.4, 2.7] against 2.5); the viola now passes
+  (2.5 [2.2, 2.9], S2 5.2). The output keeps fewer cello double stops than the source cello parts (2,089 against
+  3,229; eval-set real cello rate 3.21 per 100), concentrated in two movements. Reported as a failure; the
+  criterion is unchanged. **Correction to R47:** control-S2's trio cello also exceeded the bound in R46
+  (2.1 [1.5, 2.8]); R47, BLOCK4.md and WEEK_SUMMARY.md said viola only; dated corrections added there.

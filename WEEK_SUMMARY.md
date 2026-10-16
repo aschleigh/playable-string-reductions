@@ -13,7 +13,7 @@ playable parts by itself, rather than having violations clipped afterwards.
   - needs the playability checker on only about 1% of notes.
 - **The price is the inner voices,** which are dropped. On the frozen confirmatory test (145
   evaluation movements), it meets the user-priority criterion in the duo and misses it in the trio by
-  a hair (viola double stops 5.2 per 100 notes against a real-viola 5.1).
+  a hair (viola double stops 5.2 per 100 notes against a real-viola 5.1). **Correction (2026-10-15, R56):** the trio cello also exceeded its bound: 2.1 [1.5, 2.8] against 2.5. Item 1 failed on viola and cello, not viola alone.
 
 ---
 
@@ -82,7 +82,7 @@ the real rates in every part except the trio viola, which is level with it (5.2 
 
 | control-S2 vs v2b | Trio | Duo |
 |---|---|---|
-| **Criterion B** (your priorities): double stops ≤ real-part rates (CI upper); melody non-inferior; interventions lower; no rhythm rewriting | ✗, one item: viola double stops 5.2 [4.4, 6.1] against 5.1. ✓ for the other three. | **✓, all four** |
+| **Criterion B** (your priorities): double stops ≤ real-part rates (CI upper); melody non-inferior; interventions lower; no rhythm rewriting | ✗, one item: viola double stops 5.2 [4.4, 6.1] against 5.1 (corrected R56: cello 2.1 [1.5, 2.8] against 2.5 also exceeded). ✓ for the other three. | **✓, all four** |
 | Criterion A (the original "keep more notes" criterion) | ✗ (fidelity, harmony, note ratio), as anticipated | ✗, as anticipated |
 
 Criterion A was written when keeping notes was the goal. It fails S2 by design, because S2 drops inner
@@ -195,7 +195,7 @@ arpeggiates source notes):
 
 - **Duo trade-off:** inner retention 0.03 and harmony 0.857, against v2b's 0.931. The duo arrangement
   is essentially melody plus bass.
-- **Trio viola double stops** are at the real-viola rate, not below it (criterion B item 1).
+- **Trio viola double stops** are at the real-viola rate, not below it (criterion B item 1); the trio cello's upper bound also exceeded 2.5 (corrected, R56).
 - **Unconfirmed thresholds:** the cello "6th position" ceiling (G4, U20) and normal against extended
   position for cello triple stops are yours to confirm.
 - **Scope of "real" rates:** they come from quartet parts; trio literature isn't in the corpus.

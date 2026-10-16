@@ -1,6 +1,6 @@
 # Block 5 brief: an idiomatic-part term, and RL from control-S2 (PROPOSAL, awaiting approval)
 
-Status: **proposal, 2026-10-15.** Nothing in this brief has been run beyond the S2b target calibration
+Status: **approved 2026-10-15 (R51: all six recommended options).** Originally a **proposal, 2026-10-15.** Nothing in this brief has been run beyond the S2b target calibration
 (Step 1a), which the user approved ("the open rule looks good"). Every weight, threshold and
 formulation below is a proposal. Research-consequence decisions are marked **[U]**.
 
@@ -179,3 +179,98 @@ Calibration on the first 200 training movements, trio, S2b rules with the D5 cel
 - **Cello targets** sit at about 4.5 per 100 in both S2 and S2b, above the real 2.5. This is not new:
   control-S2's output was 2.1 on the evaluation set, under the mask. It will be watched in Step 1c.
 - **Full build done** (476 movements, trio and duo) -> `model/results/rl/targets_s2b__train.pkl`. Trio: top dropped 0.4%, bass 0.4%, inner 17.6%; the viola rule refused 30,311 options.
+
+## Step 0 (2026-10-15)
+
+- Checker-v5 and METRICS 1.5.0-draft unchanged; checkpoints present.
+- **Fresh data:** all 687 OpenScore movements are in the split. ABC has 21 Beethoven movements outside it
+  (Op. 59/1, 59/2, 74, 95, 132), fewer than 60, so the confirmation uses the 145 evaluation movements with
+  the second-use caveat (decision 5, R52).
+
+## Step 2: P trained (2026-10-15)
+
+- `model/idiom.py`: 3.28M parameters (4 × 256, eight heads), 6,000 steps on GPU 1, 1,904 train parts
+  (1.58M events).
+- Log-likelihood per event: −18.1 at step 0, **train −3.75, dev −3.91** at the end (no overfitting).
+- **Calibration** (real dev parts, 64-event windows): violin μ −3.87, σ 1.23 (1,643 windows); viola −3.96,
+  1.30 (716); cello −3.88, 1.37 (587).
+- Deviation (R52): sub-beat position instead of metre position.
+
+## Corrections to Step 4 before any run (R53)
+
+- **Retention floors on top and bass only.** The inner floor (0.83 trio) predates the S2 targets, which drop
+  inner voices by the user's choice; in a smoke run from control-S2 it cost about −1.1 per window and
+  would push RL to restore them.
+- **Rollouts** keep the Block 4 decode order; melody-first is used for dev selection and confirmation.
+- **"Detectors in range"** = criterion B's anti-hack items (repeat share ≤ v2b's; mean duration ratio ≥
+  base − 0.05).
+- **Contexts** from the RL base's own greedy decodes (R52).
+- Smoke run (2 steps, MI05 from control-S2): window z −1.2 on average, term −0.46.
+
+## Step 1c and Step 3 results (dev split, 2026-10-15 19:45)
+
+**Step 1c, double stops per 100 notes (dev, masked, melody-first):** control-S2b trio violin 0.58 / viola
+**2.31** (control-S2 4.44) / cello 2.00; duo violin 0.25 / cello 1.77. Drop rate 0.186 (S2 0.180). The base
+decision (melody check) is made by stage B (`select_base.json`).
+
+**Step 3, the gate: FAIL** (`model/results/idiom/gate_baseS2b.md`, `gate_baseS2.md`). Mean part z:
+
+| slot | real | v2b | control-S2b | control-S2 | rl-AZ2 | restrike16 | up2oct | shuffle | dyads | AUC real>S2b | AUC S2b>v2b | min AUC v2b>hack |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| trio violin | 0.04 | −1.44 | −0.11 | −0.13 | −0.74 | **+0.48** | −4.06 | −7.93 | −1.37 | 0.56 | 0.89 | 0.03 |
+| trio viola | 0.06 | −1.70 | −0.72 | −0.79 | −1.12 | **+0.70** | −2.89 | −7.50 | −1.78 | 0.76 | 0.79 | 0.02 |
+| trio cello | 0.04 | −0.56 | −0.57 | −0.48 | −0.57 | **+1.31** | −1.87 | −7.59 | −0.95 | 0.73 | 0.49 | 0.03 |
+| duo violin | 0.04 | −1.67 | −0.16 | −0.14 | −1.32 | **+0.32** | −4.24 | −7.37 | −1.45 | 0.58 | 0.91 | 0.04 |
+| duo cello | 0.08 | −2.42 | −0.64 | −0.61 | −1.89 | **+0.41** | −3.25 | −6.87 | −2.07 | 0.78 | 0.95 | 0.01 |
+
+**Why it fails:**
+1. **The re-strike hack scores above real parts in every slot.** Per-head log-likelihood (trio violin, 30 dev
+   movements): restrike16 interval −1.06 and duration −0.11, against real −1.52 and −0.67. 95% of its events
+   are 16ths (real 29%) and 64% repeat the previous pitch (real 14%). A per-event likelihood rewards
+   predictable, repetitive streams: "typical" and "probable" are not the same thing. RL would find this
+   (rl-AZ2 found the same hack against reward A).
+2. **Real vs control-S2(b) is close** in the violin (AUC 0.56–0.58): S2's violin lines are already near
+   real-part likelihood (per-head sum −4.08 against real −3.79).
+3. **control-S2b vs v2b does not separate in the trio cello** (AUC 0.49): v2b's cello is already near S2b's.
+4. Everything else ranks as intended: the other four hacks (an octave shift, shuffled parts, dyads, rl-AZ2) sit
+   well below; v2b is far below real in every slot, and almost all of v2b's deficit is in the voices and
+   double-stop heads (−0.52, −1.12 against real −0.04, −0.07), which S2 already fixed.
+
+**Consequence (pre-registered):** no RL with P. Step 5 confirms the base (control-S2b if Step 1c holds)
+against criterion B only.
+
+**Proposal for a P v2 (not run; needs the user, since it is designed after seeing the gate):**
+- score typicality two-sidedly: |z| rather than z (too predictable is also atypical);
+- add a part-level distribution term: the distance between the part's histograms of duration, interval, voices
+  and re-strikes and the real parts' histograms for that instrument (catches 95% 16ths directly);
+- or train a discriminator (real parts against model outputs plus generated hack families).
+Any v2 needs a new gate with hacks not seen while designing it.
+
+## Step 1c decision (stage B, 20:02)
+
+control-S2b **replaces** control-S2 as the base: dev viola double stops fall (4.44 → 2.31) and dev melody
+retention by duration is unchanged (trio 0.988 against 0.988; duo 0.948 against 0.948).
+
+## Step 5: confirmatory result (2026-10-15 20:31; `model/results/confirm5/CONFIRM5.md`)
+
+The gate failed (R55), so as the brief specifies, **control-S2b alone is confirmed against criterion B**
+(v2b masked as reference). 145 evaluation movements; **second use of this set** (R46 first).
+
+| control-S2b vs v2b | Trio | Duo |
+|---|---|---|
+| **Criterion B** | **Fails item 1, on the cello:** 1.9 [1.4, 2.7] against 2.5. Viola now **2.5 [2.2, 2.9]** (S2: 5.2), violin 0.7. Items 2–4 hold. | **Holds** (all four) |
+| Melody retention (count) | 0.995 (+0.028) | 0.973 (+0.020) |
+| Interventions | 0.012 (−0.102) | 0.011 (−0.209) |
+| Inner retention / harmony | 0.551 / 0.943 | 0.030 / 0.857 |
+| Mean idiomatic z (P, descriptive) | −0.65 (v2b −1.46) | −0.53 (v2b −2.32) |
+
+**Reading:**
+- **The stricter viola rule worked:** the trio viola fell from 5.2 to 2.5 double stops per 100 notes, half the
+  real-viola rate, with the melody and everything else unchanged.
+- **The trio still fails item 1, on the cello's upper bound** (point estimate 1.9 below the real 2.5). The cello's
+  double stops are the source cello's own: 2,089 in the output against 3,229 in the source cello parts of these
+  movements, a quarter of them from two movements (Kalliwoda Op. 90/iv: 318 output, 417 source; Moeran iii: 204, 241).
+  The real cello rate on these 145 movements is 3.21 per 100, so control-S2b plays fewer than the composers wrote.
+  The frozen criterion uses the train-split rate (2.5); the result stands as a failure.
+- **Correction to R47:** control-S2's cello also exceeded the bound in R46 (2.1 [1.5, 2.8]); R47 reported only the viola.
+- Idiomatic z is reported only descriptively (P failed its gate).

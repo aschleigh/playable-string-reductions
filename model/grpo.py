@@ -80,6 +80,12 @@ SETTINGS = {
            "dur_weight": True, "reloc": 0.8},
     "M3": {"w": {"top": 1.0, "bass": 0.8, "inner": 0.25}, "wH": 0.25, "lam": 3.0, "kappa": 5.0, "dur_match": 0.75,
            "dur_weight": True, "reloc": 0.8},
+    # BLOCK5 Step 4 (R51): M2 plus the penalty-only idiomatic part term of P (model/idiom.py), weight 0.5 / 1.0;
+    # retention floors on top and bass only (R53: the S2 targets drop inner voices by the user's choice)
+    "MI05": {"w": {"top": 1.0, "bass": 0.8, "inner": 0.25}, "wH": 0.25, "lam": 2.0, "kappa": 5.0, "dur_match": 0.75,
+             "dur_weight": True, "reloc": 0.8, "idiom": 0.5, "floors": ("top", "bass")},
+    "MI10": {"w": {"top": 1.0, "bass": 0.8, "inner": 0.25}, "wH": 0.25, "lam": 2.0, "kappa": 5.0, "dur_match": 0.75,
+             "dur_weight": True, "reloc": 0.8, "idiom": 1.0, "floors": ("top", "bass")},
 }
 
 
@@ -423,9 +429,15 @@ def window_reward(m: Movement, regime: str, w0: F, tr: Trajectory, setting: dict
     DS = un / max(1, len(src_ids))
     ret = {t: kept[t] / n[t] for t in TIERS if n[t]}
     # floors only where the window has enough notes in the tier for a rate to mean anything (R31)
-    G = -setting["kappa"] * sum(max(0.0, RHO[regime][t] - ret[t]) for t in ret if cnt[t] >= G_MIN_NOTES)
+    fl = setting.get("floors", TIERS)
+    G = -setting["kappa"] * sum(max(0.0, RHO[regime][t] - ret[t]) for t in ret if cnt[t] >= G_MIN_NOTES and t in fl)
     R = Fw + setting["wH"] * H - setting["lam"] * DS + G
-    return {"R": R, "Fw": Fw, "H": H, "DS": DS, "G": G, **{f"ret_{t}": r for t, r in ret.items()},
+    Iterm, Iz = 0.0, float("nan")
+    if setting.get("idiom"):
+        from model.idiom import window_term
+        Iterm, Iz = window_term(allout, [i.key for i in load_ensemble(regime).instruments], regime, w0, w1)
+        R += setting["idiom"] * Iterm
+    return {"R": R, "Fw": Fw, "H": H, "DS": DS, "G": G, "I": Iterm, "Iz": Iz, **{f"ret_{t}": r for t, r in ret.items()},
             "n_src": len(src_ids), "n_out": len(tr.out_notes), "interv": float(tr.intervened.mean()) if len(tr.intervened) else 0.0,
             "drop": float(np.mean([lab[0] == A.DROP for lab in tr.labels])) if tr.labels else 0.0}
 
@@ -751,7 +763,7 @@ def cmd_contexts(a):
             insts = [i.key for i in ens.instruments]
             inotes, _ = decode_movement(net, device, m.src, insts, ens, True, m.tpq)
             out[m.key]["greedy"][regime] = [(n.part, n.octave, n.real) for n in inotes]
-            if a.split == "train":
+            if a.split == "train" and not a.greedy_only:
                 inotes, _ = decode_instrumented(net, device, m.src, insts, ens, m.tpq, oracle_labels(m.src, regime, ranges))
                 out[m.key]["oracle"][regime] = [(n.part, n.octave, n.real) for n in inotes]
         print(m.key[:60], flush=True)
@@ -855,7 +867,7 @@ def cmd_train(a):
                 for k, v in t.parts.items():
                     if isinstance(v, (int, float)) and not k.startswith("_"):
                         parts[k].append(v)
-            row.update({f"train/{k}": float(np.mean(v)) for k, v in parts.items()})
+            row.update({f"train/{k}": float(np.nanmean(v)) if not np.all(np.isnan(v)) else float("nan") for k, v in parts.items()})
             row.update({f"train/{k}": v for k, v in stats.items()})
             row.update({"train/grad_norm": float(gn), "train/reward_std_within_group": float(rewards.reshape(-1, a.group).std(1).mean()),
                         "time/rollout_s": t_roll, "time/update_s": t_upd, "time/elapsed_s": time.time() - t_start,
@@ -886,6 +898,7 @@ def main(argv=None):
     c.add_argument("--nshards", type=int, default=1)
     c.add_argument("--out-name", default=None)
     c.add_argument("--limit", type=int, default=None)
+    c.add_argument("--greedy-only", action="store_true", help="skip the oracle labels (RL contexts only)")
     t = sub.add_parser("train")
     t.add_argument("--setting", default="C", choices=list(SETTINGS))
     t.add_argument("--run-name", default=None)

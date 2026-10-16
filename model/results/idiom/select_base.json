@@ -1,0 +1,157 @@
+{
+ "control-S2": {
+  "trio": {
+   "ds_per_100": {
+    "violin": 0.5998632436128551,
+    "viola": 4.441930338662413,
+    "cello": 2.1683296588403755
+   },
+   "z": {
+    "violin": -0.1322099211896889,
+    "viola": -0.7918389470823591,
+    "cello": -0.48492739374511823
+   },
+   "z_mean": -0.46965875400572205,
+   "harmony": 0.9490593192156733
+  },
+  "duo": {
+   "ds_per_100": {
+    "violin": 0.19151846785225718,
+    "cello": 1.9033558118191611
+   },
+   "z": {
+    "violin": -0.14289120022084645,
+    "cello": -0.6089498136728924
+   },
+   "z_mean": -0.3759205069468694,
+   "harmony": 0.8702938082516266
+  }
+ },
+ "control-S2b": {
+  "trio": {
+   "ds_per_100": {
+    "violin": 0.5819607600994119,
+    "viola": 2.3081174833704994,
+    "cello": 2.0030079299972656
+   },
+   "z": {
+    "violin": -0.11413514885674175,
+    "viola": -0.7241419386978403,
+    "cello": -0.5701195441227516
+   },
+   "z_mean": -0.4694655438924445,
+   "harmony": 0.9489779340417602
+  },
+  "duo": {
+   "ds_per_100": {
+    "violin": 0.25146562040810144,
+    "cello": 1.774863124962397
+   },
+   "z": {
+    "violin": -0.16170083721339593,
+    "cello": -0.6398950617093361
+   },
+   "z_mean": -0.400797949461366,
+   "harmony": 0.8704502462848624
+  }
+ },
+ "melody_duration": {
+  "trio": [
+   0.9883848769323184,
+   0.9878432330039323
+  ],
+  "duo": [
+   0.9480315561972246,
+   0.948167109085883
+  ]
+ },
+ "viola_falls": true,
+ "melody_ok": true,
+ "replace": true,
+ "compare": {
+  "control-S2": {
+   "val_trio/intervention_rate": 0.015154548073214433,
+   "val_trio/drop_rate": 0.18018484252256828,
+   "val_trio/retention_top": 0.9905160352991821,
+   "val_trio/retention_inner": 0.5483673978065803,
+   "val_trio/retention_bass": 0.9824666149222839,
+   "val_trio/unneeded_ds_per_100": 1.1660082705237793,
+   "val_trio/note_ratio": 0.7922108356971629,
+   "val_trio/mean_dur_ratio": 0.9734199375768042,
+   "val_trio/repeat_op_share": 0.0,
+   "val_trio/fidelity_M": 0.9260045172881285,
+   "val_trio/top_retention_M": 0.9878432330039323,
+   "val_trio/weighted_fidelity_A": 0.9222136119399437,
+   "val_trio/weighted_fidelity_B": 0.8508815995485502,
+   "val_trio/weighted_fidelity_C": 0.8153283566786933,
+   "val_trio/weighted_fidelity_A2": 0.9222136119399437,
+   "val_trio/weighted_fidelity_A3": 0.9222136119399437,
+   "val_trio/weighted_fidelity_A3D9": 0.9222136119399437,
+   "val_trio/weighted_fidelity_M2": 0.9222136119399437,
+   "val_trio/weighted_fidelity_M3": 0.9222136119399437,
+   "val_duo/intervention_rate": 0.012278894460094813,
+   "val_duo/drop_rate": 0.4096952002460661,
+   "val_duo/retention_top": 0.9624408092983211,
+   "val_duo/retention_inner": 0.03457128614157527,
+   "val_duo/retention_bass": 0.8734053774354688,
+   "val_duo/unneeded_ds_per_100": 0.5124577265511767,
+   "val_duo/note_ratio": 0.565913007816505,
+   "val_duo/mean_dur_ratio": 0.9539338251430477,
+   "val_duo/repeat_op_share": 0.0,
+   "val_duo/fidelity_M": 0.8160111698159642,
+   "val_duo/top_retention_M": 0.948167109085883,
+   "val_duo/weighted_fidelity_A": 0.7975587249319432,
+   "val_duo/weighted_fidelity_B": 0.6493562967839736,
+   "val_duo/weighted_fidelity_C": 0.5771031573602574,
+   "val_duo/weighted_fidelity_A2": 0.7975587249319432,
+   "val_duo/weighted_fidelity_A3": 0.7975587249319432,
+   "val_duo/weighted_fidelity_A3D9": 0.7975587249319432,
+   "val_duo/weighted_fidelity_M2": 0.7975587249319432,
+   "val_duo/weighted_fidelity_M3": 0.7975587249319432
+  },
+  "control-S2b": {
+   "val_trio/intervention_rate": 0.014021862779082427,
+   "val_trio/drop_rate": 0.1858824448426202,
+   "val_trio/retention_top": 0.9913635385277658,
+   "val_trio/retention_inner": 0.5531530408773679,
+   "val_trio/retention_bass": 0.983342289091886,
+   "val_trio/unneeded_ds_per_100": 0.7403867636471961,
+   "val_trio/note_ratio": 0.7866889948882694,
+   "val_trio/mean_dur_ratio": 0.9747880259517093,
+   "val_trio/repeat_op_share": 0.0,
+   "val_trio/fidelity_M": 0.9255042005133065,
+   "val_trio/top_retention_M": 0.9883848769323184,
+   "val_trio/weighted_fidelity_A": 0.9236564740076794,
+   "val_trio/weighted_fidelity_B": 0.8529607028453507,
+   "val_trio/weighted_fidelity_C": 0.8177255484003262,
+   "val_trio/weighted_fidelity_A2": 0.9236564740076794,
+   "val_trio/weighted_fidelity_A3": 0.9236564740076794,
+   "val_trio/weighted_fidelity_A3D9": 0.9236564740076794,
+   "val_trio/weighted_fidelity_M2": 0.9236564740076794,
+   "val_trio/weighted_fidelity_M3": 0.9236564740076794,
+   "val_trio/weighted_fidelity_MI05": 0.9236564740076794,
+   "val_trio/weighted_fidelity_MI10": 0.9236564740076794,
+   "val_duo/intervention_rate": 0.012361892951475176,
+   "val_duo/drop_rate": 0.409919784399213,
+   "val_duo/retention_top": 0.9638264098148945,
+   "val_duo/retention_inner": 0.03736291126620139,
+   "val_duo/retention_bass": 0.8930881445658447,
+   "val_duo/unneeded_ds_per_100": 0.5186578756601885,
+   "val_duo/note_ratio": 0.5657372463053466,
+   "val_duo/mean_dur_ratio": 0.9537988725748169,
+   "val_duo/repeat_op_share": 0.0,
+   "val_duo/fidelity_M": 0.8161190211122776,
+   "val_duo/top_retention_M": 0.9480315561972246,
+   "val_duo/weighted_fidelity_A": 0.8046184959760345,
+   "val_duo/weighted_fidelity_B": 0.6562652488782912,
+   "val_duo/weighted_fidelity_C": 0.5835282170459373,
+   "val_duo/weighted_fidelity_A2": 0.8046184959760345,
+   "val_duo/weighted_fidelity_A3": 0.8046184959760345,
+   "val_duo/weighted_fidelity_A3D9": 0.8046184959760345,
+   "val_duo/weighted_fidelity_M2": 0.8046184959760345,
+   "val_duo/weighted_fidelity_M3": 0.8046184959760345,
+   "val_duo/weighted_fidelity_MI05": 0.8046184959760345,
+   "val_duo/weighted_fidelity_MI10": 0.8046184959760345
+  }
+ }
+}
