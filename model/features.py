@@ -51,7 +51,7 @@ def encode(inotes: list[A.INote], insts: list[str], start: F, reveal: np.ndarray
         "src": np.array([x.src if 0 <= x.src < 4 else 4 for x in inotes], np.int64), "onset_bin": ob, "dur": du,
         "dur_bin": db, "context": np.array([x.context for x in inotes], np.int64),
         "c_part": np.where(rv, lab_p, PART_UNK), "c_oct": np.where(rv, lab_o, OCT_UNK),
-        "c_real": np.where(rv, lab_r, REAL_UNK),
+        "c_real": np.where(rv, np.where(lab_r == A.CUT, REAL_UNK + 1, lab_r), REAL_UNK),   # R70: CUT -> input 6
         "y_part": np.where(rv, IGNORE, lab_p), "y_oct": np.where(rv, IGNORE, lab_o),
         "y_real": np.where(rv, IGNORE, lab_r),
         "part_inst": np.array(pi, np.int64), "part_slot": np.array(ps, np.int64), "n_parts": len(insts),

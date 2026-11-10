@@ -29,7 +29,7 @@ def fourier(x: torch.Tensor, n: int, scale: float) -> torch.Tensor:
 
 
 class Arranger(nn.Module):
-    def __init__(self, d=256, layers=6, heads=8, ff=1024, dropout=0.1, src_feature=False):
+    def __init__(self, d=256, layers=6, heads=8, ff=1024, dropout=0.1, src_feature=False, n_real=N_REAL):
         super().__init__()
         self.d = d
         # arranger-v2: source part (Vn1 Vn2 Va Vc, 4 = unknown) as an input feature. Off for v1 checkpoints.
@@ -41,7 +41,9 @@ class Arranger(nn.Module):
         self.ctx = nn.Embedding(2, d)
         self.c_part = nn.Embedding(MAX_PARTS + 2, d)
         self.c_oct = nn.Embedding(N_OCT + 1, d)
-        self.c_real = nn.Embedding(N_REAL + 1, d)
+        # n_real classes; input index N_REAL (5) stays "unknown"; R70 (n_real = 6) adds CUT at input index 6
+        self.n_real = n_real
+        self.c_real = nn.Embedding(n_real + 1, d)
         self.inst = nn.Embedding(len(INSTRUMENTS), d)
         self.slot = nn.Embedding(MAX_PARTS, d)
         self.kind = nn.Embedding(2, d)   # 0 part token, 1 note token
@@ -52,7 +54,7 @@ class Arranger(nn.Module):
         self.part_k = nn.Linear(d, d)
         self.drop = nn.Linear(d, 1)
         self.oct = nn.Linear(d, N_OCT)
-        self.real = nn.Linear(d, N_REAL)
+        self.real = nn.Linear(d, n_real)
 
     def forward(self, b: dict) -> dict:
         """b: pitch, onset (quarters, float), onset_bin, dur (quarters), dur_bin, context, c_part,

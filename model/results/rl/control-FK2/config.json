@@ -1,0 +1,13 @@
+{
+ "run_name": "control-FK2",
+ "base": "rl/control-S2c",
+ "steps": 3000,
+ "batch": 32,
+ "lr": 0.0001,
+ "seed": 0,
+ "n_real": 6,
+ "ctx_run": null,
+ "targets": "fk2",
+ "n_windows": 44452,
+ "base_step": 3000
+}

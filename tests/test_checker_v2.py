@@ -90,8 +90,8 @@ def test_piano_duplicate_and_hand_leap():
     assert kinds(run(pf, [(0, 2, 60, 0), (1, 2, 60, 0)])) == ["duplicate"]
     # one low and one high note can be split between the hands: no leap
     assert "hand_leap" not in kinds(run(pf, [(0, F(1, 4), 30, 0), (F(1, 4), F(1, 4), 100, 0)]))
-    # both hands busy, then both jump ~30 semitones in a 16th (allowed 24 + 12/4 = 27)
-    assert "hand_leap" in kinds(run(pf, [(0, F(1, 4), 30, 0), (0, F(1, 4), 90, 0),
+    # both hands busy, then both jump ~40 semitones in a 16th (checker-v7: allowed 24 + 48/4 = 36)
+    assert "hand_leap" in kinds(run(pf, [(0, F(1, 4), 20, 0), (0, F(1, 4), 100, 0),
                                          (F(1, 4), F(1, 4), 60, 0), (F(1, 4), F(1, 4), 62, 0)]))
     assert "hand_leap" not in kinds(run(pf, [(0, F(1, 4), 60, 0), (F(1, 4), F(1, 4), 64, 0)]))
 

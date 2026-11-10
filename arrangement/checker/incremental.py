@@ -165,8 +165,8 @@ class IncrementalChecker:
                 ts = {on_i}
                 for k in range(bisect_left(lst, (on_i, -1)), bisect_left(lst, (end_i, -1))):
                     ts.add(lst[k][0])
-                if inst.hand_leap is not None and inst.hand_span is not None:
-                    k = bisect_right(lst, (on_i, _BIG))          # next onset after on_i
+                if inst.hand_span is not None and (inst.hand_leap is not None or inst.hand_span.setup_q is not None):
+                    k = bisect_right(lst, (on_i, _BIG))          # next onset after on_i (hand_leap; v8 set-up time)
                     if k < len(lst):
                         ts.add(lst[k][0])
                     k = bisect_left(lst, (end_i, -1))            # first onset at or after end_i
@@ -253,6 +253,15 @@ class IncrementalChecker:
                 out.append(j)
         return out
 
+    def _struck(self, p: int, t: int) -> list[int]:
+        """Non-grace notes of p starting exactly at t (checker-v6 hand basis "struck")."""
+        lst = self._ng_on[p]
+        return [lst[k][1] for k in range(bisect_left(lst, (t, -1)), bisect_right(lst, (t, _BIG)))]
+
+    def _hand_set(self, p: int, t: int) -> list[int]:
+        hs = self.ensemble.instruments[p].hand_span
+        return self._struck(p, t) if hs is not None and hs.basis == "struck" else self._sounding(p, t)
+
     def _has_onset(self, p: int, t: int) -> bool:
         lst = self._ng_on[p]
         k = bisect_left(lst, (t, -1))
@@ -291,6 +300,15 @@ class IncrementalChecker:
                     return Violation("chord_size", p, tuple(S), float(len(S)), float(inst.max_chord))
                 return None
             hs = inst.hand_span
+            if hs.gap is not None:          # checker-v8 (R83)
+                lst = self._ng_on[p]
+                k = bisect_left(lst, (t, -1)) - 1
+                dt = None if k < 0 else (t - lst[k][0]) / self._tpq
+                r = R2.hand_rule_v8(hs, {j: self._pitch[j] for j in self._struck(p, t)},
+                                    {j: self._pitch[j] for j in S}, dt)
+                return None if r is None else Violation("hand_span", p, r[0], r[1], r[2])
+            if hs.basis == "struck":
+                S = sorted(self._struck(p, t))
             if len(S) < 2 or len(S) > 2 * hs.fingers:
                 return None
             best = best_two_hand_span(sorted(self._pitch[j] for j in S), hs.fingers)
@@ -415,13 +433,14 @@ class IncrementalChecker:
             t0 = lst[k][0]
             inst = self.ensemble.instruments[p]
             hs, hl = inst.hand_span, inst.hand_leap
-            A = tuple(sorted(self._pitch[j] for j in self._sounding(p, t0)))
-            B = tuple(sorted(self._pitch[j] for j in self._sounding(p, t)))
+            SA, SB = self._hand_set(p, t0), self._hand_set(p, t)
+            A = tuple(sorted(self._pitch[j] for j in SA))
+            B = tuple(sorted(self._pitch[j] for j in SB))
             move = R2.hand_move(A, B, hs.fingers, hs.semitones)
             allowed = hl.allowed((t - t0) / self._tpq)
             if move == float("inf") or move <= allowed:
                 return None
-            ids = tuple(sorted(set(self._sounding(p, t0)) | set(self._sounding(p, t))))
+            ids = tuple(sorted(set(SA) | set(SB)))
             return Violation("hand_leap", p, ids, float(move), float(allowed))
         if kind == "shift":
             _, p, c = key

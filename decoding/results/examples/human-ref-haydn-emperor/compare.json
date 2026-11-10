@@ -1,0 +1,51 @@
+{
+ "Clementi (1803, human)": {
+  "notes": 298,
+  "notes_per_onset": 3.2747252747252746,
+  "max_notes_at_once": 7,
+  "hand_span_max": 12,
+  "chords_needing_hand_over_octave": 0,
+  "kept_melody": 0.9230769230769231,
+  "kept_bass": 0.9041095890410958,
+  "kept_inner": 0.5606060606060606,
+  "harmony_vs_quartet": 0.9502497942416905,
+  "checker_v7_violations": 0
+ },
+ "control-FK2 (ours)": {
+  "notes": 292,
+  "notes_per_onset": 2.891089108910891,
+  "max_notes_at_once": 5,
+  "hand_span_max": 12,
+  "chords_needing_hand_over_octave": 0,
+  "kept_melody": 0.9807692307692307,
+  "kept_bass": 1.0,
+  "kept_inner": 0.9848484848484849,
+  "harmony_vs_quartet": 0.9934168857845652,
+  "checker_v7_violations": 0,
+  "agree_exact_pitch_recall": 0.7416107382550335,
+  "agree_exact_pitch_precision": 0.7568493150684932,
+  "agree_pitch_class_recall": 0.9463087248322147,
+  "agree_pitch_class_precision": 0.8664383561643836,
+  "harmony_vs_clementi": 0.9516626252646105
+ },
+ "control-FK3 (ours, thinner)": {
+  "notes": 255,
+  "notes_per_onset": 2.55,
+  "max_notes_at_once": 4,
+  "hand_span_max": 9,
+  "chords_needing_hand_over_octave": 0,
+  "kept_melody": 0.9807692307692307,
+  "kept_bass": 1.0,
+  "kept_inner": 0.7196969696969697,
+  "harmony_vs_quartet": 0.9712203959514983,
+  "checker_v7_violations": 0,
+  "agree_exact_pitch_recall": 0.6510067114093959,
+  "agree_exact_pitch_precision": 0.7607843137254902,
+  "agree_pitch_class_recall": 0.9261744966442953,
+  "agree_pitch_class_precision": 0.8549019607843137,
+  "harmony_vs_clementi": 0.9359337147411395
+ },
+ "source quartet (bars 1-20)": {
+  "notes": 309
+ }
+}

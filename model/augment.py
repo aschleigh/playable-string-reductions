@@ -39,6 +39,7 @@ from dataclasses import dataclass
 from fractions import Fraction as F
 
 PLAIN, TREMOLO, REPEAT, ARPEGGIATE, DOUBLE = range(5)
+CUT = 5   # Block 6 (R70): the note ends at its precomputed cut point (INote.cut_end); n_real = 6 models only
 REAL_NAMES = ["plain", "tremolo", "repeat", "arpeggiate", "double"]
 OCTAVES = [-24, -12, 0, 12, 24]
 DROP = -1
@@ -67,6 +68,8 @@ class INote:
     context: bool = False     # in the context region (labels revealed)
     src: int = -1             # source part 0..3 (Vn1 Vn2 Va Vc); -1 = unknown. Input feature (arranger-v2)
     merged: bool = False      # decode v2: a unison duplicate merged into an earlier note of its part (no output)
+    cut_end: F | None = None  # R70: where CUT ends the note (assign_cut_ends)
+    cut_kind: str | None = None   # R70: "overlap" (ends at the next onset), "breath" (an eighth shorter) or None
 
 
 def load_ranges() -> dict[str, tuple[int, int]]:
@@ -153,6 +156,9 @@ def expand(inotes: list[INote]) -> list[tuple[int, F, F, int]]:
                 k = int(n.dur // sub)
                 out += [(n.part, n.onset + j * sub, sub, p) for j in range(k - 1)]
                 out.append((n.part, n.onset + (k - 1) * sub, n.dur - (k - 1) * sub, p))
+        elif n.real == CUT:
+            e = n.cut_end if n.cut_end is not None else n.onset + n.dur
+            out.append((n.part, n.onset, e - n.onset, p))
         elif n.real == DOUBLE:
             out += [(n.part, n.onset, n.dur, p), (n.part, n.onset, n.dur, p + 12)]
         else:
@@ -222,3 +228,27 @@ def make_example(notes: list[tuple[int, F, F, int]], start: F, rng: random.Rando
     inotes.sort(key=lambda n: (n.onset, n.pitch, n.dur))
     target = expand(inotes)
     return ens, inotes, target
+
+
+def assign_cut_ends(inotes: list[INote], tiers: list[str]) -> None:
+    """R70: the CUT point of each input note, from the source alone (so it is known before decoding).
+    A melody (top-tier) note ends at the next top-tier onset if it would overlap it; any other note at the next onset
+    of its source part. A note that overlaps nothing and lasts at least a quarter is shortened by an eighth (a breath).
+    Otherwise CUT changes nothing."""
+    from bisect import bisect_right
+    top = sorted({n.onset for n, t in zip(inotes, tiers) if t == "top"})
+    by_src: dict[int, list] = {}
+    for n in inotes:
+        by_src.setdefault(n.src, []).append(n.onset)
+    by_src = {k: sorted(set(v)) for k, v in by_src.items()}
+    for n, t in zip(inotes, tiers):
+        lst = top if t == "top" else by_src.get(n.src, [])
+        k = bisect_right(lst, n.onset)
+        nxt = lst[k] if k < len(lst) else None
+        end = n.onset + n.dur
+        if nxt is not None and nxt < end:
+            n.cut_end, n.cut_kind = nxt, "overlap"
+        elif n.dur >= 1:
+            n.cut_end, n.cut_kind = end - F(1, 2), "breath"
+        else:
+            n.cut_end, n.cut_kind = end, None

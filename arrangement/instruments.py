@@ -18,6 +18,14 @@ DEFAULT_INSTRUMENTS = CONFIG_DIR / "instruments.yaml"
 class HandSpan:
     semitones: int        # max span within one hand
     fingers: int          # max simultaneous notes per hand
+    basis: str = "sounding"   # checker-v6 (R65): "struck" = hand rules see the notes starting together (pedal / held notes free)
+    # checker-v8 (R83): spans up to free_semitones at any speed; free_semitones < span <= semitones only when the part's
+    # previous onset is at least setup_q quarters earlier; the hands at least `gap` semitones apart, over the notes of
+    # gap_basis ("struck", or "sounding": held notes too). None = off (checker-v7 and earlier).
+    free_semitones: int | None = None
+    setup_q: float | None = None
+    gap: int | None = None
+    gap_basis: str = "struck"
 
 
 @dataclass(frozen=True)
@@ -100,7 +108,11 @@ def _instrument(key: str, d: dict) -> InstrumentDef:
     inst = InstrumentDef(
         key=key, monophonic=mono, low=int(d["range"]["low"]), high=int(d["range"]["high"]),
         max_chord=None if max_chord is None else int(max_chord),
-        hand_span=None if hs is None else HandSpan(int(hs["semitones"]), int(hs["fingers"])),
+        hand_span=None if hs is None else HandSpan(
+            int(hs["semitones"]), int(hs["fingers"]), str(hs.get("basis", "sounding")),
+            None if hs.get("free_semitones") is None else int(hs["free_semitones"]),
+            None if hs.get("setup_q") is None else float(hs["setup_q"]),
+            None if hs.get("gap") is None else int(hs["gap"]), str(hs.get("gap_basis", "struck"))),
         transition=None if tr is None else Transition(float(tr["max_leap_at_zero_gap"]),
                                                       float(tr["semitones_per_quarter_gap"]),
                                                       str(tr.get("time_basis", "release"))),

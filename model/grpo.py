@@ -56,8 +56,18 @@ from arrangement.instruments import load_ensemble  # noqa: E402
 RL = ROOT / "model" / "results" / "rl"
 TPQ_BASE = 720720
 REGIMES = ("trio", "duo")
+FK_REGIMES = ("solo_flute", "piano")          # BLOCK6 Amendment A (R73)
 DROP_SLOT, N_OCT, N_REAL = 4, 5, 5
 DROP_ID = DROP_SLOT * N_OCT * N_REAL          # the single DROP joint option
+N_JOINT = DROP_ID                             # non-DROP joint options
+
+
+def configure(n_real: int) -> None:
+    """Set the joint-option layout for a checkpoint's realisation count (5, or 6 with CUT, R70). Call before
+    any rollout or update with that network; forked workers inherit it."""
+    global N_REAL, DROP_ID, N_JOINT
+    N_REAL = n_real
+    DROP_ID = N_JOINT = DROP_SLOT * N_OCT * n_real
 CAND_MASS, CAND_MAX = 0.999, 16
 G_MIN_NOTES = 8                               # retention floor applies to a tier with >= 8 window notes (R31)
 TIERS = ("top", "inner", "bass")
@@ -86,7 +96,101 @@ SETTINGS = {
              "dur_weight": True, "reloc": 0.8, "idiom": 0.5, "floors": ("top", "bass")},
     "MI10": {"w": {"top": 1.0, "bass": 0.8, "inner": 0.25}, "wH": 0.25, "lam": 2.0, "kappa": 5.0, "dur_match": 0.75,
              "dur_weight": True, "reloc": 0.8, "idiom": 1.0, "floors": ("top", "bass")},
+    # BLOCK6 Amendment A2 (R73), from control-FK2. Floors are 0.9 x the F3 / K target's retention in the same window
+    # (target_floor); a CUT note counts as held (cut_held: held >= dur_match x its CUT length). Flute: melody only,
+    # breath shortfall max(0, longest unbroken run - 12 quarters) / 16, and a guard on CUT share above 1.5 x the
+    # target's. Piano: the conditional feasibility term (--feas) carries the main signal.
+    "F05": {"w": {"top": 1.0, "bass": 0.0, "inner": 0.0}, "wH": 0.25, "lam": 0.0, "kappa": 5.0, "dur_match": 0.75,
+            "dur_weight": True, "reloc": 0.8, "cut_held": True, "target_floor": 0.9, "floors": ("top",),
+            "breath": 0.5, "breath_q": 12, "cut_guard": 2.0, "cut_ratio": 1.5},
+    "F10": {"w": {"top": 1.0, "bass": 0.0, "inner": 0.0}, "wH": 0.25, "lam": 0.0, "kappa": 5.0, "dur_match": 0.75,
+            "dur_weight": True, "reloc": 0.8, "cut_held": True, "target_floor": 0.9, "floors": ("top",),
+            "breath": 1.0, "breath_q": 12, "cut_guard": 2.0, "cut_ratio": 1.5},
+    "K": {"w": {"top": 1.0, "bass": 1.0, "inner": 0.5}, "wH": 0.25, "lam": 0.0, "kappa": 5.0, "dur_match": 0.75,
+          "dur_weight": True, "reloc": 0.8, "cut_held": True, "target_floor": 0.9, "floors": ("top", "bass")},
 }
+TARGETS = {"solo_flute": ("fk2", "flute"), "piano": ("fk2", "piano")}   # target file tag, key in it (A2 floors)
+
+# BLOCK7 + Amendment A merged (R79): reward R8, the same principles for every instrument. On top of each regime's base
+# reward (strings: the user's priorities; flute / piano: Amendment A2): a cost per extra output note (no credit for
+# splitting), melody line integrity (no octave jumps the source line does not have), melody-first rollouts; strings also
+# judge double stops against the composers' own rate (criterion B').
+RHO7 = {"trio": {"top": 0.889, "bass": 0.885}, "duo": {"top": 0.852, "bass": 0.805}}   # 0.9 x control-S2c dev retention
+FEED = {"trio": {0: (0, 1), 1: (2,), 2: (3,)}, "duo": {0: (0, 1), 1: (2, 3)}}
+_R8 = {"note_cost": 0.05, "line_break": 0.5, "melody_first": True,
+       "reloc_shifts": (-12, 12)}   # R8.1 (R80/R81): no credit two octaves away (the inner line term was dropped, R81)
+for _lam in (2, 4):
+    SETTINGS[f"R8S{_lam}"] = {"w": {"top": 1.0, "bass": 0.8, "inner": 0.1}, "wH": 0.25, "lam": float(_lam), "kappa": 5.0,
+                              "dur_match": 0.75, "dur_weight": True, "reloc": 0.8, "floors": ("top", "bass"), "rho": RHO7,
+                              "ds_mode": "excess", **_R8}
+SETTINGS["R8F05"] = {**SETTINGS["F05"], **_R8}
+SETTINGS["R8F10"] = {**SETTINGS["F10"], **_R8}
+SETTINGS["R8K"] = {**SETTINGS["K"], **_R8}
+_MF = {"on": False}     # melody-first rollouts in this process (set from the setting by the workers)
+
+
+def _ds_moments(ns, w0, w1):
+    """Double-stop moments (2+ notes sounding at an onset) with the onset in [w0, w1); ns = [(on, end, pitch)]."""
+    ns = sorted(ns)
+    cnt, active, k = 0, [], 0
+    for t in sorted({q[0] for q in ns}):
+        while k < len(ns) and ns[k][0] <= t:
+            active.append(ns[k]); k += 1
+        active = [q for q in active if q[1] > t]
+        cnt += len(active) >= 2 and w0 <= t < w1
+    return cnt
+
+
+def ds_excess(m, regime, w0, w1, allout):
+    """R8 strings / criterion B' inside a window: per output part, its double-stop moments above the composers' rate in
+    the source parts that feed it (each source part's own double stops), floored at 0; summed."""
+    lo = w0 - A.CONTEXT
+    out = 0.0
+    for p, feed in FEED[regime].items():
+        on = [(o, o + d, x) for q, o, d, x in allout if q == p and d > 0]
+        n_out = sum(1 for o, _, _ in on if w0 <= o < w1)
+        if not n_out:
+            continue
+        src_ds = src_n = 0
+        for sp in feed:
+            sn = [(o, o + d, x) for q, o, d, x in m.src if q == sp and d > 0 and o + d > lo and o < w1]
+            src_ds += _ds_moments(sn, w0, w1)
+            src_n += sum(1 for o, _, _ in sn if w0 <= o < w1)
+        rate = src_ds / src_n if src_n else 0.0
+        out += max(0.0, _ds_moments(on, w0, w1) - rate * n_out)
+    return out
+
+
+def line_breaks(m, src_ids, out_notes, dm: float, tier: str = "top") -> tuple[int, int]:
+    """R8 melody line integrity: over consecutive kept top-tier source notes (in time order), how often the octave shift
+    between source and output changes (the line jumps a register the source line does not). A whole phrase moved an
+    octave keeps one shift and costs nothing. Returns (breaks, kept top notes)."""
+    by = defaultdict(list)
+    for _, o, d, x in out_notes:
+        if d > 0:
+            by[x].append((o, d))
+    # top: one line in time order; inner (R8.1): one line per source part
+    lines = defaultdict(list)
+    for i in sorted((i for i in src_ids if m.tiers[i] == tier), key=lambda i: m.src[i][1]):
+        lines[0 if tier == "top" else m.src[i][0]].append(i)
+    breaks = kept = 0
+    for ids in lines.values():
+        b_, k_ = _line_shifts(m, ids, by, dm)
+        breaks += b_; kept += k_
+    return breaks, kept
+
+
+def _line_shifts(m, ids, by, dm):
+    shifts = []
+    for i in ids:
+        _, o, d, x = m.src[i]
+        if m.cut and m.cut[i][0] is not None and m.cut[i][0] < o + d:
+            d = min(d, m.cut[i][0] - o)          # a CUT note counts as held to its cut point (as cut_held)
+        for s_ in (0, -12, 12, -24, 24):
+            if any(abs(o - y) < F(1, 4) and yd >= dm * d for y, yd in by.get(x + s_, ())):
+                shifts.append(s_)
+                break
+    return sum(a != b for a, b in zip(shifts, shifts[1:])), len(shifts)
 
 
 def joint_id(pc: int, o: int, r: int) -> int:
@@ -111,6 +215,7 @@ class Movement:
     tpq: int
     sidx: dict                     # source sounding-set index (reduction._sounding_sets)
     ctx: dict = field(default_factory=dict)   # regime -> greedy masked labels [(part, octave, real)]
+    cut: list = field(default_factory=list)   # R70: (cut_end, cut_kind) per source note, from the whole movement
 
 
 def load_split(split: str) -> list[Movement]:
@@ -120,7 +225,10 @@ def load_split(split: str) -> list[Movement]:
         notes = [(int(p), F(o), F(du), int(x)) for p, o, du, x in d["notes"]]
         src = sorted(notes, key=lambda n: (n[1], n[3], n[2]))
         tpq = TPQ_BASE * math.lcm(1, *{x.denominator for n in src for x in (n[1], n[2])})
-        out.append(Movement(d["key"], src, voice_tiers(src), tpq, _sounding_sets(src)))
+        tiers = voice_tiers(src)
+        tmp = [A.INote(o, du, x, src=p) for p, o, du, x in src]
+        A.assign_cut_ends(tmp, tiers)
+        out.append(Movement(d["key"], src, tiers, tpq, _sounding_sets(src), cut=[(n.cut_end, n.cut_kind) for n in tmp]))
     return out
 
 
@@ -194,18 +302,21 @@ def _committer_cls():
 # ------------------------------------------------------------ policy helpers
 
 def joint_logp_np(lp_part, lp_oct, lp_real, P: int) -> np.ndarray:
-    """[N, 101] joint log-probs: ids 0..99 = (part<4, octave, realisation), 100 = DROP. Parts >= P: -inf."""
+    """[N, N_JOINT + 1] joint log-probs: ids 0..N_JOINT-1 = (part<4, octave, realisation), N_JOINT = DROP
+    (101 for n_real 5, 121 for n_real 6). Parts >= P: -inf."""
     N = lp_part.shape[0]
+    assert lp_real.shape[1] == N_REAL, "configure(n_real) not called for this network"
     J = lp_part[:, :4, None, None] + lp_oct[:, None, :, None] + lp_real[:, None, None, :]
-    J = J.reshape(N, 100).copy()
+    J = J.reshape(N, N_JOINT).copy()
+    per = N_OCT * N_REAL
     for pc in range(P, 4):
-        J[:, pc * 25:(pc + 1) * 25] = -np.inf
+        J[:, pc * per:(pc + 1) * per] = -np.inf
     return np.concatenate([J, lp_part[:, DROP_SLOT:DROP_SLOT + 1]], 1)
 
 
 def candidates(jl: np.ndarray) -> np.ndarray:
     """Top joint options covering CAND_MASS (at most CAND_MAX), excluding DROP, then DROP appended."""
-    p = np.exp(jl[:100])
+    p = np.exp(jl[:N_JOINT])
     order = np.argsort(-p, kind="stable")
     cum, out = 0.0, []
     for a in order[:CAND_MAX]:
@@ -213,7 +324,7 @@ def candidates(jl: np.ndarray) -> np.ndarray:
             break
         out.append(int(a))
         cum += p[a]
-        if cum + math.exp(jl[100]) >= CAND_MASS:
+        if cum + math.exp(jl[N_JOINT]) >= CAND_MASS:
             break
     return np.array(out + [DROP_ID], np.int64)
 
@@ -254,7 +365,8 @@ def _setup_window(m: Movement, regime: str, w0: F, ens):
     ctx = m.ctx[regime]
     lo = w0 - A.CONTEXT
     idx = [i for i, n in enumerate(m.src) if (lo <= n[1] < w0 + A.WINDOW) or (n[1] < lo and n[1] + n[2] > lo)]
-    inotes = [A.INote(m.src[i][1], m.src[i][2], m.src[i][3], src=m.src[i][0]) for i in idx]
+    inotes = [A.INote(m.src[i][1], m.src[i][2], m.src[i][3], src=m.src[i][0], cut_end=m.cut[i][0], cut_kind=m.cut[i][1])
+              for i in idx]
     com = _committer_cls()(ens, m.tpq, True, max((n.dur for n in inotes), default=F(1)))
     win, todo = [], []
     for k, i in enumerate(idx):
@@ -270,6 +382,9 @@ def _setup_window(m: Movement, regime: str, w0: F, ens):
             win.append(k)
             todo.append(k)
     return idx, inotes, com, win, todo
+
+
+TIER_RANK8 = {"top": 0, "bass": 1, "inner": 2}     # = model.decode.TIER_RANK (decode v3, melody-first; R8)
 
 
 class RolloutState:
@@ -312,7 +427,8 @@ class RolloutState:
         J = joint_logp_np(lp_part, lp_oct, lp_real, self.P)
         pp, po, pr = np.exp(lp_part), np.exp(lp_oct), np.exp(lp_real)
         pos, todo, com, inotes = self.pos, self._todo, self.com, self.inotes
-        conf = sorted(todo, key=lambda k: -(pp[pos[k]].max() * po[pos[k]].max() * pr[pos[k]].max()))
+        conf = sorted(todo, key=lambda k: ((TIER_RANK8[self.m.tiers[self.idx[k]]] if _MF["on"] else 0),
+                                           -(pp[pos[k]].max() * po[pos[k]].max() * pr[pos[k]].max())))
         pi = len(self.passes) - 1
         for k in conf[:math.ceil(len(todo) / 2)]:
             j = pos[k]
@@ -381,6 +497,7 @@ def kept_weights(m: Movement, src_ids, out_notes, setting: dict):
         if d > 0:
             by[x].append((o, d))
     dm, rel, dw = setting.get("dur_match", 0.0), setting.get("reloc", 0.0), setting.get("dur_weight", False)
+    ch = setting.get("cut_held", False)
 
     def hit(x, o, d):
         return any(abs(o - y) < F(1, 4) and yd >= dm * d for y, yd in by.get(x, ()))
@@ -391,11 +508,60 @@ def kept_weights(m: Movement, src_ids, out_notes, setting: dict):
         wt = float(d) if dw else 1.0
         n[t] += wt
         cnt[t] += 1
-        if hit(x, o, d):
+        # A2 (cut_held): a CUT note counts as held, so the length to match is the shorter CUT length
+        dh = min(d, m.cut[i][0] - o) if ch and m.cut and m.cut[i][0] is not None else d
+        if hit(x, o, dh):
             kept[t] += wt
-        elif rel and any(hit(x + s, o, d) for s in (-12, 12, -24, 24)):
+        elif rel and any(hit(x + s, o, dh) for s in setting.get("reloc_shifts", (-12, 12, -24, 24))):
             kept[t] += rel * wt
     return kept, n, cnt
+
+
+def longest_run(notes, lo, hi) -> float:
+    """Longest unbroken run (quarters) among runs that overlap [lo, hi); a rest of an eighth or more breaks a run
+    (as model/dev_fk.py)."""
+    ns = sorted((o, o + d) for _, o, d, _ in notes if d > 0)
+    best, start, prev = 0.0, None, None
+    for a, b in ns + [(None, None)]:
+        if a is None or prev is None or a - prev >= F(1, 2):
+            if prev is not None and prev > lo and start < hi:
+                best = max(best, float(prev - start))
+            if a is None:
+                break
+            start = a
+        prev = b if prev is None else max(prev, b)
+    return best
+
+
+_TARGET_LABELS: dict = {}
+_TARGET_WIN: dict = {}
+
+
+def target_window(m: Movement, regime: str, w0: F, setting: dict) -> dict:
+    """A2: the F3 / K target's retention per tier and CUT share in this window (floors and the CUT guard)."""
+    ck = (m.key, regime, w0, id(setting))
+    if ck in _TARGET_WIN:
+        return _TARGET_WIN[ck]
+    tag, key = TARGETS[regime]
+    if tag not in _TARGET_LABELS:
+        _TARGET_LABELS[tag] = pickle.load(open(RL / f"targets_{tag}__train.pkl", "rb"))
+    if key in _TARGET_LABELS[tag].get(m.key, {}):
+        labs = _TARGET_LABELS[tag][m.key][key]
+    else:                                    # a dev movement (R8 reward gate): build the F3 / K target on the fly
+        from collections import Counter as _C
+        from model.targets_fk import build_flute_cut, build_piano
+        labs = (build_flute_cut if key == "flute" else build_piano)(m, _C())
+        _TARGET_LABELS[tag].setdefault(m.key, {})[key] = labs
+    w1 = w0 + A.WINDOW
+    inotes = [A.INote(o, d, x, part=p, octave=oc, real=re, src=sp, cut_end=m.cut[i][0], cut_kind=m.cut[i][1])
+              for i, ((sp, o, d, x), (p, oc, re)) in enumerate(zip(m.src, labs))]
+    near = [n for n in inotes if w0 - A.WINDOW <= n.onset < w1 + A.WINDOW]
+    src_ids = [i for i, q in enumerate(m.src) if w0 <= q[1] < w1 and q[2] > 0]
+    kept, n, _ = kept_weights(m, src_ids, A.expand(near), setting)
+    played = [labs[i][2] for i in src_ids if labs[i][0] != A.DROP]
+    _TARGET_WIN[ck] = {"ret": {t: kept[t] / n[t] for t in TIERS if n[t]},
+                       "cut_share": (sum(r == A.CUT for r in played) / len(played)) if played else 0.0}
+    return _TARGET_WIN[ck]
 
 
 def window_reward(m: Movement, regime: str, w0: F, tr: Trajectory, setting: dict) -> dict:
@@ -427,17 +593,48 @@ def window_reward(m: Movement, regime: str, w0: F, tr: Trajectory, setting: dict
                 ps = {q[2] for q in active}
                 un += not any(ps <= _sounding(ix, t) for ix in m.sidx.values())
     DS = un / max(1, len(src_ids))
+    if setting.get("ds_mode") == "excess":   # R8 strings: only double stops above the composers' own rate (B')
+        DS = ds_excess(m, regime, w0, w1, allout) / max(1, len(src_ids))
     ret = {t: kept[t] / n[t] for t in TIERS if n[t]}
     # floors only where the window has enough notes in the tier for a rate to mean anything (R31)
     fl = setting.get("floors", TIERS)
-    G = -setting["kappa"] * sum(max(0.0, RHO[regime][t] - ret[t]) for t in ret if cnt[t] >= G_MIN_NOTES and t in fl)
+    extra = {}
+    if setting.get("target_floor"):          # A2: 0.9 x the target's retention in this window
+        tw = target_window(m, regime, w0, setting)
+        rho = {t: setting["target_floor"] * tw["ret"].get(t, 0.0) for t in TIERS}
+    else:
+        rho = setting.get("rho", RHO)[regime]
+    G = -setting["kappa"] * sum(max(0.0, rho[t] - ret[t]) for t in ret if cnt[t] >= G_MIN_NOTES and t in fl)
     R = Fw + setting["wH"] * H - setting["lam"] * DS + G
+    if setting.get("breath"):                # A2 flute: breath shortfall
+        L = longest_run(allout, w0, w1)
+        extra["run_q"] = L
+        extra["B"] = max(0.0, L - setting["breath_q"]) / float(A.WINDOW)
+        R -= setting["breath"] * extra["B"]
+    if setting.get("cut_guard"):             # A2 flute: CUT share above cut_ratio x the target's
+        played = [lab[2] for lab in tr.labels if lab[0] != A.DROP]
+        cs = (sum(r == A.CUT for r in played) / len(played)) if played else 0.0
+        extra["cut_share"], extra["cut_share_target"] = cs, tw["cut_share"]
+        extra["C"] = max(0.0, cs - setting["cut_ratio"] * tw["cut_share"])
+        R -= setting["cut_guard"] * extra["C"]
+    if setting.get("note_cost"):             # R8: output notes beyond the kept source notes (repeats, tremolo, splits)
+        kept_in = sum(1 for lab in tr.labels if lab[0] != A.DROP)
+        extra["Nx"] = max(0, len(tr.out_notes) - kept_in) / max(1, len(src_ids))
+        R -= setting["note_cost"] * extra["Nx"]
+    if setting.get("line_break"):            # R8: melody line integrity
+        b_, k_ = line_breaks(m, src_ids, tr.out_notes, setting.get("dur_match", 0.0))
+        extra["LB"] = b_ / max(1, k_)
+        R -= setting["line_break"] * extra["LB"]
+    if setting.get("inner_line_break"):      # R8.1: inner voices keep their register line as well
+        b_, k_ = line_breaks(m, src_ids, tr.out_notes, setting.get("dur_match", 0.0), "inner")
+        extra["LBi"] = b_ / max(1, k_)
+        R -= setting["inner_line_break"] * extra["LBi"]
     Iterm, Iz = 0.0, float("nan")
     if setting.get("idiom"):
         from model.idiom import window_term
         Iterm, Iz = window_term(allout, [i.key for i in load_ensemble(regime).instruments], regime, w0, w1)
         R += setting["idiom"] * Iterm
-    return {"R": R, "Fw": Fw, "H": H, "DS": DS, "G": G, "I": Iterm, "Iz": Iz, **{f"ret_{t}": r for t, r in ret.items()},
+    return {"R": R, "Fw": Fw, "H": H, "DS": DS, "G": G, "I": Iterm, "Iz": Iz, **extra, **{f"ret_{t}": r for t, r in ret.items()},
             "n_src": len(src_ids), "n_out": len(tr.out_notes), "interv": float(tr.intervened.mean()) if len(tr.intervened) else 0.0,
             "drop": float(np.mean([lab[0] == A.DROP for lab in tr.labels])) if tr.labels else 0.0}
 
@@ -479,9 +676,10 @@ def policy_terms(net, trajs: list[Trajectory], device, chunk: int = 512, return_
         lp_oct = torch.log_softmax(o["octave"].double(), -1)[r_, p_]
         lp_real = torch.log_softmax(o["real"].double(), -1)[r_, p_]
         J = (lp_part[:, :4, None, None] + lp_oct[:, None, :, None] + lp_real[:, None, None, :]).flatten(1)
+        assert J.shape[1] == N_JOINT, "configure(n_real) not called for this network"
         nP = b["part_mask"].sum(1)[r_]
-        absent = torch.arange(100, device=device)[None, :] // 25 >= nP[:, None]
-        J = torch.cat([J.masked_fill(absent, -float("inf")), lp_part[:, DROP_SLOT:DROP_SLOT + 1]], 1)   # [n, 101]
+        absent = torch.arange(N_JOINT, device=device)[None, :] // (N_OCT * N_REAL) >= nP[:, None]
+        J = torch.cat([J.masked_fill(absent, -float("inf")), lp_part[:, DROP_SLOT:DROP_SLOT + 1]], 1)   # [n, N_JOINT+1]
         c_ = torch.as_tensor(cand[sel], device=device)
         m_ = torch.as_tensor(mask[sel], device=device)
         x = torch.gather(J, 1, c_).masked_fill(~m_, -float("inf"))
@@ -491,7 +689,7 @@ def policy_terms(net, trajs: list[Trajectory], device, chunk: int = 512, return_
         # R34b: log of the feasible share of the NON-DROP probability (feasibility given that the note is
         # played; DROP is excluded, so dropping cannot raise it). -inf where no non-DROP option is feasible.
         nd = x.masked_fill(c_ == DROP_ID, -float("inf"))
-        logz[torch.as_tensor(sel, device=device)] = torch.logsumexp(nd, 1) - torch.logsumexp(J[:, :100], 1)
+        logz[torch.as_tensor(sel, device=device)] = torch.logsumexp(nd, 1) - torch.logsumexp(J[:, :N_JOINT], 1)
     if return_logz:
         return out, torch.as_tensor(owner, device=device), logz
     return out, torch.as_tensor(owner, device=device)
@@ -556,9 +754,11 @@ def _worker_init(ckpt_path, run_base, setting_name):
     ck = torch.load(ckpt_path, map_location="cpu")
     net = Arranger(**ck["cfg"]["net"]).eval()
     net.load_state_dict(ck["model"])
+    configure(net.n_real)
     mvs = {m.key: m for m in attach_contexts(load_split("train"), run_base)}
     val = {m.key: m for m in load_split("val")}
     _W.update(net=net, version=-1, mvs=mvs, val=val, setting=SETTINGS[setting_name])
+    _MF["on"] = bool(SETTINGS[setting_name].get("melody_first"))
 
 
 def _sync(weights_path, version):
@@ -601,7 +801,13 @@ def _val_job(job):
     red = reduction_metrics(out, src)
     real = Counter(n.real for n in inotes if n.part != A.DROP)
     km, nm_, _ = kept_weights(m, [i for i, q in enumerate(m.src) if q[2] > 0], A.expand(inotes), SETTINGS["M2"])
-    return {"regime": regime, "n_in": len(inotes), "interventions": com.n_intervened,
+    fk = {}
+    if regime in FK_REGIMES:                 # A3 detectors (model/dev_fk.py metrics)
+        from model.dev_fk import metrics as fk_metrics
+        r_ = fk_metrics(m, A.expand(inotes), "flute" if regime == "solo_flute" else "piano")
+        fk = {f"fk_{k}": v for k, v in r_.items() if k in ("breaths", "dur_q", "longest_run_q", "harmony")}
+        fk["fk_n_cut"] = real[A.CUT]
+    return {"regime": regime, **fk, "n_in": len(inotes), "interventions": com.n_intervened,
             "drops": sum(n.part == A.DROP for n in inotes), "n_out": len(out.notes),
             "dur_out": float(sum(n[2] for n in out.notes)), "dur_src": float(sum(n[2] for n in m.src)),
             "n_repeat_ops": real[A.REPEAT] + real[A.TREMOLO], "n_kept_in": sum(real.values()),
@@ -610,7 +816,8 @@ def _val_job(job):
 
 def validate(pool, regimes, weights_path, version, n_val: int, melody_first: bool = False):
     keys = sorted(_val_keys())[:n_val]
-    rows = pool.map(_val_job, [(k, r, weights_path, version, melody_first) for r in regimes for k in keys], chunksize=1)
+    rows = pool.map(_val_job, [(k, r, weights_path, version, melody_first or r in FK_REGIMES) for r in regimes for k in keys],
+                    chunksize=1)
     res = {}
     for r in regimes:
         rs = [x for x in rows if x["regime"] == r]
@@ -625,6 +832,12 @@ def validate(pool, regimes, weights_path, version, n_val: int, melody_first: boo
         res[f"val_{r}/mean_dur_ratio"] = (sum(x["dur_out"] for x in rs) / max(1, sum(x["n_out"] for x in rs))) / \
             (sum(x["dur_src"] for x in rs) / n_in)
         res[f"val_{r}/repeat_op_share"] = sum(x["n_repeat_ops"] for x in rs) / max(1, sum(x["n_kept_in"] for x in rs))
+        if r in FK_REGIMES:
+            res[f"val_{r}/cut_share"] = sum(x["fk_n_cut"] for x in rs) / max(1, sum(x["n_kept_in"] for x in rs))
+            res[f"val_{r}/harmony"] = float(np.mean([x["fk_harmony"] for x in rs]))
+            if r == "solo_flute":
+                res[f"val_{r}/breaths_per_32q"] = 32 * sum(x["fk_breaths"] for x in rs) / sum(x["fk_dur_q"] for x in rs)
+                res[f"val_{r}/longest_run_q_median"] = float(np.median([x["fk_longest_run_q"] for x in rs]))
         wm = SETTINGS["M2"]["w"]
         res[f"val_{r}/fidelity_M"] = (sum(wm[t] * sum(x[f"m_kept_{t}"] for x in rs) for t in TIERS)
                                       / max(1e-9, sum(wm[t] * sum(x[f"m_n_{t}"] for x in rs) for t in TIERS)))
@@ -648,6 +861,7 @@ def _engine_worker(conn, ctx_run, setting_name):
     (None when that rollout is done); ("finish",) -> (trajectories with rewards, timing); ("stop",)."""
     mvs = {m.key: m for m in attach_contexts(load_split("train"), ctx_run)}
     setting = SETTINGS[setting_name]
+    _MF["on"] = bool(setting.get("melody_first"))
     states, timing = [], Counter()
     while True:
         msg = conn.recv()
@@ -753,15 +967,16 @@ def cmd_contexts(a):
         torch.set_num_threads(1)      # many single-thread CPU processes beat a shared GPU here (30 s per decode)
     net = Arranger(**ck["cfg"]["net"]).to(device).eval()
     net.load_state_dict(ck["model"])
+    configure(net.n_real)
     ranges = A.load_ranges()
     out = {}
     mvs = load_split(a.split)[a.shard::a.nshards][: a.limit]
     for m in mvs:
         out[m.key] = {"greedy": {}, "oracle": {}}
-        for regime in REGIMES:
+        for regime in a.regimes:
             ens = load_ensemble(regime)
             insts = [i.key for i in ens.instruments]
-            inotes, _ = decode_movement(net, device, m.src, insts, ens, True, m.tpq)
+            inotes, _ = decode_movement(net, device, m.src, insts, ens, True, m.tpq, a.melody_first)
             out[m.key]["greedy"][regime] = [(n.part, n.octave, n.real) for n in inotes]
             if a.split == "train" and not a.greedy_only:
                 inotes, _ = decode_instrumented(net, device, m.src, insts, ens, m.tpq, oracle_labels(m.src, regime, ranges))
@@ -783,12 +998,13 @@ def cmd_train(a):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     net = Arranger(**ck["cfg"]["net"]).to(device)
     net.load_state_dict(ck["model"])
+    configure(net.n_real)
     ref = Arranger(**ck["cfg"]["net"]).to(device).eval()
     ref.load_state_dict(ck["model"])
     for p_ in ref.parameters():
         p_.requires_grad_(False)
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr, weight_decay=0.0)
-    cfg = {**vars(a), "setting_values": setting, "rho": RHO, "cand_mass": CAND_MASS, "cand_max": CAND_MAX,
+    cfg = {**vars(a), "setting_values": setting, "rho": RHO, "n_real": N_REAL, "cand_mass": CAND_MASS, "cand_max": CAND_MAX,
            "base_checkpoint": str(base_ck), "base_step": ck["step"]}
     cfg.pop("func", None)
     (od / "config.json").write_text(json.dumps(cfg, indent=1, default=str))
@@ -796,7 +1012,7 @@ def cmd_train(a):
     torch.save({k: v.cpu() for k, v in net.state_dict().items()}, weights)
     version = 0
     mvs = attach_contexts(load_split("train"), a.ctx_run or a.base)
-    jobs_all = [(m.key, r, w0) for m in mvs for r in REGIMES if r in m.ctx for w0 in windows(m, 384)]
+    jobs_all = [(m.key, r, w0) for m in mvs for r in a.regimes if r in m.ctx for w0 in windows(m, 384)]
     print(f"{len(jobs_all)} train windows", flush=True)
     rng = random.Random(a.seed)
     os.environ.setdefault("WANDB_MODE", "online" if os.environ.get("WANDB_API_KEY") else "offline")
@@ -826,7 +1042,7 @@ def cmd_train(a):
             row = {"step": step}
             if step % a.val_every == 0:
                 tv = time.time()
-                row.update(validate(pool, REGIMES, str(weights), version, a.n_val))
+                row.update(validate(pool, a.regimes, str(weights), version, a.n_val))
                 row["time/val_s"] = time.time() - tv
                 torch.save({"model": net.state_dict(), "cfg": {**ck["cfg"], "run_name": a.run_name}, "step": step, "rl": cfg},
                            od / "checkpoint.pt")
@@ -899,6 +1115,8 @@ def main(argv=None):
     c.add_argument("--out-name", default=None)
     c.add_argument("--limit", type=int, default=None)
     c.add_argument("--greedy-only", action="store_true", help="skip the oracle labels (RL contexts only)")
+    c.add_argument("--regimes", nargs="+", default=list(REGIMES))
+    c.add_argument("--melody-first", action="store_true", help="decode v3 contexts (as the F/K systems are decoded)")
     t = sub.add_parser("train")
     t.add_argument("--setting", default="C", choices=list(SETTINGS))
     t.add_argument("--run-name", default=None)
@@ -920,6 +1138,7 @@ def main(argv=None):
     t.add_argument("--n-val", type=int, default=20)
     t.add_argument("--seed", type=int, default=0)
     t.add_argument("--ctx-run", default=None, help="contexts file prefix (default: --base)")
+    t.add_argument("--regimes", nargs="+", default=list(REGIMES), help="e.g. solo_flute or piano (Amendment A)")
     a = ap.parse_args(argv)
     if a.cmd == "contexts":
         cmd_contexts(a)

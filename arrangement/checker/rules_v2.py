@@ -91,6 +91,45 @@ def _hands(ps: tuple[int, ...], fingers: int, span: int):
         yield lo, hi
 
 
+@lru_cache(maxsize=200_000)
+def hand_split_v8(struck: tuple[int, ...], sounding: tuple[int, ...], fingers: int, span: int, gap: int) -> int | None:
+    """checker-v8 (R83): over contiguous low/high splits of `sounding` (sorted pitches, including the struck ones), the
+    smallest max(struck span per hand) among splits with <= fingers struck notes and <= span per hand and, when both
+    hands hold notes, the high hand's lowest note >= gap semitones above the low hand's highest. None: no such split."""
+    ks = set(struck)
+    best = None
+    for k in range(len(sounding) + 1):
+        lo, hi = sounding[:k], sounding[k:]
+        if lo and hi and hi[0] - lo[-1] < gap:
+            continue
+        kl, kh = [x for x in lo if x in ks], [x for x in hi if x in ks]
+        if len(kl) > fingers or len(kh) > fingers:
+            continue
+        w = max(kl[-1] - kl[0] if kl else 0, kh[-1] - kh[0] if kh else 0)
+        if w <= span and (best is None or w < best):
+            best = w
+    return best
+
+
+def hand_rule_v8(hs, struck: dict, sounding: dict, dt_q: float | None):
+    """checker-v8 hand rule at one onset. struck / sounding: {note id: pitch} (non-grace; sounding includes struck);
+    dt_q: quarters since the part's previous onset (None: first onset). Returns (ids, measured, limit) or None."""
+    if not struck or len(struck) > 2 * hs.fingers:
+        return None
+    base = sounding if hs.gap_basis == "sounding" else struck
+    if len(base) < 2:
+        return None
+    K, U = tuple(sorted(set(struck.values()))), tuple(sorted(set(base.values())))
+    ids = tuple(sorted(base))
+    best = hand_split_v8(K, U, hs.fingers, hs.semitones, hs.gap)
+    if best is None:
+        wide = hand_split_v8(K, U, hs.fingers, 127, hs.gap)
+        return ids, float(999 if wide is None else wide), float(hs.semitones)
+    if hs.free_semitones is not None and best > hs.free_semitones and dt_q is not None and dt_q < hs.setup_q:
+        return ids, float(best), float(hs.free_semitones)
+    return None
+
+
 def _centre(h):
     return sum(h) / len(h) if h else None
 

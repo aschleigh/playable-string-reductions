@@ -145,9 +145,14 @@ piano:
     high: 108     # C8 [Keyboard]
   max_chord: 10   # ten fingers [Hands]
   hand_span:
-    semitones: 14 # a major ninth per hand -- PLACEHOLDER (U8)
+    semitones: 16 # a tenth per hand at most -- CORPUS-CALIBRATED (U8), checker-v8 (R83): v6's Lieder value; spans 13-16 need set-up time (setup_q)
     fingers: 5    # five per hand [Hands]
+    basis: struck # checker-v6 (R65): span and fingers see the notes struck together; held notes / pedal are free
+    free_semitones: 12  # an octave per hand at any speed [User], checker-v8 (R83, the pianist's feedback)
+    setup_q: 0.25       # CORPUS-CALIBRATED (U14), checker-v8: quarters since the previous onset before a 9th/10th; Lieder dev 1st percentile of the time before a 13-16 staff chord (held-out share below 1.8%)
+    gap: 3              # a minor third between the hands [User], checker-v8 (R83); Lieder staves closer at 3.6% of sounding moments
+    gap_basis: sounding # checker-v8 [User]: held notes count for the gap (not for span or fingers)
   transition: null
   hand_leap:
-    max_leap_at_zero_gap: 24       # PLACEHOLDER (U12): no piano corpus to calibrate on
-    semitones_per_quarter_gap: 12  # PLACEHOLDER (U13)
+    max_leap_at_zero_gap: 18       # CORPUS-CALIBRATED (U12), checker-v8 (R83): back to the Lieder envelope at span 16 (R65; v7 had 24 at span 12)
+    semitones_per_quarter_gap: 32  # CORPUS-CALIBRATED (U13), checker-v8 (R83): R65 value at span 16 (v7: 48)

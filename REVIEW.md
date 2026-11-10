@@ -372,3 +372,170 @@ are therefore in force, each open to reversal:
   the cello against the train-split 2.5) stands as reported.
 - **R61. Excerpts: MusicXML only (2026-10-16).** The user: "you can stop rendering anything other than the
   musicxml files." No more PDF/PNG renders.
+- **R62. Block 6 brief written (2026-10-16).** The user: "write the block 6 brief" (solo piano and solo flute;
+  duo infilling after Block 6). BLOCK6.md is a proposal: a piano corpus (OpenScore Lieder recommended) for
+  calibrating the placeholder hand thresholds (U8, U12, U13) and a checker-v6 for piano only; rule-built F (flute:
+  melody line, weaving, soft breath) and K (piano: keep everything the hands allow, drop inner voices first)
+  targets; one joint arranger fine-tuned from control-S2c; instrument-free metrics (METRICS 1.6.0-draft);
+  criterion D against Ou et al. masked, including a "not worse than the top line" item for flute; confirmation on
+  the 145 (first use for these regimes). Six decisions for the user. Nothing runs until approval.
+- **R63. Block 6 approved, all recommended options (2026-10-16).** The user: "ok, proceed with all 6 sections
+  w/recommended." 1. OpenScore Lieder for piano calibration, then checker-v6 (piano only); 2. flute breath as a
+  soft target rule (<= 8 quarters); 3. flute weaving on; 4. one joint arranger (separate as fallback); 5. criterion
+  D as written; 6. confirmation on the 145 (first use for these regimes, caveat) plus the 21 ABC movements as
+  secondary. Delegation rule applies to later choices (recommended option, logged here).
+- **R64. Block 6 target implementation (2026-10-16; delegated, recommended).**
+  - **Flute weaving needs no rule.** The top tier (`voice_tiers`) is a skyline: a note at or above everything
+    sounding when it starts, from any part. The flute line therefore already moves to the next-highest voice
+    whenever the first violin rests; a 4-quarter gap with no top note essentially never occurs (0 in a smoke
+    run). The step was removed. **Consequence:** the F target is the skyline, folded into C4-C7, made
+    monophonic, with breaths, which is close to the trivial "top line" baseline. A real principal-melody
+    detector (which voice carries the tune) would be the substantive flute problem; flagged for the user.
+  - **Breath** is made by dropping a short note (<= an eighth) at a boundary after 8 quarters of continuous
+    playing, because the label vocabulary cannot shorten a note.
+  - **Smoke run** (5 train movements, placeholder piano thresholds): flute keeps 33% of notes (top drop 1.3%,
+    breaths 1.4%); piano keeps 99.1% (drops: inner 0.7%, top 0.2%, bass 0.0%).
+- **R65. Piano calibration on OpenScore Lieder (2026-10-16; delegated, recommended).** 1,462 songs, 1,425 with
+  one piano part (30 without a piano, 7 with two), dev = crc32 % 10 of the path.
+  - **The checker's sounding-set basis does not fit piano.** On sounding sets (what hand_span/hand_leap see now),
+    held-out real songs exceed the 14-semitone placeholder span on 3.5% of multi-note onsets, and the dev maximum
+    is 43 semitones: held bass notes and pedal, not hand stretches.
+  - **Struck sets behave like hands:** dev median span 4, 99th percentile 14, 99.9th 16.7; held-out share above
+    16 = 0.12%.
+  - **Recommended checker-v6 (piano only):** hand_span and hand_leap on struck sets (notes starting together);
+    span 16 semitones (a major tenth); hand leap refitted with the same span (re-measure running at span 16).
+    Strings unchanged. Tagged, tests added, piano baselines re-run.
+- **R66. checker-v6 (piano only; 2026-10-16).** Hand rules for keyboards gain a `basis`; piano uses "struck" (the notes
+  starting together), span 16 semitones (U8), hand leap 18 + 32 per quarter (U12, U13), all corpus-calibrated on
+  OpenScore Lieder (R65). Strings, flute and every other value unchanged (default basis "sounding"). max_chord
+  stays 10 (sourced; sounding sets exceed 10 in only 32 of 1,425 songs). Batch, incremental and growing agree:
+  101 new tests (`tests/test_piano_struck.py`); full suite 1,325 passed. Tagged `checker-v6`. The piano baselines
+  are re-run under it before any comparison.
+- **R67. Flute breath is limited by the label vocabulary (2026-10-16).** Dev check (15 dev movements): the F target
+  still has long unbroken runs (median longest run 48 quarters with breath v1; top-line baseline up to 200 in one
+  movement). A breath v2 (fallbacks: the shortest note <= a quarter in the next 4 quarters; forced by 12 quarters)
+  only moves the median to 40 (breaths 2.5 -> 2.8 per 32 quarters, melody 0.849 -> 0.846), because long melody
+  notes cannot be shortened, only dropped. Recommended and taken: keep v1 for control-J (no retrain for a small gain);
+  v2 stays in the code (`--breath 2`). A proper fix needs a new realisation ("play shortened by an eighth"), a
+  vocabulary change for a later step; flagged for the user.
+- **Targets (checker-v6, 476 train movements):** piano keeps 99.8% of source notes (drops 0.2%, almost all inner);
+  flute keeps the top line (31% of notes; top drops 1.4%; breaths 1.2%).
+- **R68. Joint arranger fails its dev fallback check; separate models (2026-10-16; pre-registered rule, decision 4).**
+  control-J (trio, duo, flute, piano together, from control-S2c): dev trio viola double stops 3.40 -> 4.38 per 100
+  (+0.98, rule > 0.5); melody fine (trio 0.990, duo 0.959 against 0.988 / 0.947). So: strings stay **control-S2c**;
+  flute and piano get a separate **control-FK** (from control-S2c on the F/K targets only, 3,000 steps). control-J is
+  reported as the joint attempt. Dev piano (control-J): melody 0.988, bass 0.989, inner 0.95, harmony 0.996,
+  interventions 2.1%.
+- **R69. Flute: the label vocabulary costs melody (2026-10-16).** Dev flute melody retention (exact): top line 0.949,
+  F target 0.873, control-J 0.892. The top line cuts each note at the next onset; our labels can only keep or drop, so
+  overlapping top-voice notes lose one of the pair (and breaths cannot shorten long notes, R67). Criterion D item 5
+  (not worse than the top line) is therefore likely to fail for any model on the current vocabulary. Recommended fix,
+  for the user: a "cut at the next onset in the part" realisation (also usable as a breath), a vocabulary change.
+- **R70. CUT realisation for flute (2026-10-17; the user: "sure" to the flute fix).** A sixth realisation, CUT: the note ends
+  at a cut point computed from the source before decoding (`A.assign_cut_ends`): a melody note that would overlap the next
+  melody onset ends there ("overlap"); a note that overlaps nothing and lasts a quarter or more is an eighth shorter
+  ("breath"). Backward-compatible: the class count is a per-model setting (`n_real`; old checkpoints 5, unchanged); input
+  index 5 stays "unknown" and CUT is input index 6; the decoder reads the class count from the model. control-FK2 is
+  widened from control-S2c (new class bias starts rare, class weight 3.0).
+  **F3 targets (targets_fk2):** overlaps take CUT; a breath is a CUT on a long note at a boundary after 8 quarters, by 12
+  quarters the next shortenable note, else the shortest note in the next 4 quarters is dropped. Dev (15 movements):
+  melody exact 0.849 (F1) -> **0.921** (top line 0.927); breaths 2.5 -> 2.8 per 32 quarters; median longest unbroken run
+  48 -> 33 quarters (remaining long runs are single long held notes, which CUT cannot split). Piano targets unchanged.
+- **Bug fixed:** `model/decode.py` had no reference parts for piano / solo_flute (KeyError); added as in headroom/measure.py.
+- **R71. control-FK2 dev result (2026-10-17).** Flute: melody exact 0.940 (control-FK 0.900; top line 0.949); breaths 3.6
+  per 32 quarters (1.7; top line 1.6); median longest unbroken run 39.5 quarters (106; top line 122); interventions 0.6%.
+  Piano unchanged (melody 0.987, bass 0.989, inner 0.958, harmony 0.996, interventions 1.8%). The duration-weighted melody
+  score (M) falls to 0.881 because CUT notes count as shortened; reported only. control-FK2 is the Block 6 flute/piano
+  system for the listening review and, after it, the confirmatory test.
+- **R72. Amendment A to Block 6: an RL stage (proposal, 2026-10-24).** The user: "I really, really want RL in this
+  project. can you rewrite block 6 or include the parked target or something to include it". BLOCK6.md Amendment A:
+  GRPO from control-FK2 for flute (melody + breath reward, CUT guard) and piano (conditional feasibility term, R34b),
+  dev-only selection with fixed detectors, then the confirmatory test with a new criterion E (RL vs control-FK2); P
+  brought back as P v2 (two-sided, histogram term) for strings, behind a new gate with four new hacks. Six decisions
+  for the user; nothing run. Also corrects WEEK_SUMMARY lesson 2: the R34b term did let RL learn the constraint
+  under the mask.
+- **R73. Amendment A approved, all six recommended options (2026-10-24).** The user: "approved". So: RL stage for flute
+  and piano before the confirmatory test; rewards/settings as A2; selection and detectors as A3 with the listening veto;
+  P v2 for strings after the flute/piano runs; string RL on dev only (no third use of the 145); criterion E.
+  Order: the RL runs start from control-FK2; the user's control-FK2 listening verdict is still pending, so code (A1) goes
+  first and the runs wait for it only if the verdict changes the F/K rules.
+- **R74. A1 implementation choices (2026-10-24).** (a) The A3 dev check uses the 61 dev movements of `model/dev_fk.py`
+  (the set behind R71), not "15" as first written (15 was the F3 calibration subset); BLOCK6 corrected. (b) Joint
+  option ids follow the checkpoint's realisation count (`grpo.configure`, 121 options with CUT). (c) RL contexts for
+  flute/piano are control-FK2 melody-first greedy decodes, as the system is decoded. (d) The A2 floors and CUT guard
+  compare with the F3 / K target labels of the same window (`targets_fk2__train.pkl`). (e) Validation for the F/K
+  regimes is melody-first and logs CUT share, harmony, breaths and the median longest run. Tests:
+  `tests/test_grpo_fk.py` (5) and `tests/test_grpo.py` (7) pass.
+- **R75. Block 7 brief written (2026-10-27).** The user asked whether RL failed because of the reward, then: "I want to try a
+  better rl reward function given what we know now." BLOCK7.md (proposal): reward R7 aligned with the user's priorities
+  (duration-weighted melody/bass, inner weight 0.1, double stops judged against the composers' rate (B′), held-note credit,
+  a per-extra-note cost against splitting hacks, top/bass floors); a reward gate against five hacks before any run;
+  melody-first rollouts (Block 4's rollouts and evaluation decoded differently); start from control-S2c; dev-only
+  selection with stop rules; criterion E against control-S2c on a fresh set (KernScores Haydn/Mozart works not in
+  OpenScore). Six decisions for the user; nothing runs until approval.
+- **R76. Block 7 approved, all six decisions as recommended (2026-10-27).** The user: "ok I approve of block 7, continue
+  without interruptions even if i drop." Delegation rule: later choices take the recommended option and are logged here.
+- **R77. Block 7 Step 0: the fresh confirmation set (2026-10-27; delegated, recommended).** KernScores was unreachable (HTTP
+  503); the music21 corpus quartets are all already in OpenScore. Fresh, not in OpenScore by work: ABC Beethoven Op. 59/1,
+  59/2, 74, 95, 132 (21 movements), DCML Mendelssohn Op. 44 No. 3 (4), DCML Pleyel Op. 2 Nos. 1 and 3 (6): **31 movements,
+  about 117,000 notes**, below the 60 targeted. Recommended and taken: these 31 are the **primary** confirmation set (truly
+  fresh, wider CIs), with the 145 evaluation movements as a secondary, third-use report. Built from the DCML note tables
+  (`arrangement/fresh_corpus.py`): tied chains merged, grace notes and alternative endings dropped, repeats not expanded.
+  Licences CC BY-NC-SA 4.0 (evaluation only; not redistributed). Not decoded or listened to before Step 5.
+- **R78. Record collision found and corrected (2026-10-27).** Another session (2026-10-24) wrote BLOCK6 Amendment A (an RL
+  stage for flute/piano from control-FK2, and P v2 for strings), logged as R72–R74, with uncommitted code in
+  `model/grpo.py`, `tests/test_grpo_fk.py` and BLOCK6.md. This session did not see it, wrote Block 7 under the same
+  numbers, and its commits a8d2347 / 9854de7 included that session's REVIEW/PROGRESS entries. Block 7's entries are
+  renumbered R75–R77 (R72–R74 stay with Amendment A). The Amendment A code is left untouched and uncommitted pending the
+  user's decision on how the two RL plans fit together.
+- **R79. Block 7 and Block 6 Amendment A merged; reward R8 (2026-10-27).** The user: "Ok sure, you can merge. I want a better
+  reward function though." Merge as recommended: flute and piano follow Amendment A (RL from control-FK2, A3 selection,
+  criterion E against control-FK2 on the 145, first use for those regimes); strings follow Block 7 (RL from control-S2c,
+  not P v2: P stays parked), confirmed on the 31 fresh movements. Block 7's criterion is renamed **criterion F** (Amendment
+  A already has an E). **Reward R8, for every regime:** each regime's base reward (strings: Block 7's R7 terms, i.e. held-note
+  duration-weighted fidelity with inner 0.1, B' double-stop excess, top/bass floors; flute/piano: Amendment A2) plus
+  (1) a cost of 0.05 per extra output note (no credit for splitting), (2) **melody line integrity** (new): 0.5 x the share of
+  consecutive kept melody notes whose octave shift from the source changes (closes the "0.8 credit an octave away"
+  loophole; a whole phrase moved an octave is free; CUT notes count as held to their cut point), (3) **melody-first
+  rollouts** (Block 4's rollouts and its evaluation decoded in different orders). Settings: strings R8S2 / R8S4 (λ_DS 2 / 4),
+  flute R8F05 / R8F10 (λ_B 0.5 / 1.0), piano R8K (with --feas 1 and 3). The reward gate (Block 7 Step 2) runs for all four
+  regimes before any run, with hacks restrike8, melody_only, zigzag, inner_dump, keep_all (strings), cut_all and drop_half
+  (flute); pass = the base system outscores each hack in >= 90% of dev windows. Amendment A's code (another session,
+  2026-10-24) was committed unchanged first, after its tests passed (12/12).
+- **R80. Reward R8.1 (2026-10-29).** The R8 gate failed (2026-10-27): duo inner_dump, base ahead in 62.8% of dev windows at
+  both λ (results kept in model/results/rl/gate_r8_0/). The failure went unreported for two days. The user approved the
+  proposed fix: relocation credit (0.8) only one octave away (none at two octaves), and an inner-voice line-integrity
+  term (0.2 x the share of register jumps per source inner part). The gate now also reports ties and hack wins.
+  Gate re-run: duo first, then all four regimes; pass rule unchanged.
+- **R81. R8.1 revised; gate on changed windows (2026-10-29).** The R8.1 duo gate failed again (inner_dump 60.3%, ties 72.5%):
+  1972 of 2735 duo dev windows keep no inner note, so the hack is identical there; and the new inner line term let the hack
+  win (moving a whole inner voice two octaves removes its register jumps). The user approved both fixes: (1) the inner line
+  term is dropped (R8.1 = R8 + relocation credit at one octave only); (2) the gate's pass rule is computed over the windows
+  each hack changes (any label differs), for every hack and regime; threshold 0.90 unchanged. Check before the change
+  (all dev, no inner term): base beats inner_dump in 720 of 763 changed windows (96.0% with ties half).
+- **R82. "Go on all" (2026-11-03).** The user approved three steps and asked to be told only when a decision is needed.
+  (1) **Flute confirmatory test now:** criterion D (BLOCK6 Step 5, as frozen) for control-FK2, solo flute only, on the 145
+  evaluation movements (`model/run_block6_c2.sh`; `confirm6_eval --regimes`). Piano's half waits for the piano fix.
+  (2) **String RL chosen by ear:** both eligible runs (rl8-S2, rl8-S4) are rendered against control-S2c, and the user
+  picks. This departs from Block 7 Step 4.2 (the harmony tie-break picks and only the selected run is heard). The
+  tie-break is still computed and reported.
+  (3) **Piano fix:** checker-v7 = checker-v6 with the piano hand span 16 → 12 semitones (one octave; the user's
+  judgement over the Lieder calibration, where 1.1% of held-out struck sets exceed 12), and the hand-leap envelope refit
+  on Lieder at span 12 (the method of R65). Strings and flute are unchanged. Piano targets K2 (`targets_fk3`): K under
+  checker-v7, plus an inner note that doubles a pitch class already struck at its onset is dropped, and at most 4 notes
+  struck together per hand (a target cap; the checker allows 5). New model control-FK3 (as control-FK2, targets fk3);
+  its piano output only replaces control-FK2's, and control-FK2 stays the flute system. Ou et al.'s piano baseline is
+  re-masked under checker-v7 before any piano criterion D.
+  Also, display only: piano excerpts drawn with a bass-clef left hand, chords split between the hands as playable, and
+  one voice per hand (no hidden rests).
+- **R83. Piano checker-v8 and fuller targets (2026-11-10; user approved all four).** From a pianist's feedback on the
+  Clementi comparison. (a) **Hand gap, hard:** at every onset the right hand's lowest note is at least a minor third
+  (3 semitones) above the left hand's highest; the checker chooses the split, so a too-high left-hand note goes to the right
+  hand when that chord is playable, otherwise the arranger moves it (octave down) or drops it. The basis (sounding or
+  struck notes) is set from the Lieder measurement with printed staves (R65 method). (b) **Chord width, hard:** each hand
+  up to an octave (12) at any speed; 13-16 (9th, 10th) only after a set-up time since the previous onset, measured on
+  Lieder; over 16 never (checker-v7's 12 becomes the free limit). (c) **Fast chords and finger clustering, soft:**
+  reported on every output and used as tie-breakers in the targets (chord / single alternation preferred; inner notes of a
+  hand's chord not bunched toward the pinky, toward the thumb if needed), not checker rules. (d) **Fuller targets K3**
+  (targets_fk4): K under checker-v8 without K2's doubling drop and 4-finger cap; new model control-FK4. After listening,
+  piano criterion D re-runs under checker-v8 (Ou et al. re-masked).

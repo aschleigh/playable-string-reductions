@@ -37,7 +37,8 @@ from model.features import MAX_NOTES, collate, encode  # noqa: E402
 from model.net import MAX_PARTS, PART_DROP, Arranger  # noqa: E402
 
 REC = ROOT / "headroom" / "data" / "records"
-REFERENCE = {"trio": [[0], [2], [3]], "duo": [[0], [3]]}
+REFERENCE = {"trio": [[0], [2], [3]], "duo": [[0], [3]],
+             "solo_flute": [[0]], "piano": [[0, 1, 2, 3]]}   # as headroom/measure.py (Block 6)
 TPQ_BASE = 720720   # lcm(1..16); times are exact at TPQ_BASE x (lcm of the source's denominators)
 
 
@@ -145,9 +146,12 @@ def decode_movement(net, device, source_notes, insts, ens, masked: bool, tpq: in
     src_sorted = sorted(source_notes, key=lambda n: (n[1], n[3], n[2]))
     inotes = [A.INote(o, d, x, src=p) for p, o, d, x in src_sorted]
     tier_rank = None
+    from arrangement.eval.reduction import voice_tiers
+    tiers = voice_tiers(src_sorted)                                     # source notes are non-grace (grace dropped)
     if melody_first:
-        from arrangement.eval.reduction import voice_tiers
-        tier_rank = [TIER_RANK[t] for t in voice_tiers(src_sorted)]      # source notes are non-grace (grace dropped)
+        tier_rank = [TIER_RANK[t] for t in tiers]
+    if getattr(net, "n_real", 5) > A.CUT:                               # R70: CUT points, known from the source
+        A.assign_cut_ends(inotes, tiers)
     decided = np.zeros(len(inotes), bool)
     com = Committer(ens, tpq, masked, max((n.dur for n in inotes), default=F(1)))
     end = max((n.onset for n in inotes), default=F(0))
@@ -192,7 +196,7 @@ def decode_movement(net, device, source_notes, insts, ens, masked: bool, tpq: in
                                    oct_vals[int(po[j].argmax())], int(pr[j].argmax()))
                 else:
                     opts = sorted(((pp[j][pc] * po[j][o] * pr[j][r], pc, o, r)
-                                   for pc in part_ids for o in range(len(oct_vals)) for r in range(5)), reverse=True)
+                                   for pc in part_ids for o in range(len(oct_vals)) for r in range(pr.shape[-1])), reverse=True)
                     for rank, (_, pc, o, r) in enumerate(opts):
                         if pc == PART_DROP:
                             com.try_commit(i, inotes, A.DROP, 0, A.PLAIN)
@@ -215,6 +219,7 @@ def main(argv=None):
     ap.add_argument("--out-dir", default=None, help="records directory (default: <checkpoint dir>/records)")
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--only-review", action="store_true", help="decode the 5 review movements only")
+    ap.add_argument("--source-records", default=None, help="source records file (Block 7 fresh set: model/data/fresh_sources.jsonl)")
     ap.add_argument("--shard", type=int, default=0)
     ap.add_argument("--nshards", type=int, default=1)
     a = ap.parse_args(argv)
@@ -225,7 +230,10 @@ def main(argv=None):
     ens = load_ensemble(a.regime)
     insts = [i.key for i in ens.instruments]
     parts = [(n, i.key) for n, i in zip(ens.part_names, ens.instruments)]
-    base = load(REC / f"continuity__{a.regime}.jsonl")
+    src_rec = Path(a.source_records) if a.source_records else REC / f"continuity__{a.regime}.jsonl"
+    if not src_rec.exists():   # piano / solo_flute have no continuity baseline; naive holds the same 150 sources (Block 6)
+        src_rec = REC / f"naive__{a.regime}.jsonl"
+    base = load(src_rec)
     if a.only_review:   # the 5 review movements only (listening; excluded from every confirmatory test)
         import json as _json
         rk = {_json.loads((ROOT / "headroom" / "data" / "sources" / f"{i:03d}.json").read_text())["key"] for i in (22, 67, 39, 42, 148)}

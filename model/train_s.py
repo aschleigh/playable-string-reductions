@@ -27,6 +27,8 @@ from model.net import Arranger
 from model.train import losses
 
 ROOT = Path(__file__).resolve().parents[1]
+# output instruments per regime; Block 6 (R63) adds the solo flute and piano regimes
+INSTS = {**{k: v[0] for k, v in A.ENSEMBLES.items()}, "flute": ["flute"], "piano": ["piano"]}
 
 
 def load_oracle(run="arranger-v2b"):
@@ -47,7 +49,7 @@ def example(m, labels, regime, w0, rng, reveal_max):
         inotes.append(A.INote(o, d, x, part=pt, octave=oc, real=re, context=o < w0, src=p))
     r = rng.random() * reveal_max
     reveal = np.array([rng.random() < r for _ in inotes], bool)
-    return encode(inotes, A.ENSEMBLES[regime][0], w0, reveal)
+    return encode(inotes, INSTS[regime], w0, reveal)
 
 
 def main(argv=None):
@@ -58,24 +60,48 @@ def main(argv=None):
     ap.add_argument("--batch", type=int, default=32)
     ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--n-real", type=int, default=5, help="realisation classes (6 = with CUT, R70)")
     ap.add_argument("--ctx-run", default=None)
-    ap.add_argument("--targets", default="oracle", choices=["oracle", "s2", "s2b", "s2c"], help="oracle-under-mask (control S), S2 (R44), S2b (R49) or S2c (R58)")
+    ap.add_argument("--targets", default="oracle", choices=["oracle", "s2", "s2b", "s2c", "joint", "fk", "fk2", "fk3", "fk4"],
+                    help="oracle-under-mask (control S), S2 (R44), S2b (R49), S2c (R58), or joint (BLOCK6: S2c trio/duo + F/K flute/piano)")
     a = ap.parse_args(argv)
     rng = random.Random(a.seed)
     torch.manual_seed(a.seed)
     ck = torch.load(ROOT / "model" / "results" / a.base / "checkpoint.pt", map_location="cpu")
     cfg = ck["cfg"]
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    net = Arranger(**cfg["net"]).to(device)
-    net.load_state_dict(ck["model"])
+    if a.n_real != cfg["net"].get("n_real", 5):   # R70: widen the realisation vocabulary (CUT), keeping every old weight
+        cfg = {**cfg, "net": {**cfg["net"], "n_real": a.n_real}}
+        net = Arranger(**cfg["net"]).to(device)
+        sd = net.state_dict()
+        for k, v in ck["model"].items():
+            if sd[k].shape == v.shape:
+                sd[k] = v
+            else:                                  # c_real.weight [6 -> 7, d], real.weight [5 -> 6, d], real.bias [5 -> 6]
+                sl = tuple(slice(0, n) for n in v.shape)
+                sd[k][sl] = v
+                if k == "real.bias":
+                    sd[k][v.shape[0]:] = v.min() - 2.0   # a new class starts rare
+        net.load_state_dict(sd)
+        if cfg.get("real_class_weights"):
+            cfg["real_class_weights"] = list(cfg["real_class_weights"]) + [3.0] * (a.n_real - len(cfg["real_class_weights"]))
+    else:
+        net = Arranger(**cfg["net"]).to(device)
+        net.load_state_dict(ck["model"])
     real_w = torch.tensor(cfg["real_class_weights"], device=device) if cfg.get("real_class_weights") else None
     opt = torch.optim.AdamW(net.parameters(), lr=a.lr, weight_decay=0.01)
-    if a.targets in ("s2", "s2b", "s2c"):   # R44/R49/R58: S2, S2b or S2c targets (model/targets_s2.py), {key: {regime: labels}}
+    if a.targets == "joint":   # BLOCK6 Step 3 (R63): one arranger for trio, duo, flute and piano
+        s2c = pickle.load(open(RL / "targets_s2c__train.pkl", "rb"))
+        fk = pickle.load(open(RL / "targets_fk__train.pkl", "rb"))
+        lab = {k: {**s2c[k], **fk.get(k, {})} for k in s2c}
+    elif a.targets in ("fk", "fk2", "fk3", "fk4"):   # BLOCK6 decision 4 fallback (R68): flute and piano only; fk2 = with CUT (R70); fk3 = + K2 piano (R82)
+        lab = pickle.load(open(RL / f"targets_{a.targets}__train.pkl", "rb"))
+    elif a.targets in ("s2", "s2b", "s2c"):   # R44/R49/R58: S2, S2b or S2c targets (model/targets_s2.py), {key: {regime: labels}}
         lab = pickle.load(open(RL / f"targets_{a.targets}__train.pkl", "rb"))
     else:
         lab = load_oracle(a.ctx_run or a.base)
     mvs = [m for m in load_split("train") if m.key in lab]
-    jobs = [(m, r, w0) for m in mvs for r in REGIMES if r in lab[m.key] for w0 in windows(m, 384)]
+    jobs = [(m, r, w0) for m in mvs for r in lab[m.key] for w0 in windows(m, 384)]
     od = RL / a.run_name
     od.mkdir(parents=True, exist_ok=True)
     (od / "config.json").write_text(json.dumps({**vars(a), "n_windows": len(jobs), "base_step": ck["step"]}, indent=1))

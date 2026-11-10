@@ -16,6 +16,8 @@
 !results/validation/**
 !results/calibration/
 !results/calibration/**
+!results/calibration_piano/
+!results/calibration_piano/*.json
 !results/assigner/
 !results/assigner/**
 **/__pycache__/
@@ -67,6 +69,8 @@ decoding/results/*/*/harness/metrics.jsonl
 !BLOCK3_HANDOFF.md
 !BLOCK4.md
 !BLOCK5.md
+!BLOCK6.md
+!BLOCK7.md
 model/results/diagnostics/**/*.pkl
 model/results/diagnostics/*.pkl
 model/results/diagnostics/harness/**/metrics.jsonl

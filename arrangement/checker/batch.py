@@ -57,10 +57,23 @@ def _part(notes: NoteArrays, p: int, inst: InstrumentDef, idx: np.ndarray) -> li
                     S = tuple(sorted(int(x) for x in ng[(on <= t) & (en > t)]))
                     out.append(Violation("chord_size", p, S, float(c), float(inst.max_chord)))
             hs = inst.hand_span
-            if hs is not None:
-                sel = (cnt >= 2) & (cnt <= 2 * hs.fingers)
+            if hs is not None and hs.gap is not None:      # checker-v8 (R83): gap, set-up time
+                prev = None
+                for t in ts:
+                    K = {int(j): int(notes.pitch[j]) for j in ng[on == t]}
+                    Sd = {int(j): int(notes.pitch[j]) for j in ng[(on <= t) & (en > t)]}
+                    r = R2.hand_rule_v8(hs, K, Sd, None if prev is None else float(t - prev) / tpq)
+                    if r is not None:
+                        out.append(Violation("hand_span", p, r[0], r[1], r[2]))
+                    prev = t
+            elif hs is not None:
+                if hs.basis == "struck":   # checker-v6 (R65): the notes starting together
+                    cs = np.searchsorted(on, ts, side="right") - np.searchsorted(on, ts, side="left")
+                    sel = (cs >= 2) & (cs <= 2 * hs.fingers)
+                else:
+                    sel = (cnt >= 2) & (cnt <= 2 * hs.fingers)
                 for t in ts[sel]:
-                    S = tuple(sorted(int(x) for x in ng[(on <= t) & (en > t)]))
+                    S = tuple(sorted(int(x) for x in ng[(on == t) if hs.basis == "struck" else ((on <= t) & (en > t))]))
                     best = best_two_hand_span(sorted(int(notes.pitch[j]) for j in S), hs.fingers)
                     if best is not None and best > hs.semitones:
                         out.append(Violation("hand_span", p, S, float(best), float(hs.semitones)))
@@ -179,8 +192,12 @@ def _v2(notes: NoteArrays, p: int, inst: InstrumentDef, idx: np.ndarray) -> list
             if m > sp.shift_max_semitones:
                 out.append(Violation("shift", p, (a, c), float(m), float(sp.shift_max_semitones)))
     if hl is not None and hs is not None:
+        struck: dict[int, list[int]] = {}
+        if hs.basis == "struck":   # checker-v6 (R65)
+            for i in ng:
+                struck.setdefault(on[i], []).append(i)
         for t0, t in zip(onsets, onsets[1:]):
-            A, B = sounding[t0], sounding[t]
+            A, B = (struck[t0], struck[t]) if hs.basis == "struck" else (sounding[t0], sounding[t])
             move = R2.hand_move(tuple(sorted(px[j] for j in A)), tuple(sorted(px[j] for j in B)),
                                 hs.fingers, hs.semitones)
             allowed = hl.allowed((t - t0) / tpq)

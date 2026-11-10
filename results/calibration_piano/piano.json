@@ -1,0 +1,79 @@
+{
+ "files": 1462,
+ "ok": 1425,
+ "dev_files": 151,
+ "status": {
+  "ok": 1425,
+  "piano_parts=0": 30,
+  "piano_parts=2": 7
+ },
+ "source": "OpenScore Lieder (CC0), piano part, repeats not expanded, grace notes excluded",
+ "sounding": {
+  "dev_max": 43,
+  "dev_percentiles": {
+   "50": 7.0,
+   "90": 12.0,
+   "99": 21.0,
+   "99.9": 28.0
+  },
+  "heldout_share_above": {
+   "12": 0.04367362117384558,
+   "14": 0.035105087006142364,
+   "16": 0.018106510393290847,
+   "19": 0.009340497287870434,
+   "24": 0.0030673351884385057,
+   "43": 1.0258646115178948e-05
+  },
+  "no_two_hand_split_share": {
+   "dev": 0.1303741205078631,
+   "heldout": 0.10879015889849879
+  },
+  "hand_leap": {
+   "a": 37.5,
+   "b": 0.0,
+   "mean_allowed": 37.5,
+   "heldout_fail_share": 2.5331380514180967e-05,
+   "placeholder_U12_U13_heldout_fail_share": 0.00012665690257090484,
+   "dev_move_percentiles_at_gap_le_quarter": {
+    "50": 0.0,
+    "90": 3.5,
+    "99": 12.0,
+    "99.9": 19.0
+   }
+  }
+ },
+ "struck": {
+  "dev_max": 31,
+  "dev_percentiles": {
+   "50": 4.0,
+   "90": 12.0,
+   "99": 14.0,
+   "99.9": 16.713000000003376
+  },
+  "heldout_share_above": {
+   "12": 0.011494842310802549,
+   "14": 0.008319362537228063,
+   "16": 0.0012031320881244947,
+   "19": 0.00046152935839529794,
+   "24": 0.0001538431194650993,
+   "31": 4.733634445079979e-05
+  },
+  "no_two_hand_split_share": {
+   "dev": 0.4361683043989556,
+   "heldout": 0.42057589277551244
+  },
+  "hand_leap": {
+   "a": 20.666666666666664,
+   "b": 16.0,
+   "mean_allowed": 28.467601202498315,
+   "heldout_fail_share": 0.00010775985601449026,
+   "placeholder_U12_U13_heldout_fail_share": 6.190459813598377e-05,
+   "dev_move_percentiles_at_gap_le_quarter": {
+    "50": 0.0,
+    "90": 1.5833333333333286,
+    "99": 12.0,
+    "99.9": 20.0
+   }
+  }
+ }
+}

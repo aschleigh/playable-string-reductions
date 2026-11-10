@@ -15,6 +15,8 @@ Faithful to the source score:
     output often writes ends sloppily, and drawing them exactly would bury the rhythm in tuplets.
 Readability: at most two voices per staff; voice-2 rests are hidden; a third overlapping
 layer is drawn by shortening the held note to the new onset (counted in README.txt).
+Piano: one voice per hand; the notes struck together are drawn as one chord, held to the longest of them but cut
+at the hand's next chord (the count of notes drawn at another length is in README.txt as "shortened").
 
 Colours (lyrics give the reason):
   red     hard violation under the current checker (letters, see LEGEND);
@@ -47,14 +49,38 @@ LEGEND = {"R": "out of range", "C": "too many notes at once", "T": "leap too fas
           "K": "re-strikes a sounding pitch", "Q": "double stops too fast", "Y": "3+-note chord too short before the next note",
           "S": "overlap (monophonic)",
           "H": "hand span", "D": "same key twice", "L": "hand leap"}
-CLEFS = {"violin": clef.TrebleClef, "viola": clef.AltoClef, "cello": clef.BassClef}
+CLEFS = {"violin": clef.TrebleClef, "viola": clef.AltoClef, "cello": clef.BassClef, "piano_lh": clef.BassClef}
 GRIDS = (1, 2, 4, 3, 6, 8, 12, 24)
 from music21 import instrument as m21instrument  # noqa: E402
 INSTRUMENT = {"violin": m21instrument.Violin, "viola": m21instrument.Viola, "cello": m21instrument.Violoncello,
-              "flute": m21instrument.Flute, "piano": m21instrument.Piano}
+              "flute": m21instrument.Flute, "piano": m21instrument.Piano, "piano_lh": m21instrument.Piano}
 TRIO_PROG = {40: 0, 41: 1, 42: 2}
-PROG = {"trio": TRIO_PROG, "duo": {40: 0, 42: 1}}      # GM program -> part (Ou et al. band output)
+PROG = {"trio": TRIO_PROG, "duo": {40: 0, 42: 1},     # GM program -> part (Ou et al. band output)
+        "solo_flute": {73: 0}, "piano": {0: 0}}       # Block 6 (Ou et al. band flute; Ou et al. piano arranger)
 QUARTET = ("Violin 1", "Violin 2", "Viola", "Violoncello")
+
+
+def _hand_split(notes, fingers=5):
+    """Piano display: per onset, the split within five notes a hand of the struck notes (low part left hand, 1; high part right, 0) with the
+    smallest larger hand span, ties to the split nearest middle C."""
+    by_on = defaultdict(list)
+    for i, n in enumerate(notes):
+        by_on[n[0]].append(i)
+    hand = [0] * len(notes)
+    for ids in by_on.values():
+        ids.sort(key=lambda i: notes[i][2])
+        ps = [notes[i][2] for i in ids]
+        best = None
+        for k in range(len(ps) + 1):
+            over = max(k - fingers, len(ps) - k - fingers, 0)     # > 10 notes (unconstrained output): fewest extra
+            span = max(ps[k - 1] - ps[0] if k else 0, ps[-1] - ps[k] if k < len(ps) else 0)
+            cut = (ps[k - 1] + ps[k]) / 2 if 0 < k < len(ps) else (ps[0] - 0.5 if k == 0 else ps[-1] + 0.5)
+            cand = (over, span, abs(cut - 60))
+            if best is None or cand < best[0]:
+                best = (cand, k)
+        for j, i in enumerate(ids):
+            hand[i] = 1 if j < best[1] else 0
+    return hand
 
 
 # ------------------------------------------------------------------ source meta
@@ -142,6 +168,22 @@ def _voices(chords):
     return voices, n_cut
 
 
+def _piano_voice(qn):
+    """Piano staves: one voice per hand, no hidden rests. The notes struck together are one chord, held to the longest of
+    them but no later than the hand's next onset; returns the count of notes drawn at another length (README)."""
+    by_on = defaultdict(list)
+    for on, en, x, i in qn:
+        by_on[on].append((en, x, i))
+    ons, v, n = sorted(by_on), [], 0
+    for j, on in enumerate(ons):
+        en = max(e for e, _, _ in by_on[on])
+        if j + 1 < len(ons):
+            en = min(en, ons[j + 1])
+        n += sum(1 for e, _, _ in by_on[on] if e != en)
+        v.append([on, en, [i for _, _, i in sorted(by_on[on], key=lambda t: t[1])]])
+    return [v, []], n
+
+
 def _element(pitches, ql, colour_tags):
     els = [note.Note(midi=int(x)) for x in pitches]
     el = els[0] if len(els) == 1 else chord.Chord(els)
@@ -173,7 +215,7 @@ def build(title, subtitle, part_names, inst_keys, notes, marks, bars, meta, lo, 
             groups[(on, en)].append(i)
         chords = sorted(((on, en, sorted(ids, key=lambda i: notes[i][2])) for (on, en), ids in groups.items()),
                         key=lambda c: (c[0], -notes[c[2][-1]][2]))
-        voices, n_cut = _voices(chords)
+        voices, n_cut = _piano_voice(qn) if ik in ("piano", "piano_lh") else _voices(chords)
         n_cut_total += n_cut
         part = stream.Part(id=f"P{p}")
         part.partName = pname
@@ -315,7 +357,10 @@ def render(idx: int, start_bar: int, n_bars: int, masked_dir: str, out_root: Pat
     trio, quartet = load_ensemble(regime), load_ensemble("quartet")
     lines = []
     files = [("0_source_quartet", "Source string quartet", load_source(rec), quartet, QUARTET)]
-    for fname, label, d in ((f"1_ou_unconstrained_{regime}", f"Ou et al. {regime}, unconstrained", "ou_band"),
+    ou = "ou_piano" if regime == "piano" else "ou_band"
+    if regime == "piano" and masked_dir == "ou_band_masked":
+        masked_dir = "ou_piano_masked"
+    for fname, label, d in ((f"1_ou_unconstrained_{regime}", f"Ou et al. {regime}, unconstrained", ou),
                             (f"2_ou_masked_{regime}", f"Ou et al. {regime}, masked ({masked_dir})", masked_dir)):
         files.append((fname, label, load_ou(HEAD / "data" / "out" / d / regime / f"{idx:03d}.json", PROG[regime]), trio,
                       trio.part_names))
@@ -331,14 +376,20 @@ def render(idx: int, start_bar: int, n_bars: int, masked_dir: str, out_root: Pat
         for i, s in multistops(notes, ens).items():
             marks[i] |= s
         notes, marks, n_uni = merge_unisons(notes, marks)
+        keys = [i.key for i in ens.instruments]
+        if len(ens.instruments) == 1 and ens.instruments[0].key == "piano" and names is not QUARTET:
+            # display only: a grand staff; hands from arrangement.piano_hands (R83)
+            from arrangement.piano_hands import assign_hands     # R83: hands consistent in time, held notes kept
+            notes = [(o, d, x, h) for (o, d, x, _), h in zip(notes, assign_hands([(o, d, x) for o, d, x, _ in notes]))]
+            names, keys = ["Piano (right hand)", "Piano (left hand)"], ["piano", "piano_lh"]
         sc, n_cut = build(label, f"{comp}, {work}, mvt {int(mv)}, bars {nums}", names,
-                          [i.key for i in ens.instruments], notes, marks, bars, meta, lo, hi)
+                          keys, notes, marks, bars, meta, lo, hi)
         sc.write("musicxml", fp=str(out / f"{fname}.musicxml"))
         win = [i for i, n in enumerate(notes) if t0 <= n[0] < t1]
         red = sum(1 for i in win if marks.get(i, set()) - {"3"})
         orange = sum(1 for i in win if marks.get(i) == {"3"})
         lines.append(f"{label}: {len(win)} notes; {red} red (hard violation); {orange} orange only"
-                     + (f"; {n_cut} held notes shortened for display (3rd voice)" if n_cut else "")
+                     + (f"; {n_cut} held notes shortened for display (3rd voice; piano: cut at the next chord in the hand)" if n_cut else "")
                      + (f"; {n_uni} unison duplicates drawn as one note" if n_uni else ""))
     legend = "\n".join(f"  {k}  {v}" for k, v in LEGEND.items())
     (out / "README.txt").write_text(f"{rec['key']}\n\nBars are numbered along the repeat-expanded timeline "
@@ -355,7 +406,7 @@ def main(argv=None):
     ap.add_argument("--masked-dir", default="ou_band_masked")
     ap.add_argument("--out", default=str(EX))
     ap.add_argument("--model-run", default=None, help="also render the trained arranger's records")
-    ap.add_argument("--regime", default="trio", choices=["trio", "duo"])
+    ap.add_argument("--regime", default="trio", choices=["trio", "duo", "piano", "solo_flute"])
     ap.add_argument("--oracle", action="store_true", help="also render the oracle under the mask (BLOCK4.md 1a)")
     a = ap.parse_args(argv)
     starts = a.start * len(a.idx) if len(a.start) == 1 else a.start
